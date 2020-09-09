@@ -1,14 +1,15 @@
 <template>
-  <v-app>
-    <v-main> </v-main>
+  <v-app id="app">
+    <v-main>
+      <Build></Build>
+    </v-main>
   </v-app>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+import Builder from "@/components/build/Builder.vue";
 
-@Component({
-  components: {}
-})
+@Component({ components: { Build: Builder } })
 export default class App extends Vue {}
 </script>
