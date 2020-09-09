@@ -1,3 +1,5 @@
+import { Gear, GearCateList } from "@/mechanism/build/Gear";
+
 export class Attr {
   private _HP_A: number;
   private _HP_B: number;
@@ -33,6 +35,15 @@ export class Attr {
   // constructor(val: number) {
   //
   // }
+
+  apply_gear(g: Gear): Attr {
+    for (let i in GearCateList) {
+      if (g.name == GearCateList[i].name) {
+        return GearCateList[i].handler(this, g);
+      }
+    }
+    throw new Error("GearNameNotFound");
+  }
 
   constructor(val: number) {
     this._HP_A = val;
