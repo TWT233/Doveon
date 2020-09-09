@@ -1,4 +1,4 @@
-import { Attr } from "@/mechanism/build/Attr";
+import { Attribute } from "@/mechanism/build/Attribute";
 
 export class Gear {
   private _name: string;
@@ -6,11 +6,7 @@ export class Gear {
   private _p: number[];
   // private _isEnchanted: boolean;
 
-  constructor(
-    name: string = "NONE",
-    lvl: number = 0,
-    p: number[] = [0, 0, 0, 0]
-  ) {
+  constructor(name = "NONE", lvl = 1, p: number[] = [100, 100, 100, 100]) {
     this._name = name;
     this._lvl = lvl;
     this._p = p.slice();
@@ -44,21 +40,21 @@ export class Gear {
 export type GearCateEntry = {
   name: string;
   type: string;
-  handler: (a: Attr, g: Gear) => Attr;
+  handler: (a: Attribute, g: Gear) => Attribute;
 };
 
 export const GearCateList: GearCateEntry[] = [
   {
     name: "NONE",
     type: "none",
-    handler: (a: Attr) => {
+    handler: (a: Attribute) => {
       return a;
     }
   },
   {
     name: "SWORD",
     type: "weapon",
-    handler: (a: Attr, g: Gear): Attr => {
+    handler: (a: Attribute, g: Gear): Attribute => {
       a.ATK_PHY_B += g.lvl * g.p[0] * 10;
       a.ATK_MAG_B += g.lvl * g.p[1] * 10;
       a.THR_PHY_B += (g.lvl * g.p[2] * 2) / 3;
@@ -69,7 +65,7 @@ export const GearCateList: GearCateEntry[] = [
   {
     name: "PLATE",
     type: "body",
-    handler: (a: Attr, g: Gear): Attr => {
+    handler: (a: Attribute, g: Gear): Attribute => {
       a.HP_B += g.lvl * g.p[0] * 5;
       a.DEF_PHY_B += g.lvl * g.p[1];
       a.DEF_MAG_B += g.lvl * g.p[2];
@@ -80,7 +76,7 @@ export const GearCateList: GearCateEntry[] = [
   {
     name: "BRACELET",
     type: "hand",
-    handler: (a: Attr, g: Gear): Attr => {
+    handler: (a: Attribute, g: Gear): Attribute => {
       a.ATK_MAG_A += (g.lvl / 5 + 1) * g.p[0];
       a.THR_MAG_A += (g.lvl / 12 + 1) * g.p[1];
       a.SHD_B += g.lvl * g.p[2] * 10;
@@ -91,7 +87,7 @@ export const GearCateList: GearCateEntry[] = [
   {
     name: "SCARF",
     type: "head",
-    handler: (a: Attr, g: Gear): Attr => {
+    handler: (a: Attribute, g: Gear): Attribute => {
       a.HP_B += g.lvl * g.p[0] * 5;
       a.BAR_PHY += g.lvl * g.p[1] * 2;
       a.BAR_MAG += g.lvl * g.p[2] * 2;
