@@ -1,6 +1,6 @@
 import { Gear, GearCateList } from "@/mechanism/build/Gear";
 
-export class Attr {
+export class Attribute {
   private _HP_A: number;
   private _HP_B: number;
   private _HP_REG_A: number;
@@ -36,8 +36,8 @@ export class Attr {
   //
   // }
 
-  apply_gear(g: Gear): Attr {
-    for (let i in GearCateList) {
+  applyGears(g: Gear): Attribute {
+    for (const i in GearCateList) {
       if (g.name == GearCateList[i].name) {
         return GearCateList[i].handler(this, g);
       }
