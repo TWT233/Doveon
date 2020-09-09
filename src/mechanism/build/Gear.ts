@@ -6,8 +6,12 @@ export class Gear {
   private _p: number[];
   // private _isEnchanted: boolean;
 
-  constructor(type: string, lvl: number, p: number[]) {
-    this._name = type;
+  constructor(
+    name: string = "NONE",
+    lvl: number = 0,
+    p: number[] = [0, 0, 0, 0]
+  ) {
+    this._name = name;
     this._lvl = lvl;
     this._p = p.slice();
   }
@@ -44,6 +48,13 @@ export type GearCateEntry = {
 };
 
 export const GearCateList: GearCateEntry[] = [
+  {
+    name: "NONE",
+    type: "none",
+    handler: (a: Attr) => {
+      return a;
+    }
+  },
   {
     name: "SWORD",
     type: "weapon",
