@@ -43,7 +43,7 @@ export class Attribute {
         return GearCateList[i].handler(this, g);
       }
     }
-    throw new Error("GearNameNotFound");
+    throw new Error("GearNameNotFound, expects " + g.name);
   }
 
   // get status(): Status {
