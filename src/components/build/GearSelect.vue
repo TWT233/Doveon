@@ -23,8 +23,7 @@ import { Gear } from "@/mechanism/build/Gear";
 export default class GearSelect extends Vue {
   gearTypes: string[] = ["weapon", "hand", "body", "head"];
 
-  @Prop({ default: [new Gear(), new Gear(), new Gear(), new Gear()] })
-  gears!: Array<Gear>;
+  @Prop() gears!: Array<Gear>;
 }
 </script>
 
