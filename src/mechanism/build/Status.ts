@@ -1,12 +1,15 @@
 export type Status = {
   HP: number;
-  HP_REG: number;
+  HP_REG_A: number;
+  HP_REG_B: number;
   ATK_PHY: number;
   ATK_MAG: number;
   ATK_ABS: number;
   ATK_SPD: number;
-  THR_PHY: number;
-  THR_MAG: number;
+  THR_PHY_A: number;
+  THR_PHY_B: number;
+  THR_MAG_A: number;
+  THR_MAG_B: number;
   SKI_CHA: number;
   CRI_CHA: number;
   THR_CRI: number;
@@ -16,6 +19,7 @@ export type Status = {
   BAR_PHY: number;
   BAR_MAG: number;
   SHD: number;
-  SHD_REG: number;
+  SHD_REG_A: number;
+  SHD_REG_B: number;
   REF: number;
 };
