@@ -4,7 +4,6 @@ import { Attribute } from "@/mechanism/build/Attribute";
 
 export class Build {
   private _gears: Gear[];
-  private _status: Status;
 
   get status(): Status {
     let attr = new Attribute(0);
@@ -13,19 +12,14 @@ export class Build {
       attr = attr.applyGears(this._gears[gearsKey]);
     }
 
-    this._status = this._status.applyAttr(attr);
-    return this._status;
+    return attr.status;
   }
 
-  constructor(
-    gears: Gear[] = new Array<Gear>(4),
-    status: Status = new Status(0)
-  ) {
+  constructor(gears: Gear[] = new Array<Gear>(4)) {
     this._gears = gears;
     for (const i in [0, 1, 2, 3]) {
       this._gears[i] = new Gear();
     }
-    this._status = status;
   }
 
   get gears(): Gear[] {
