@@ -27,18 +27,22 @@ Prettier + Default Settings
 
 ## Git Commit Message
 
-首行格式: [tag] + abstract
+首先 Commit Message 最好用英文写
+
+header 格式: [tag] + abstract
 
 e.g. [add] BuildRatingTest.ts: unit test on `Build Rating`
 
-Tag List:
+Tag List:*非 Commitizen 标准*
 
 - add : 添加功能 / UI
 - mod : 修改功能
+- fix : 修 Bug，需在 abstract 中标明关联 issue
 - rm : 移除功能
 - doc : 改文档
 - lint : linter 改的东西
 - typo : 修正 typo
 - 有其他需要可添加
+
 
 message body 没有什么要求，容易理解即可
