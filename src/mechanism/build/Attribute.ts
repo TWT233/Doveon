@@ -1,4 +1,5 @@
-import { Gear, GearCateList } from "@/mechanism/build/Gear";
+import { Gear } from "@/mechanism/build/Gear";
+import { GearCateList } from "@/data/GearCateList";
 
 export class Attribute {
   private _HP_A: number;

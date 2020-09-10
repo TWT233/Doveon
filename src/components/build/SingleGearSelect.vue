@@ -47,7 +47,8 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
-import { Gear, GearCateList } from "@/mechanism/build/Gear";
+import { Gear } from "@/mechanism/build/Gear";
+import { GearCateList } from "@/data/GearCateList";
 
 @Component({})
 export default class SingleGearSelect extends Vue {
