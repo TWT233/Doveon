@@ -2,8 +2,10 @@ export type Status = {
   HP: number;
   HP_REG_A: number;
   HP_REG_B: number;
-  ATK_PHY: number;
-  ATK_MAG: number;
+  ATK_PHY_A: number;
+  ATK_PHY_B: number;
+  ATK_MAG_A: number;
+  ATK_MAG_B: number;
   ATK_ABS: number;
   ATK_SPD: number;
   THR_PHY_A: number;
