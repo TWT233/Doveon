@@ -24,8 +24,9 @@ zh_CN:
           </v-col>
         </v-row>
       </v-container>
-    </v-card-text> </v-card
-></template>
+    </v-card-text>
+  </v-card>
+</template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";

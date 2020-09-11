@@ -1,3 +1,9 @@
+<i18n>
+zh_CN:
+  Builder: 配装器
+  Simulator: 战斗模拟器
+</i18n>
+
 <template>
   <v-app>
     <v-app-bar color="primary" dark app>
@@ -6,8 +12,8 @@
 
       <v-spacer></v-spacer>
 
-      <v-btn text @click="onBuilder()">Builder</v-btn>
-      <v-btn text @click="onSimulator()">Simulator</v-btn>
+      <v-btn text @click="onBuilder()">{{ $t("Builder") }}</v-btn>
+      <v-btn text @click="onSimulator()">{{ $t("Simulator") }}</v-btn>
       <v-btn icon>
         <v-icon>mdi-dots-vertical</v-icon>
       </v-btn>
