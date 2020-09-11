@@ -27,9 +27,9 @@ zh_CN:
 
 <template>
   <v-card outlined>
-    <v-card-text>
+    <v-container>
       <v-row>
-        <v-col>
+        <v-col cols="8">
           <v-select
             v-model="gear.name"
             :items="availableGearList"
@@ -45,36 +45,15 @@ zh_CN:
         </v-col>
       </v-row>
       <v-row>
-        <v-col>
+        <v-col v-for="i in 4" :key="'p' + i">
           <v-text-field
-            label="P1"
-            v-model.number="gear.p[0]"
-            type="number"
-          ></v-text-field>
-        </v-col>
-        <v-col>
-          <v-text-field
-            label="P2"
-            v-model.number="gear.p[1]"
-            type="number"
-          ></v-text-field>
-        </v-col>
-        <v-col>
-          <v-text-field
-            label="P3"
-            v-model.number="gear.p[2]"
-            type="number"
-          ></v-text-field>
-        </v-col>
-        <v-col>
-          <v-text-field
-            label="P4"
-            v-model.number="gear.p[3]"
+            :label="'P' + i"
+            v-model.number="gear.p[i - 1]"
             type="number"
           ></v-text-field>
         </v-col>
       </v-row>
-    </v-card-text>
+    </v-container>
   </v-card>
 </template>
 
