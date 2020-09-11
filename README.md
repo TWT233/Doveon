@@ -1,3 +1,6 @@
+<div align="center">
+<img src="https://raw.githubusercontent.com/TWT233/Doveon/master/src/assets/icon.png">
+</div>
 <h1 align="center">
 Doveon
 </h1>
@@ -8,6 +11,8 @@ Doveon
 # 项目介绍
 
 作为一条不想手写配置文件的懒狗，来写个 UI 版计算器
+
+logo 随手画的，摇了我 8（有巨巨帮我画一个更好乌乌
 
 # 从源代码运行/调试
 
