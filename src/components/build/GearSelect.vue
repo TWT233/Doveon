@@ -8,7 +8,7 @@ zh_CN:
     <v-card-title>{{ $t("Gear") }}</v-card-title>
     <v-card-text>
       <v-container>
-        <v-row>
+        <v-row dense>
           <v-col
             sm="6"
             cols="12"
