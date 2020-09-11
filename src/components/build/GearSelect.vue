@@ -1,6 +1,11 @@
+<i18n>
+zh_CN:
+  Gear: "武器装备"
+</i18n>
+
 <template>
-  <v-card elevation="2">
-    <v-card-title>Gear</v-card-title>
+  <v-card>
+    <v-card-title>{{ $t("Gear") }}</v-card-title>
     <v-card-text>
       <v-container>
         <v-row>

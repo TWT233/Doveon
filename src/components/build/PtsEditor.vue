@@ -1,12 +1,23 @@
+<i18n>
+zh_CN:
+  Points: 属性加点
+  STR: 力量
+  AGI: 敏捷
+  INT: 智力
+  VIT: 体魄
+  MEN: 精神
+  CON: 意志
+</i18n>
+
 <template>
   <v-card elevation="2">
-    <v-card-title>Points</v-card-title>
+    <v-card-title>{{ $t("Points") }}</v-card-title>
     <v-card-text>
       <v-container fluid>
         <v-row>
           <v-col xl="2" lg="4" cols="2" v-for="item in ptsKeys" :key="item">
             <v-text-field
-              :label="item"
+              :label="$t(item)"
               v-model.number="pts[item]"
               type="number"
             ></v-text-field>

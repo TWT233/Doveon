@@ -1,3 +1,12 @@
+<i18n>
+zh_CN:
+  weapon: 武器
+  hand: 饰品
+  body: 护甲
+  head: 头饰
+  Level: 等级
+</i18n>
+
 <template>
   <v-card outlined>
     <v-card-text>
@@ -6,12 +15,12 @@
           <v-select
             v-model="gear.name"
             :items="availableGearList"
-            :label="type"
+            :label="$t(type)"
           ></v-select>
         </v-col>
         <v-col cols="4">
           <v-text-field
-            label="Level"
+            :label="$t('Level')"
             v-model.number="gear.lvl"
             type="number"
           ></v-text-field>
@@ -65,7 +74,7 @@ export default class SingleGearSelect extends Vue {
     const ret = new Array<string>(0);
     for (const key in GearCateList) {
       if (GearCateList[key].type == this.type) {
-        ret.push(GearCateList[key].name);
+        ret.push(this.$t("GearCate." + GearCateList[key].name).toString());
       }
     }
     return ret;

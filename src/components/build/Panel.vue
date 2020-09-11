@@ -1,14 +1,21 @@
+<i18n>
+zh_CN:
+  Panel: 操作面板
+  Save: 保存配置
+  Load: 加载配置
+</i18n>
+
 <template>
   <v-card>
-    <v-card-title>Panel</v-card-title>
+    <v-card-title>{{ $t("Panel") }}</v-card-title>
     <v-card-text>
       <v-container>
         <v-row>
           <v-col cols="auto">
-            <v-btn color="primary" @click="onSave()">Save</v-btn>
+            <v-btn color="primary" @click="onSave()">{{ $t("Save") }}</v-btn>
           </v-col>
           <v-col cols="auto">
-            <v-btn @click="onLoad()">Load</v-btn>
+            <v-btn @click="onLoad()">{{ $t("Load") }}</v-btn>
           </v-col>
         </v-row>
       </v-container>

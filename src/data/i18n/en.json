@@ -1,0 +1,19 @@
+{
+  "GearCate": {
+    "NONE": "NONE",
+    "SWORD": "SWORD",
+    "SHORT_BOW": "SHORT_BOW",
+    "STAFF": "STAFF",
+    "BLADE": "BLADE",
+    "ASS_BOW": "ASS_BOW",
+    "GLOVE": "GLOVE",
+    "BRACELET": "BRACELET",
+    "PLATE": "PLATE",
+    "LEATHER": "LEATHER",
+    "CLOTH": "CLOTH",
+    "CLOAK": "CLOAK",
+    "THORN": "THORN",
+    "SCARF": "SCARF",
+    "ASTRO": "ASTRO"
+  }
+}
