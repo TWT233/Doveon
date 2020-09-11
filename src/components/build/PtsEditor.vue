@@ -4,7 +4,7 @@
     <v-card-text>
       <v-container fluid>
         <v-row>
-          <v-col cols="2" v-for="item in ptsKeys" :key="item">
+          <v-col xl="2" lg="4" cols="2" v-for="item in ptsKeys" :key="item">
             <v-text-field
               :label="item"
               v-model.number="pts[item]"

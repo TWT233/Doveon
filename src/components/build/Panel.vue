@@ -4,10 +4,10 @@
     <v-card-text>
       <v-container>
         <v-row>
-          <v-col cols="1">
+          <v-col cols="auto">
             <v-btn color="primary" @click="onSave()">Save</v-btn>
           </v-col>
-          <v-col cols="1">
+          <v-col cols="auto">
             <v-btn @click="onLoad()">Load</v-btn>
           </v-col>
         </v-row>

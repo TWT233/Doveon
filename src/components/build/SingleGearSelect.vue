@@ -1,48 +1,54 @@
 <template>
-  <v-row>
-    <v-col cols="2">
-      <v-select
-        v-model="gear.name"
-        :items="availableGearList"
-        :label="type"
-      ></v-select>
-    </v-col>
-    <v-col cols="2">
-      <v-text-field
-        label="Level"
-        v-model.number="gear.lvl"
-        type="number"
-      ></v-text-field>
-    </v-col>
-    <v-col cols="2">
-      <v-text-field
-        label="P1"
-        v-model.number="gear.p[0]"
-        type="number"
-      ></v-text-field>
-    </v-col>
-    <v-col cols="2">
-      <v-text-field
-        label="P2"
-        v-model.number="gear.p[1]"
-        type="number"
-      ></v-text-field>
-    </v-col>
-    <v-col cols="2">
-      <v-text-field
-        label="P3"
-        v-model.number="gear.p[2]"
-        type="number"
-      ></v-text-field>
-    </v-col>
-    <v-col cols="2">
-      <v-text-field
-        label="P4"
-        v-model.number="gear.p[3]"
-        type="number"
-      ></v-text-field>
-    </v-col>
-  </v-row>
+  <v-card outlined>
+    <v-card-text>
+      <v-row>
+        <v-col>
+          <v-select
+            v-model="gear.name"
+            :items="availableGearList"
+            :label="type"
+          ></v-select>
+        </v-col>
+        <v-col cols="4">
+          <v-text-field
+            label="Level"
+            v-model.number="gear.lvl"
+            type="number"
+          ></v-text-field>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col>
+          <v-text-field
+            label="P1"
+            v-model.number="gear.p[0]"
+            type="number"
+          ></v-text-field>
+        </v-col>
+        <v-col>
+          <v-text-field
+            label="P2"
+            v-model.number="gear.p[1]"
+            type="number"
+          ></v-text-field>
+        </v-col>
+        <v-col>
+          <v-text-field
+            label="P3"
+            v-model.number="gear.p[2]"
+            type="number"
+          ></v-text-field>
+        </v-col>
+        <v-col>
+          <v-text-field
+            label="P4"
+            v-model.number="gear.p[3]"
+            type="number"
+          ></v-text-field>
+        </v-col>
+      </v-row>
+    </v-card-text>
+  </v-card>
 </template>
 
 <script lang="ts">

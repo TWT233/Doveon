@@ -1,34 +1,24 @@
 <template>
   <v-container>
     <v-row>
-      <v-col cols="4">
+      <v-col lg="3" cols="12">
         <StatusView :status="build.status"></StatusView>
       </v-col>
-      <v-col>
-        <v-container>
-          <v-row>
-            <v-col cols="12">
-              <GearSelect :gears="gears"></GearSelect>
-            </v-col>
-          </v-row>
-
-          <v-row>
-            <v-col cols="12">
-              <PtsEditor :pts="pts"></PtsEditor>
-            </v-col>
-          </v-row>
-
-          <v-row>
-            <v-col cols="12">
-              <v-snackbar v-model="snackbarShow" :timeout="1000" :bottom="true">
-                {{ snackbarText }}
-              </v-snackbar>
-              <Panel @panel-save="onSave()" @panel-load="onLoad()"></Panel>
-            </v-col>
-          </v-row>
-        </v-container>
+      <v-col lg="6" cols="12">
+        <GearSelect :gears="gears"></GearSelect>
+      </v-col>
+      <v-col lg="3" cols="12">
+        <v-row>
+          <v-col cols="12"> <PtsEditor :pts="pts"></PtsEditor></v-col>
+          <v-col cols="12">
+            <Panel @panel-save="onSave()" @panel-load="onLoad()"></Panel>
+          </v-col>
+        </v-row>
       </v-col>
     </v-row>
+    <v-snackbar v-model="snackbarShow" :timeout="1000" :bottom="true">
+      {{ snackbarText }}
+    </v-snackbar>
   </v-container>
 </template>
 
