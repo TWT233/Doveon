@@ -7,7 +7,8 @@ export type Status = {
   ATK_MAG_A: number;
   ATK_MAG_B: number;
   ATK_ABS: number;
-  ATK_SPD: number;
+  ATK_SPD_A: number;
+  ATK_SPD_B: number;
   THR_PHY_A: number;
   THR_PHY_B: number;
   THR_MAG_A: number;
@@ -16,8 +17,10 @@ export type Status = {
   CRI_CHA: number;
   THR_CRI: number;
   HP_STL: number;
-  DEF_PHY: number;
-  DEF_MAG: number;
+  DEF_PHY_A: number;
+  DEF_PHY_B: number;
+  DEF_MAG_A: number;
+  DEF_MAG_B: number;
   BAR_PHY: number;
   BAR_MAG: number;
   SHD: number;
