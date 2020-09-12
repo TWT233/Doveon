@@ -71,24 +71,7 @@ export default class Builder extends Vue {
     } else {
       this.snackbarText = "Loading...";
       this.snackbarShow = true;
-      this.loadData(this.build, JSON.parse(window.localStorage["build"]));
-    }
-  }
-
-  // hard copy newData into oldData, idk how to make this better now
-  private loadData(oldData: any, newData: any) {
-    for (const key in newData) {
-      if (Array.isArray(newData[key])) {
-        for (let i = 0; i < newData[key].length; ++i) {
-          if (typeof newData[key][i] === "object") {
-            this.loadData(oldData[key][i], newData[key][i]);
-          } else oldData[key][i] = newData[key][i];
-        }
-      } else if (typeof newData[key] === "object") {
-        this.loadData(oldData[key], newData[key]);
-      } else {
-        oldData[key] = newData[key];
-      }
+      this.build.load(JSON.parse(window.localStorage["build"]));
     }
   }
 }
