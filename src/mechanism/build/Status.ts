@@ -1,4 +1,5 @@
 export type Status = {
+  [key: string]: number;
   HP: number;
   HP_REG_A: number;
   HP_REG_B: number;
