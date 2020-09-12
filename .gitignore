@@ -3,6 +3,8 @@ node_modules
 /dist
 yarn.lock
 
+# deployment shell script
+deploy.sh
 
 # local env files
 .env.local
