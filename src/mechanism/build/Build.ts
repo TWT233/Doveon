@@ -2,10 +2,22 @@ import { Gear } from "@/mechanism/build/Gear";
 import { Status } from "@/mechanism/build/Status";
 import { Attribute } from "@/mechanism/build/Attribute";
 import { Pts } from "@/mechanism/build/Pts";
+import { Aura } from "@/mechanism/build/Aura";
 
 export class Build {
+  [key: string]: Gear[] | Pts | Aura | Status | Function;
   private _gears: Gear[];
   private _pts: Pts;
+  private _aura: Aura;
+
+  load(b: Build) {
+    if (b == null) return;
+    this._pts.load(b._pts);
+    this._aura.load(b._aura);
+    for (let i = 0; i < Math.min(this._gears.length, b._gears.length); ++i) {
+      this._gears[i].load(b._gears[i]);
+    }
+  }
 
   get status(): Status {
     let attr = new Attribute(0);
@@ -51,12 +63,17 @@ export class Build {
     };
   }
 
-  constructor(gears: Gear[] = new Array<Gear>(4), pts: Pts = new Pts()) {
+  constructor(
+    gears: Gear[] = new Array<Gear>(4),
+    pts: Pts = new Pts(),
+    aura: Aura = new Aura()
+  ) {
     this._gears = gears;
     for (const i in [0, 1, 2, 3]) {
       this._gears[i] = new Gear();
     }
     this._pts = pts;
+    this._aura = aura;
   }
 
   get gears(): Gear[] {

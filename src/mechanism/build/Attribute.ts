@@ -2,6 +2,7 @@ import { Gear } from "@/mechanism/build/Gear";
 import { GearCateList } from "@/data/GearCateList";
 
 export class Attribute {
+  [key: string]: number | Function;
   private _HP_A: number;
   private _HP_B: number;
   private _HP_REG_A: number;
@@ -44,6 +45,13 @@ export class Attribute {
       }
     }
     throw new Error("GearNameNotFound, expects " + g.name);
+  }
+
+  load(a: Attribute) {
+    if (a == null) return;
+    for (const key in a) {
+      this[key] = a[key];
+    }
   }
 
   // get status(): Status {

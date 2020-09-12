@@ -1,6 +1,7 @@
 import { Attribute } from "@/mechanism/build/Attribute";
 
 export class Gear {
+  [key: string]: number | string | number[] | Function;
   private _name: string;
   private _lvl: number;
   private _p: number[]; //save in int percents, **div 100 when used**
@@ -40,6 +41,15 @@ export class Gear {
   v(pos: number): number {
     if (pos > this._p.length) throw Error("out of range");
     return this._p[pos] / 100;
+  }
+
+  load(g: Gear) {
+    if (g == null) return;
+    this._name = g._name;
+    this._lvl = g._lvl;
+    for (let i = 0; i < Math.min(this._p.length, g._p.length); ++i) {
+      this._p[i] = g._p[i];
+    }
   }
 }
 
