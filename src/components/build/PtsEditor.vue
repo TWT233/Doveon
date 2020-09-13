@@ -10,7 +10,7 @@ zh_CN:
 </i18n>
 
 <template>
-  <v-card elevation="2">
+  <v-card>
     <v-card-title>{{ $t("Points") }}</v-card-title>
     <v-card-text>
       <v-container fluid>
