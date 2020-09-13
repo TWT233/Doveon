@@ -25,15 +25,14 @@ zh_CN:
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop } from "vue-property-decorator";
+import { Vue, Component } from "vue-property-decorator";
 import SingleGearSelect from "@/components/build/SingleGearSelect.vue";
-import { Gear } from "@/mechanism/build/Gear";
 
 @Component({ components: { SingleGearSelect } })
 export default class GearSelect extends Vue {
   gearTypes: string[] = ["weapon", "hand", "body", "head"];
 
-  @Prop() gears!: Array<Gear>;
+  gears = this.$store.state.build.gears;
 }
 </script>
 

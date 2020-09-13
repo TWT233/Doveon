@@ -1,8 +1,8 @@
 <i18n>
 zh_CN:
   Panel: 操作面板
-  Save: 保存配置
-  Load: 加载配置
+  Save: 保存配装
+  Load: 加载配装
 </i18n>
 
 <template>

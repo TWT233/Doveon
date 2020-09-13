@@ -2,14 +2,14 @@
   <v-container>
     <v-row>
       <v-col lg="3" cols="12">
-        <StatusView :status="build.status"></StatusView>
+        <StatusView></StatusView>
       </v-col>
       <v-col lg="6" cols="12">
-        <GearSelect :gears="gears"></GearSelect>
+        <GearSelect></GearSelect>
       </v-col>
       <v-col lg="3" cols="12">
         <v-row>
-          <v-col cols="12"> <PtsEditor :pts="pts"></PtsEditor></v-col>
+          <v-col cols="12"> <PtsEditor></PtsEditor></v-col>
           <v-col cols="12">
             <Panel @panel-save="onSave()" @panel-load="onLoad()"></Panel>
           </v-col>
@@ -26,26 +26,16 @@
 import { Component, Vue } from "vue-property-decorator";
 import GearSelect from "@/components/build/GearSelect.vue";
 import StatusView from "@/components/build/StatusView.vue";
-import { Gear } from "@/mechanism/build/Gear";
 import { Build } from "@/mechanism/build/Build";
 import PtsEditor from "@/components/build/PtsEditor.vue";
-import { Pts } from "@/mechanism/build/Pts";
 import Panel from "@/components/build/Panel.vue";
 
 @Component({ components: { Panel, PtsEditor, GearSelect, StatusView } })
 export default class Builder extends Vue {
-  build: Build = new Build();
+  build: Build = this.$store.state.build;
 
   snackbarText = "";
   snackbarShow = false;
-
-  get gears(): Gear[] {
-    return this.build.gears;
-  }
-
-  get pts(): Pts {
-    return this.build.pts;
-  }
 
   onSave() {
     if (!window.localStorage) {

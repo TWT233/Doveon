@@ -29,12 +29,12 @@ zh_CN:
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
+import { Component, Vue } from "vue-property-decorator";
 import { Pts } from "@/mechanism/build/Pts";
 
 @Component({})
 export default class PtsEditor extends Vue {
-  @Prop(Pts) pts!: Pts;
+  pts: Pts = this.$store.state.build.pts;
 
   get ptsKeys(): string[] {
     return Object.keys(this.pts);

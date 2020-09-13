@@ -156,15 +156,13 @@ zh_CN:
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
+import { Component, Vue } from "vue-property-decorator";
 import { Status } from "@/mechanism/build/Status";
 
 @Component({})
 export default class StatusView extends Vue {
-  @Prop() status!: Status;
-
-  get statusKeys(): string[] {
-    return Object.keys(this.status);
+  get status(): Status {
+    return this.$store.state.build.status;
   }
 
   get DEF_PHY(): number {
