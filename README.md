@@ -30,16 +30,17 @@ yarn serve
 - [x] 加点
 - [x] 计算面板
 - [x] 存储配置
-- [x] UI优化
+- [x] UI 优化
 - [x] 翻译(可后推)
 - [ ] 存储多套配装
+- [ ] 导出配置到现有计算器
 - [ ] 光环
 - [ ] 技能
 - [ ] 存储装备
-- [ ] UI优化
-- [ ] 模拟PVE
-- [ ] 模拟PVP
-- [ ] UI优化
+- [ ] UI 优化
+- [ ] 模拟 PVE
+- [ ] 模拟 PVP
+- [ ] UI 优化
 - [ ] 计算加点方案
 - [ ] 嵌入游戏/从游戏中解数据(可能是新坑)
 
@@ -57,7 +58,7 @@ header 格式: [tag] + abstract
 
 e.g. [add] BuildRatingTest.ts: unit test on `Build Rating`
 
-Tag List:*非 Commitizen 标准*
+Tag List:_非 Commitizen 标准_
 
 - add : 添加功能 / UI
 - mod : 修改功能
@@ -67,6 +68,5 @@ Tag List:*非 Commitizen 标准*
 - lint : linter 改的东西
 - typo : 修正 typo
 - 有其他需要可添加
-
 
 message body 没有什么要求，容易理解即可
