@@ -8,14 +8,12 @@ zh_CN:
     <v-card-title>{{ $t("Gear") }}</v-card-title>
     <v-card-text>
       <v-container>
-        <v-row dense>
-          <v-col
-            sm="6"
-            cols="12"
-            v-for="(item, i) in gears"
-            :key="gearTypes[i]"
-          >
-            <SingleGearSelect :type="gearTypes[i]" :gear="item">
+        <v-row>
+          <v-col v-for="(item, i) in gears" :key="gearTypes[i]">
+            <SingleGearSelect
+              :types="[gearTypes[i]]"
+              :value="{ gear: item, label: '' }"
+            >
             </SingleGearSelect>
           </v-col>
         </v-row>

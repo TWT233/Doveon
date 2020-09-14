@@ -58,3 +58,9 @@ export type GearCateEntry = {
   type: string;
   handler: (a: Attribute, g: Gear) => Attribute;
 };
+
+export type ArsenalEntry = {
+  label: string;
+  markColor: string;
+  gear: Gear;
+};
