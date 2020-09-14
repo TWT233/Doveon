@@ -8,18 +8,10 @@ zh_CN:
 <template>
   <v-card>
     <v-card-title>{{ $t("Panel") }}</v-card-title>
-    <v-card-text>
-      <v-container>
-        <v-row>
-          <v-col cols="auto">
-            <v-btn color="primary" @click="onSave()">{{ $t("Save") }}</v-btn>
-          </v-col>
-          <v-col cols="auto">
-            <v-btn @click="onLoad()">{{ $t("Load") }}</v-btn>
-          </v-col>
-        </v-row>
-      </v-container>
-    </v-card-text>
+    <v-card-actions>
+      <v-btn color="primary" @click="onSave()">{{ $t("Save") }}</v-btn>
+      <v-btn @click="onLoad()">{{ $t("Load") }}</v-btn>
+    </v-card-actions>
   </v-card>
 </template>
 
