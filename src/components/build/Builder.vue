@@ -7,8 +7,9 @@
       <v-col lg="9" cols="12">
         <v-row>
           <v-col cols="12"> <GearSelect></GearSelect> </v-col>
-          <v-col sm="5" cols="12"> <PtsEditor></PtsEditor></v-col>
           <!--          <v-col sm="4" cols="12"> <Arsenal></Arsenal> </v-col>-->
+          <v-col sm="4" cols="12"> <AuraSelect></AuraSelect></v-col>
+          <v-col sm="5" cols="12"> <PtsEditor></PtsEditor></v-col>
           <v-col sm="3" cols="12">
             <Panel @panel-save="onSave()" @panel-load="onLoad()"></Panel>
           </v-col>
@@ -26,9 +27,10 @@ import { Build } from "@/mechanism/build/Build";
 import Arsenal from "@/components/build/Arsenal.vue";
 import PtsEditor from "@/components/build/PtsEditor.vue";
 import Panel from "@/components/build/Panel.vue";
+import AuraSelect from "@/components/build/AuraSelect.vue";
 
 @Component({
-  components: { Panel, PtsEditor, GearSelect, StatusView, Arsenal }
+  components: { AuraSelect, Panel, PtsEditor, GearSelect, StatusView, Arsenal }
 })
 export default class Builder extends Vue {
   build: Build = this.$store.state.build;
