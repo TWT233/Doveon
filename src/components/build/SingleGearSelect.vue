@@ -24,6 +24,7 @@ zh_CN:
   body: 护甲
   head: 头饰
   Level: 等级
+  Enchanted: 神秘
   GearEdit: 编辑装备
   Done: 完成
 </i18n>
@@ -32,11 +33,16 @@ zh_CN:
   <v-row>
     <v-col>
       <v-btn
-        @click.stop="showDialog = true"
+        @click.stop="onShowDialog()"
         dark
+        large
         :color="value.markColor || 'secondary'"
       >
-        {{ value.label || $t(value.gear.name) }} {{ "Lv." + value.gear.lvl }}
+        {{ value.label || $t(value.gear.name) }} {{ "Lv." + value.gear.lvl
+        }}<br />
+        [{{ value.gear.p[0] }} {{ value.gear.p[1] }} {{ value.gear.p[2] }}
+        {{ value.gear.p[3] }}]
+        <v-icon v-if="value.gear.isEnchanted">military_tech</v-icon>
       </v-btn>
     </v-col>
     <v-dialog v-model="showDialog" max-width="500">
@@ -45,19 +51,23 @@ zh_CN:
         <v-card-text>
           <v-container>
             <v-row>
-              <v-col cols="8">
+              <v-col cols="7">
                 <v-select
                   v-model="gear.name"
                   :items="availableGearList"
                   :label="TypeList"
                 ></v-select>
               </v-col>
-              <v-col cols="4">
+              <v-col cols="2">
                 <v-text-field
                   :label="$t('Level')"
                   v-model.number="gear.lvl"
                   type="number"
                 ></v-text-field>
+              </v-col>
+              <v-col cols="3">
+                <v-checkbox v-model="gear.isEnchanted" :label="$t('Enchanted')">
+                </v-checkbox>
               </v-col>
             </v-row>
             <v-row>
@@ -98,7 +108,6 @@ export default class SingleGearSelect extends Vue {
   };
 
   get gear() {
-    this.localASE.gear.load(this.value.gear);
     return this.localASE.gear;
   }
 
@@ -122,6 +131,11 @@ export default class SingleGearSelect extends Vue {
     const ret = new Array<string>(0);
     this.types.forEach(e => ret.push(this.$t(e).toString()));
     return ret.join(" / ");
+  }
+
+  onShowDialog() {
+    this.localASE.gear.load(this.value.gear);
+    this.showDialog = true;
   }
 
   onDone() {
