@@ -13,7 +13,12 @@ zh_CN:
             <SingleGearSelect
               :types="[gearTypes[i]]"
               :value="{ gear: item, label: '' }"
-              @input="item.load(arguments[0].gear)"
+              @input="
+                ase => {
+                  // $store.commit('buildLoadGear', { n: i, g: ase.gear });
+                  gears.splice(i, 1, ase.gear);
+                }
+              "
             >
             </SingleGearSelect>
           </v-col>
