@@ -1,16 +1,22 @@
 import { Attribute } from "@/mechanism/build/Attribute";
 
 export class Gear {
-  [key: string]: number | string | number[] | Function;
+  [key: string]: number | string | boolean | number[] | Function;
   private _name: string;
   private _lvl: number;
   private _p: number[]; //save in int percents, **div 100 when used**
-  // private _isEnchanted: boolean;
+  private _isEnchanted: boolean;
 
-  constructor(name = "NONE", lvl = 1, p: number[] = [100, 100, 100, 100]) {
+  constructor(
+    name = "NONE",
+    lvl = 1,
+    p: number[] = [100, 100, 100, 100],
+    isEnchanted = false
+  ) {
     this._name = name;
     this._lvl = lvl;
     this._p = p.slice();
+    this._isEnchanted = false;
   }
 
   get name(): string {
@@ -35,6 +41,14 @@ export class Gear {
 
   set p(value: number[]) {
     this._p = value;
+  }
+
+  get isEnchanted(): boolean {
+    return this._isEnchanted;
+  }
+
+  set isEnchanted(value: boolean) {
+    this._isEnchanted = value;
   }
 
   // wrapper for _p, div 100 here
