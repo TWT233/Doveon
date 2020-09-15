@@ -91,4 +91,12 @@ export class Build {
   set pts(value: Pts) {
     this._pts = value;
   }
+
+  get aura(): Aura {
+    return this._aura;
+  }
+
+  set aura(value: Aura) {
+    this._aura = value;
+  }
 }
