@@ -1,7 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import { Build } from "@/mechanism/build/Build";
-import { ArsenalEntry } from "@/mechanism/build/Gear";
+import { ArsenalEntry, Gear } from "@/mechanism/build/Gear";
 
 Vue.use(Vuex);
 
@@ -20,6 +20,9 @@ export default new Vuex.Store({
     },
     arsenalPush(state, obj: ArsenalEntry) {
       state.arsenal.push(obj);
+    },
+    buildLoadGear(state, arg: { n: number; g: Gear }) {
+      state.build.gears[arg.n].load(arg.g);
     }
   },
   actions: {},
