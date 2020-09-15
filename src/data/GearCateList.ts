@@ -54,13 +54,24 @@ export const GearCateList: GearCateEntry[] = [
     }
   },
   {
-    name: "ASS_BOW",
+    name: "ASSBOW",
     type: "weapon",
     handler: (a: Attribute, g: Gear): Attribute => {
       a.ATK_PHY_A += Math.floor((g.lvl / 5 + 30) * g.v(0));
       a.THR_CRI_A += Math.floor((g.lvl / 20 + 10) * g.v(1));
       a.THR_PHY_A += Math.floor((g.lvl / 20 + 10) * g.v(2));
       a.THR_PHY_B += Math.floor(g.lvl * g.v(3));
+      return a;
+    }
+  },
+  {
+    name: "DAGGER",
+    type: "weapon",
+    handler: (a: Attribute, g: Gear): Attribute => {
+      a.ATK_PHY_A += Math.floor((g.lvl / 5) * g.v(0));
+      a.ATK_MAG_A += Math.floor((g.lvl / 5) * g.v(1));
+      a.ATK_SPD_B += Math.floor(g.lvl * g.v(2) * 4);
+      a.ATK_SPD_A += Math.floor((g.lvl / 5 + 25) * g.v(3));
       return a;
     }
   },
@@ -153,7 +164,7 @@ export const GearCateList: GearCateEntry[] = [
     }
   },
   {
-    name: "ASTRO",
+    name: "TIARA",
     type: "head",
     handler: (a: Attribute, g: Gear): Attribute => {
       a.HP_B += Math.floor(g.lvl * g.v(0) * 5);
