@@ -45,4 +45,16 @@ export class Aura {
       this[key] = a[key];
     }
   }
+
+  toString(): string {
+    const ret = Array<string>(0);
+    let count = 0;
+    for (const key in this) {
+      if (this[key] == true) {
+        ret.push(key);
+        count++;
+      }
+    }
+    return count + " " + ret.join(" ");
+  }
 }

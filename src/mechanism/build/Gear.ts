@@ -65,6 +65,24 @@ export class Gear {
       this._p[i] = g._p[i];
     }
   }
+
+  toString(): string {
+    return (
+      this.name +
+      " " +
+      this.lvl +
+      " " +
+      this._p[0] +
+      " " +
+      this._p[1] +
+      " " +
+      this._p[2] +
+      " " +
+      this._p[3] +
+      " " +
+      (this._isEnchanted ? "1" : "0")
+    );
+  }
 }
 
 export type GearCateEntry = {

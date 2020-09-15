@@ -13,4 +13,20 @@ export class Pts {
       this[key] = p[key];
     }
   }
+
+  toString(): string {
+    return (
+      this.STR +
+      " " +
+      this.AGI +
+      " " +
+      this.INT +
+      " " +
+      this.VIT +
+      " " +
+      this.MEN +
+      " " +
+      this.CON
+    );
+  }
 }
