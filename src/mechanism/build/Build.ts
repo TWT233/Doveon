@@ -31,7 +31,7 @@ export class Build {
         (this._pts.VIT + this._pts.CON) *
           20 *
           (1 + this._pts.STR * 0.05) *
-          (1 + attr.HP_A) +
+          (1 + attr.HP_A / 100) +
         attr.HP_B,
       HP_REG_A: this._pts.STR / 100,
       HP_REG_B: attr.HP_REG_B,
@@ -40,7 +40,7 @@ export class Build {
       ATK_MAG_A: this._pts.INT * 12 * (1 + attr.ATK_MAG_A / 100),
       ATK_MAG_B: attr.ATK_MAG_B,
       ATK_ABS: attr.ATK_ABS,
-      ATK_SPD_A: this._pts.AGI * 3 * (1 + attr.ATK_SPD_A),
+      ATK_SPD_A: this._pts.AGI * 3 * (1 + attr.ATK_SPD_A / 100),
       ATK_SPD_B: attr.ATK_SPD_B,
       THR_PHY_A: attr.THR_PHY_A,
       THR_PHY_B: attr.THR_PHY_B,
