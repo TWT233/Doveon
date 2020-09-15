@@ -13,6 +13,7 @@ zh_CN:
             <SingleGearSelect
               :types="[gearTypes[i]]"
               :value="{ gear: item, label: '' }"
+              @input="item.load(arguments[0].gear)"
             >
             </SingleGearSelect>
           </v-col>
