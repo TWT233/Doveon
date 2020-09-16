@@ -81,7 +81,7 @@ export const GearCateList: GearCateEntry[] = [
     handler: (a: Attribute, g: Gear): Attribute => {
       a.ATK_PHY_B += Math.floor(g.lvl * g.v(0) * 10);
       a.ATK_MAG_B += Math.floor(g.lvl * g.v(1) * 10);
-      a.ATK_SPD_A += Math.floor(g.lvl * g.v(2) * 2);
+      a.ATK_SPD_B += Math.floor(g.lvl * g.v(2) * 2);
       a.HP_B += Math.floor(g.lvl * g.v(3) * 5);
       return a;
     }
