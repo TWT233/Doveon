@@ -61,6 +61,7 @@ export default class Panel extends Vue {
 
   onExport() {
     const strQ = new Array<string>(0);
+    strQ.push(this.$store.state.build.card.toString());
     strQ.push(this.$store.state.build.pts.toString());
     this.$store.state.build.gears.forEach((e: Gear) => {
       strQ.push(e.toString());
