@@ -9,17 +9,8 @@ zh_CN:
     <v-card-text>
       <v-container>
         <v-row>
-          <v-col v-for="(item, i) in gears" :key="gearTypes[i]">
-            <SingleGearSelect
-              :types="[gearTypes[i]]"
-              :value="{ gear: item, label: '' }"
-              @input="
-                ase => {
-                  // $store.commit('buildLoadGear', { n: i, g: ase.gear });
-                  gears.splice(i, 1, ase.gear);
-                }
-              "
-            >
+          <v-col v-for="(item, i) in ASE" :key="gearTypes[i]">
+            <SingleGearSelect :types="[gearTypes[i]]" v-model="ASE[i]">
             </SingleGearSelect>
           </v-col>
         </v-row>
@@ -31,12 +22,20 @@ zh_CN:
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
 import SingleGearSelect from "@/components/build/SingleGearSelect.vue";
+import { ArsenalEntry } from "@/mechanism/build/Gear";
 
 @Component({ components: { SingleGearSelect } })
 export default class GearSelect extends Vue {
   gearTypes: string[] = ["weapon", "hand", "body", "head"];
 
   gears = this.$store.state.build.gears;
+
+  ASE: ArsenalEntry[] = [
+    { label: "", gear: this.gears[0], markColor: "" },
+    { label: "", gear: this.gears[1], markColor: "" },
+    { label: "", gear: this.gears[2], markColor: "" },
+    { label: "", gear: this.gears[3], markColor: "" }
+  ];
 }
 </script>
 
