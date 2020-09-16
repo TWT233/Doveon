@@ -93,7 +93,7 @@ zh_CN:
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
-import { ArsenalEntry, Gear } from "@/mechanism/build/Gear";
+import { ArsenalEntry } from "@/mechanism/build/Gear";
 import { GearCateList } from "@/data/GearCateList";
 
 @Component({})
@@ -102,13 +102,13 @@ export default class SingleGearSelect extends Vue {
   @Prop({ default: () => [] }) types!: string[];
   @Prop() value!: ArsenalEntry;
   localASE: ArsenalEntry = {
-    label: this.value.label || "",
-    gear: new Gear(),
-    markColor: this.value.markColor || ""
+    label: this.value.label,
+    gear: this.value.gear,
+    markColor: this.value.markColor
   };
 
   get gear() {
-    return this.localASE.gear;
+    return this.value.gear;
   }
 
   get availableGearList() {
