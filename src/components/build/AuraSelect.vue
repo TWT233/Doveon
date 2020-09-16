@@ -16,7 +16,7 @@ zh_CN:
 
 <template>
   <v-card>
-    <v-card-title>Aura</v-card-title>
+    <v-card-title>{{ $t("Aura") }}</v-card-title>
     <v-card-text>
       <v-row>
         <v-col v-for="(item, i) in aura" :key="i.toString()" cols="auto">
