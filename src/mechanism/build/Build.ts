@@ -3,17 +3,20 @@ import { Status } from "@/mechanism/build/Status";
 import { Attribute } from "@/mechanism/build/Attribute";
 import { Pts } from "@/mechanism/build/Pts";
 import { Aura } from "@/mechanism/build/Aura";
+import { Card } from "@/mechanism/build/Card";
 
 export class Build {
-  [key: string]: Gear[] | Pts | Aura | Status | Function;
+  [key: string]: Gear[] | Pts | Aura | Card | Status | Function;
   private _gears: Gear[];
   private _pts: Pts;
   private _aura: Aura;
+  private _card: Card;
 
   load(b: Build) {
     if (b == null) return;
     this._pts.load(b._pts);
     this._aura.load(b._aura);
+    this._card.load(b._card);
     for (let i = 0; i < Math.min(this._gears.length, b._gears.length); ++i) {
       this._gears[i].load(b._gears[i]);
     }
@@ -66,7 +69,8 @@ export class Build {
   constructor(
     gears: Gear[] = new Array<Gear>(4),
     pts: Pts = new Pts(),
-    aura: Aura = new Aura()
+    aura: Aura = new Aura(),
+    card: Card = new Card()
   ) {
     this._gears = gears;
     for (const i in [0, 1, 2, 3]) {
@@ -74,6 +78,7 @@ export class Build {
     }
     this._pts = pts;
     this._aura = aura;
+    this._card = card;
   }
 
   get gears(): Gear[] {
@@ -98,5 +103,13 @@ export class Build {
 
   set aura(value: Aura) {
     this._aura = value;
+  }
+
+  get card(): Card {
+    return this._card;
+  }
+
+  set card(value: Card) {
+    this._card = value;
   }
 }
