@@ -30,7 +30,7 @@ export class Build {
       HP:
         (this._pts.VIT + this._pts.CON) *
           20 *
-          (1 + this._pts.STR * 0.05) *
+          (1 + this._pts.STR * 0.005) *
           (1 + attr.HP_A / 100) +
         attr.HP_B,
       HP_REG_A: this._pts.STR / 100,
