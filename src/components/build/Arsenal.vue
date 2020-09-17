@@ -2,13 +2,17 @@
   <v-card>
     <v-card-title>Arsenal</v-card-title>
     <v-card-text>
-      <v-row>
-        <v-col v-for="(item, i) in arsenal" :key="JSON.stringify(item)">
+      <v-row v-for="(item, i) in arsenal" :key="i">
+        <v-col cols="">
           <SingleGearSelect
-            v-model="arsenal[i]"
+            :value="arsenal[i]"
             @input="onEditFinish()"
+            editable-color="true"
+            editable-label="true"
           ></SingleGearSelect>
-          <v-btn>x</v-btn>
+        </v-col>
+        <v-col cols="auto">
+          <v-btn icon><v-icon>delete</v-icon></v-btn>
         </v-col>
       </v-row>
     </v-card-text>
@@ -22,6 +26,8 @@
 import { Component, Vue } from "vue-property-decorator";
 import { ArsenalEntry, Gear } from "@/mechanism/build/Gear";
 import SingleGearSelect from "@/components/build/SingleGearSelect.vue";
+import { colors } from "vuetify/lib";
+
 @Component({
   components: { SingleGearSelect }
 })
@@ -46,7 +52,11 @@ export default class Arsenal extends Vue {
   }
 
   onAddGear() {
-    this.$store.commit("arsenalPush", { gear: new Gear() });
+    this.$store.commit("arsenalPush", {
+      label: "",
+      gear: new Gear(),
+      markColor: colors.grey.darken2
+    });
   }
 
   mounted() {

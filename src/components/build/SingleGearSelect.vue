@@ -24,32 +24,47 @@ zh_CN:
   body: 护甲
   head: 头饰
   Level: 等级
+  Label: 自定义标签
   Enchanted: 神秘
   GearEdit: 编辑装备
   Done: 完成
 </i18n>
 
 <template>
-  <v-row>
-    <v-col>
-      <v-btn
-        @click.stop="onShowDialog()"
-        dark
-        large
-        :color="value.markColor || 'secondary'"
-      >
-        {{ value.label || $t(value.gear.name) }} {{ "Lv." + value.gear.lvl
-        }}<br />
-        [{{ value.gear.p[0] }} {{ value.gear.p[1] }} {{ value.gear.p[2] }}
-        {{ value.gear.p[3] }}]
-        <v-icon v-if="value.gear.isEnchanted">military_tech</v-icon>
-      </v-btn>
-    </v-col>
+  <div>
+    <v-btn
+      @click.stop="onShowDialog()"
+      dark
+      large
+      :color="value.markColor || 'secondary'"
+    >
+      {{ value.label || $t(gear.name) }} {{ "Lv." + gear.lvl }}<br />
+      [{{ gear.p[0] }} {{ gear.p[1] }} {{ gear.p[2] }} {{ gear.p[3] }}]
+      <v-icon v-if="gear.isEnchanted">military_tech</v-icon>
+    </v-btn>
     <v-dialog v-model="showDialog" max-width="500">
       <v-card>
-        <v-card-title>{{ $t("GearEdit") }}</v-card-title>
+        <v-card-title>
+          <v-col v-if="editableLabel">
+            <v-text-field :label="$t('Label')" v-model="value.label">
+            </v-text-field>
+          </v-col>
+          <v-col v-else> {{ $t("GearEdit") }}</v-col>
+        </v-card-title>
         <v-card-text>
           <v-container>
+            <v-row>
+              <v-col v-if="editableColor">
+                <v-color-picker
+                  hide-canvas
+                  hide-inputs
+                  show-swatches
+                  width="auto"
+                  v-model="value.markColor"
+                >
+                </v-color-picker>
+              </v-col>
+            </v-row>
             <v-row>
               <v-col cols="7">
                 <v-select
@@ -88,12 +103,12 @@ zh_CN:
         </v-card-actions>
       </v-card>
     </v-dialog>
-  </v-row>
+  </div>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
-import { ArsenalEntry } from "@/mechanism/build/Gear";
+import { ArsenalEntry, Gear } from "@/mechanism/build/Gear";
 import { GearCateList } from "@/data/GearCateList";
 
 @Component({})
@@ -101,11 +116,17 @@ export default class SingleGearSelect extends Vue {
   showDialog = false;
   @Prop({ default: () => [] }) types!: string[];
   @Prop() value!: ArsenalEntry;
+  @Prop({ default: false }) editableLabel!: boolean;
+  @Prop({ default: false }) editableColor!: boolean;
   localASE: ArsenalEntry = {
     label: this.value.label,
-    gear: this.value.gear,
+    gear: new Gear(),
     markColor: this.value.markColor
   };
+
+  mounted() {
+    this.localASE.gear.load(this.value.gear);
+  }
 
   get gear() {
     return this.value.gear;

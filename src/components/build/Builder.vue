@@ -7,17 +7,17 @@
       <v-col lg="9" cols="12">
         <v-row>
           <v-col cols="12"> <GearSelect></GearSelect> </v-col>
-          <!--          <v-col sm="4" cols="12"> <Arsenal></Arsenal> </v-col>-->
-          <v-col sm="4" cols="12">
+          <v-col lg="4" cols="12">
             <v-row>
               <v-col cols="12"><PtsEditor></PtsEditor></v-col>
               <v-col cols="12"><CardSelect></CardSelect></v-col>
             </v-row>
           </v-col>
-          <v-col sm="4" cols="12"> <AuraSelect></AuraSelect></v-col>
-          <v-col sm="4" cols="12">
+          <v-col lg="4" cols="12"> <AuraSelect></AuraSelect></v-col>
+          <v-col lg="4" cols="12">
             <Panel @panel-save="onSave()" @panel-load="onLoad()"></Panel>
           </v-col>
+          <v-col lg="4" cols="12"> <Arsenal></Arsenal> </v-col>
         </v-row>
       </v-col>
     </v-row>
