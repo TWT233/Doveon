@@ -13,7 +13,7 @@ export default new Vuex.Store({
   getters: {},
   mutations: {
     arsenalLoad(state, a: ArsenalEntry[]) {
-      state.arsenal = a.slice();
+      a.forEach(e => state.arsenal.push(e));
     },
     arsenalRemove(state, pos: number) {
       if (pos < 0 || state.arsenal.length <= pos) return;
