@@ -16,7 +16,7 @@ export class Gear {
     this.name = name;
     this.lvl = lvl;
     this.p = p.slice();
-    this.isEnchanted = false;
+    this.isEnchanted = isEnchanted;
   }
 
   // wrapper for p, div 100 here
