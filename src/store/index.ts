@@ -13,10 +13,12 @@ export default new Vuex.Store({
   getters: {},
   mutations: {
     arsenalLoad(state, a: ArsenalEntry[]) {
+      state.arsenal.splice(0, state.arsenal.length);
       a.forEach(e => state.arsenal.push(e));
     },
     arsenalRemove(state, pos: number) {
       if (pos < 0 || state.arsenal.length <= pos) return;
+      state.arsenal.splice(pos, 1);
     },
     arsenalPush(state, obj: ArsenalEntry) {
       state.arsenal.push(obj);
