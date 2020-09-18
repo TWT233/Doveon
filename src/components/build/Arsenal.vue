@@ -1,23 +1,34 @@
+<i18n>
+zh_CN:
+  Arsenal: 装备库
+  AddGear: 添加装备
+</i18n>
+
 <template>
   <v-card>
-    <v-card-title>Arsenal</v-card-title>
+    <v-card-title>{{ $t("Arsenal") }}</v-card-title>
     <v-card-text>
       <v-row v-for="(item, i) in arsenal" :key="i">
         <v-col cols="">
           <SingleGearSelect
             :value="arsenal[i]"
-            @input="onEditFinish()"
+            @input="val => onEditFinish(val, item)"
             editable-color="true"
             editable-label="true"
           ></SingleGearSelect>
         </v-col>
         <v-col cols="auto">
-          <v-btn icon><v-icon>delete</v-icon></v-btn>
+          <v-btn icon @click="onEquipGear(item.gear)"
+            ><v-icon>mdi-sword</v-icon></v-btn
+          >
+        </v-col>
+        <v-col cols="auto">
+          <v-btn icon @click="onRemoveGear(i)"><v-icon>delete</v-icon></v-btn>
         </v-col>
       </v-row>
     </v-card-text>
     <v-card-actions>
-      <v-btn color="primary" @click="onAddGear()">Add Gear</v-btn>
+      <v-btn color="primary" @click="onAddGear()">{{ $t("AddGear") }}</v-btn>
     </v-card-actions>
   </v-card>
 </template>
@@ -27,20 +38,27 @@ import { Component, Vue } from "vue-property-decorator";
 import { ArsenalEntry, Gear } from "@/mechanism/build/Gear";
 import SingleGearSelect from "@/components/build/SingleGearSelect.vue";
 import { colors } from "vuetify/lib";
+import { GearCateList } from "@/data/GearCateList";
 
 @Component({
   components: { SingleGearSelect }
 })
 export default class Arsenal extends Vue {
+  mounted() {
+    if (window.localStorage.getItem("arsenal") == null) {
+      return;
+    }
+    this.loadArsenal(JSON.parse(window.localStorage.getItem("arsenal") || ""));
+  }
   get arsenal(): ArsenalEntry[] {
     return this.$store.state.arsenal;
   }
 
-  onLoadArsenal(data: ArsenalEntry[]) {
+  loadArsenal(data: ArsenalEntry[]) {
     this.$store.commit("arsenalLoad", data);
   }
 
-  onSaveArsenal() {
+  saveArsenal() {
     window.localStorage.setItem(
       "arsenal",
       JSON.stringify(this.$store.state.arsenal)
@@ -49,6 +67,14 @@ export default class Arsenal extends Vue {
 
   onRemoveGear(pos: number) {
     this.$store.commit("arsenalRemove", pos);
+    this.saveArsenal();
+  }
+
+  onEquipGear(g: Gear) {
+    const buildGears = this.$store.state.build.gears;
+    const type = GearCateList.find(e => e.name == g.name)?.type;
+    if (type)
+      buildGears[["weapon", "hand", "body", "head"].indexOf(type)].load(g);
   }
 
   onAddGear() {
@@ -58,17 +84,9 @@ export default class Arsenal extends Vue {
     );
   }
 
-  mounted() {
-    if (window.localStorage.getItem("arsenal") == null) {
-      return;
-    }
-    this.onLoadArsenal(
-      JSON.parse(window.localStorage.getItem("arsenal") || "")
-    );
-  }
-
-  onEditFinish() {
-    this.onSaveArsenal();
+  onEditFinish(val: ArsenalEntry, ori: ArsenalEntry) {
+    ori.load(val);
+    this.saveArsenal();
   }
 }
 </script>

@@ -10,7 +10,11 @@ zh_CN:
       <v-container>
         <v-row>
           <v-col v-for="(item, i) in ASE" :key="gearTypes[i]">
-            <SingleGearSelect :types="[gearTypes[i]]" v-model="ASE[i]">
+            <SingleGearSelect
+              :types="[gearTypes[i]]"
+              :value="ASE[i]"
+              @input="val => onEditFinish(val, item)"
+            >
             </SingleGearSelect>
           </v-col>
         </v-row>
@@ -36,6 +40,10 @@ export default class GearSelect extends Vue {
     new ArsenalEntry("", "", this.gears[2]),
     new ArsenalEntry("", "", this.gears[3])
   ];
+
+  onEditFinish(val: ArsenalEntry, ori: ArsenalEntry) {
+    ori.load(val);
+  }
 }
 </script>
 
