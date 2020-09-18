@@ -31,10 +31,10 @@ export default class GearSelect extends Vue {
   gears = this.$store.state.build.gears;
 
   ASE: ArsenalEntry[] = [
-    { label: "", gear: this.gears[0], markColor: "" },
-    { label: "", gear: this.gears[1], markColor: "" },
-    { label: "", gear: this.gears[2], markColor: "" },
-    { label: "", gear: this.gears[3], markColor: "" }
+    new ArsenalEntry("", "", this.gears[0]),
+    new ArsenalEntry("", "", this.gears[1]),
+    new ArsenalEntry("", "", this.gears[2]),
+    new ArsenalEntry("", "", this.gears[3])
   ];
 }
 </script>

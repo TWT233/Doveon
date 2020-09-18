@@ -52,11 +52,10 @@ export default class Arsenal extends Vue {
   }
 
   onAddGear() {
-    this.$store.commit("arsenalPush", {
-      label: "",
-      gear: new Gear(),
-      markColor: colors.grey.darken2
-    });
+    this.$store.commit(
+      "arsenalPush",
+      new ArsenalEntry("", colors.grey.darken2, new Gear())
+    );
   }
 
   mounted() {
