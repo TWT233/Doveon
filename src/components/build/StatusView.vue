@@ -115,7 +115,7 @@ zh_CN:
             <td>
               {{ Math.floor(status.DEF_PHY_A) }} +
               {{ Math.floor(status.DEF_PHY_B) }}
-              ({{ Math.floor((DEF_PHY * 100) / (DEF_PHY + 99)) }}%)
+              ({{ Math.floor((DEF_PHY * 100) / (Math.abs(DEF_PHY) + 99)) }}%)
             </td>
           </tr>
           <tr>
@@ -123,7 +123,7 @@ zh_CN:
             <td>
               {{ Math.floor(status.DEF_MAG_A) }} +
               {{ Math.floor(status.DEF_MAG_B) }}
-              ({{ Math.floor((DEF_MAG * 100) / (DEF_MAG + 99)) }}%)
+              ({{ Math.floor((DEF_MAG * 100) / (Math.abs(DEF_MAG) + 99)) }}%)
             </td>
           </tr>
           <tr>
