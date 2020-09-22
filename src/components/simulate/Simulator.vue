@@ -7,11 +7,8 @@ zh_CN:
 <template>
   <v-container>
     <v-row>
-      <v-col cols="12">
-        <v-card>
-          <v-card-title>{{ $t("Simulator") }}</v-card-title>
-          <v-card-text>{{ $t("WIP") }}</v-card-text>
-        </v-card>
+      <v-col cols="6">
+        <TargetEditor></TargetEditor>
       </v-col>
     </v-row>
   </v-container>
@@ -19,8 +16,11 @@ zh_CN:
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+import TargetEditor from "@/components/simulate/TargetEditor.vue";
 
-@Component({})
+@Component({
+  components: { TargetEditor }
+})
 export default class Simulator extends Vue {}
 </script>
 
