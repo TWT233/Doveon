@@ -24,6 +24,16 @@ yarn build
 yarn serve
 ```
 
+# Current Working on
+
+模拟 PVE
+
+# Current Stage TODO:
+
+- [ ] 编辑进攻方、防守方
+- [ ] 读取当前配装导出成可处理的角色
+- [ ] 处理工作循环
+
 # TODO：
 
 - [x] 装备
