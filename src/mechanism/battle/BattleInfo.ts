@@ -8,7 +8,7 @@ export class BattleInfo {
     b: number;
   };
 
-  constructor(buff: { a: []; b: [] }, spdCounter: { a: number; b: number }) {
+  constructor(buff = { a: [], b: [] }, spdCounter = { a: 0, b: 0 }) {
     this.buff = { ...buff };
     this.buff.a = buff.a.slice();
     this.buff.b = buff.b.slice();
