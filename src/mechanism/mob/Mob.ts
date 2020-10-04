@@ -1,5 +1,6 @@
 import { BattleInfo } from "@/mechanism/battle/BattleInfo";
 import { BattleStatus } from "@/mechanism/battle/BattleStatus";
+import { Status } from "../build/Status";
 
 export interface Mob {
   name: string;
@@ -13,6 +14,7 @@ export interface Mob {
       battle: BattleInfo
     ) => string;
   }[];
+  status: Status;
 
   run(
     self: BattleStatus,
