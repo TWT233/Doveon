@@ -28,9 +28,9 @@ export class Action {
     this.after = _.cloneDeep(before);
   }
 
-  run() {
-    let spdCounter = this.after.battle.spdCounter;
-    let spdThisAct = Math.min(spdCounter.a, spdCounter.b);
+  run(): Action {
+    const spdCounter = this.after.battle.spdCounter;
+    const spdThisAct = Math.min(spdCounter.a, spdCounter.b);
     spdCounter.a -= spdThisAct;
     spdCounter.b -= spdThisAct;
     if (spdCounter.a == 0) {
@@ -40,5 +40,7 @@ export class Action {
       this.a.run(this.after.a, this.after.b, this.after.battle);
       spdCounter.b = this.after.b.ATK_SPD;
     }
+
+    return this;
   }
 }
