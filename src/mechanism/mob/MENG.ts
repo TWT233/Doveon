@@ -1,9 +1,11 @@
-import { Mob } from "@/mechanism/mob/Mob";
 import { BattleStatus } from "@/mechanism/battle/BattleStatus";
 import { BattleInfo } from "@/mechanism/battle/BattleInfo";
 import { normalAttack } from "@/mechanism/mob/helper";
+import { PC } from "@/mechanism/mob/PC";
+import { Build } from "@/mechanism/build/Build";
+import { Status } from "../build/Status";
 
-export class MENG implements Mob {
+export class MENG implements PC {
   name = "MENG";
   type = "Card";
   skill = [
@@ -13,6 +15,15 @@ export class MENG implements Mob {
       handler: normalAttack
     }
   ];
+  build: Build;
+
+  constructor(b: Build) {
+    this.build = b;
+  }
+
+  get status(): Status {
+    return this.build.status;
+  }
 
   run(
     self: BattleStatus,
