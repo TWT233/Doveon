@@ -43,4 +43,34 @@ export class Action {
 
     return this;
   }
+
+  toString(): string {
+    const doer =
+      this.before.battle.spdCounter.a < this.before.battle.spdCounter.b
+        ? "b"
+        : "a";
+    const getter = doer == "a" ? "b" : "a";
+
+    let res = "";
+
+    res += doer + "->" + getter + ":";
+    res +=
+      "[ATK:" +
+      Math.floor(this.after[doer].ATK_PHY) +
+      "/" +
+      Math.floor(this.after[doer].ATK_MAG) +
+      "]";
+
+    const diffHP = Math.floor(this.after[getter].HP - this.before[getter].HP);
+    const diffSHD = Math.floor(
+      this.after[getter].SHD - this.before[getter].SHD
+    );
+    const remainHP = Math.floor(this.after[getter].HP);
+    const remainSHD = Math.floor(this.after[getter].SHD);
+
+    diffSHD != 0 ? (res += "[SHD:" + remainSHD + "(" + diffSHD + ")]") : "";
+    diffHP != 0 ? (res += "[HP:" + remainHP + "(" + diffHP + ")]") : "";
+
+    return res;
+  }
 }
