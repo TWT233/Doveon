@@ -71,9 +71,10 @@ export class ArsenalEntry {
     this.gear = gear;
   }
 
-  load(data: ArsenalEntry) {
+  load(data: ArsenalEntry): ArsenalEntry {
     this.label = data.label;
     this.markColor = data.markColor;
     this.gear.load(data.gear);
+    return this;
   }
 }

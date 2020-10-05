@@ -16,7 +16,7 @@ export default new Vuex.Store({
   mutations: {
     setArsenal(state, a: ArsenalEntry[]) {
       state.arsenal.splice(0, state.arsenal.length);
-      a.forEach(e => state.arsenal.push(e));
+      a.forEach(e => state.arsenal.push(new ArsenalEntry().load(e)));
     },
     arsenalRemove(state, pos: number) {
       if (pos < 0 || state.arsenal.length <= pos) return;
