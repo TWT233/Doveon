@@ -33,20 +33,20 @@ zh_CN:
 <template>
   <div>
     <v-btn
-      @click.stop="onShowDialog()"
+      @click.stop="showDialog = true"
       dark
       large
       :color="value.markColor || 'secondary'"
     >
-      {{ value.label || $t(oGear.name) }} {{ "Lv." + oGear.lvl }}<br />
-      [{{ oGear.p[0] }} {{ oGear.p[1] }} {{ oGear.p[2] }} {{ oGear.p[3] }}]
+      {{ value.label || $t(gear.name) }} {{ "Lv." + gear.lvl }}<br />
+      [{{ gear.p[0] }} {{ gear.p[1] }} {{ gear.p[2] }} {{ gear.p[3] }}]
       <v-icon v-if="value.gear.isEnchanted">military_tech</v-icon>
     </v-btn>
     <v-dialog v-model="showDialog" max-width="500">
       <v-card>
         <v-card-title>
           <v-col v-if="editableLabel">
-            <v-text-field :label="$t('Label')" v-model="gear.label">
+            <v-text-field :label="$t('Label')" v-model="AE.label">
             </v-text-field>
           </v-col>
           <v-col v-else> {{ $t("GearEdit") }}</v-col>
@@ -56,7 +56,7 @@ zh_CN:
             <v-row>
               <v-col cols="7">
                 <v-select
-                  v-model="iGear.name"
+                  v-model="gear.name"
                   :items="availableGearList"
                   :label="TypeList"
                 ></v-select>
@@ -64,15 +64,12 @@ zh_CN:
               <v-col cols="2">
                 <v-text-field
                   :label="$t('Level')"
-                  v-model.number="iGear.lvl"
+                  v-model.number="gear.lvl"
                   type="number"
                 ></v-text-field>
               </v-col>
               <v-col cols="3">
-                <v-checkbox
-                  v-model="iGear.isEnchanted"
-                  :label="$t('Enchanted')"
-                >
+                <v-checkbox v-model="gear.isEnchanted" :label="$t('Enchanted')">
                 </v-checkbox>
               </v-col>
             </v-row>
@@ -80,7 +77,7 @@ zh_CN:
               <v-col v-for="i in 4" :key="'p' + i">
                 <v-text-field
                   :label="'P' + i"
-                  v-model.number="iGear.p[i - 1]"
+                  v-model.number="gear.p[i - 1]"
                   type="number"
                 ></v-text-field>
               </v-col>
@@ -105,27 +102,28 @@ import { GearCateList } from "@/data/GearCateList";
 @Component({})
 export default class EditorArsenalEntry extends Vue {
   showDialog = false;
-  @Prop({ default: () => [] }) types!: string[];
   @Prop() value!: ArsenalEntry;
+  @Prop({ default: () => [] }) types!: string[];
   @Prop({ default: false }) editableLabel!: boolean;
   @Prop({ default: false }) editableColor!: boolean;
-  gear: ArsenalEntry = new ArsenalEntry();
+  AE: ArsenalEntry = new ArsenalEntry();
 
   mounted() {
-    this.gear.load(this.value);
+    this.AE.load(this.value);
   }
 
-  get oGear() {
-    return this.value.gear;
-  }
-
-  get iGear() {
-    return this.gear.gear;
+  get gear() {
+    return this.AE.gear;
   }
 
   @Watch("value", { deep: true })
-  onValueChanged(val: ArsenalEntry) {
-    this.gear.load(val);
+  onValueChanged() {
+    this.AE.load(this.value);
+  }
+
+  onDone() {
+    this.showDialog = false;
+    this.$emit("input", this.AE);
   }
 
   get availableGearList() {
@@ -148,16 +146,6 @@ export default class EditorArsenalEntry extends Vue {
     const ret = new Array<string>(0);
     this.types.forEach(e => ret.push(this.$t(e).toString()));
     return ret.join(" / ");
-  }
-
-  onShowDialog() {
-    this.gear.gear.load(this.value.gear);
-    this.showDialog = true;
-  }
-
-  onDone() {
-    this.showDialog = false;
-    this.$emit("input", this.gear);
   }
 }
 </script>
