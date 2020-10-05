@@ -12,7 +12,7 @@ zh_CN:
         <v-col cols="">
           <EditorArsenalEntry
             :value="arsenal[i]"
-            @input="val => onEditFinish(val, item)"
+            @input="val => onEditFinish(val, i)"
             editable-color="true"
             editable-label="true"
           ></EditorArsenalEntry>
@@ -84,8 +84,8 @@ export default class Arsenal extends Vue {
     );
   }
 
-  onEditFinish(val: ArsenalEntry, ori: ArsenalEntry) {
-    ori.load(val);
+  onEditFinish(val: ArsenalEntry, i: number) {
+    this.$store.commit("setArsenalEntry", { pos: i, val: val });
     this.saveArsenal();
   }
 }
