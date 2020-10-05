@@ -19,7 +19,7 @@ zh_CN:
     <v-card-title>{{ $t("Aura") }}</v-card-title>
     <v-card-text>
       <v-row>
-        <v-col v-for="(item, i) in aura" :key="item.toString()" cols="auto">
+        <v-col v-for="(item, i) in aura" :key="i + item.toString()" cols="auto">
           <v-checkbox v-model="aura[i]" :label="$t(i)"> </v-checkbox>
         </v-col>
       </v-row>
@@ -27,13 +27,27 @@ zh_CN:
   </v-card>
 </template>
 
-<script>
-import { Component, Vue } from "vue-property-decorator";
+<script lang="ts">
+import { Component, Prop, Vue, Watch } from "vue-property-decorator";
+import { Aura } from "@/mechanism/build/Aura";
 
 @Component({})
 export default class EditorAura extends Vue {
-  get aura() {
-    return this.$store.state.build.aura;
+  @Prop() value!: Aura;
+  aura: Aura = new Aura();
+
+  @Watch("value", { deep: true })
+  onValueChanged() {
+    this.aura.load(this.value);
+  }
+
+  @Watch("aura", { deep: true })
+  onTmpChanged() {
+    this.$emit("input", this.aura);
+  }
+
+  mounted() {
+    this.onValueChanged();
   }
 }
 </script>

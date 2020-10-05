@@ -13,7 +13,9 @@
               <v-col cols="12"><CardSelect></CardSelect></v-col>
             </v-row>
           </v-col>
-          <v-col lg="4" cols="12"> <AuraSelect></AuraSelect></v-col>
+          <v-col lg="4" cols="12">
+            <AuraSelect v-model="aura"></AuraSelect>
+          </v-col>
           <v-col lg="4" cols="12">
             <Panel @panel-save="onSave()" @panel-load="onLoad()"></Panel>
           </v-col>
@@ -34,6 +36,7 @@ import EditorPts from "@/components/build/EditorPts.vue";
 import ThePanelBuild from "@/components/build/ThePanelBuild.vue";
 import EditorAura from "@/components/build/EditorAura.vue";
 import EditorCard from "@/components/build/EditorCard.vue";
+import { Aura } from "@/mechanism/build/Aura";
 
 @Component({
   components: {
@@ -48,6 +51,14 @@ import EditorCard from "@/components/build/EditorCard.vue";
 })
 export default class Builder extends Vue {
   build: Build = this.$store.state.build;
+
+  get aura(): Aura {
+    return this.$store.state.build.aura;
+  }
+
+  set aura(obj: Aura) {
+    this.$store.commit("setBuildAura", obj);
+  }
 
   onSave() {
     if (!window.localStorage) {
