@@ -45,7 +45,7 @@ import { Component, Vue } from "vue-property-decorator";
 import { Gear } from "@/mechanism/build/Gear";
 
 @Component({})
-export default class Panel extends Vue {
+export default class ThePanelBuild extends Vue {
   showExportDialog = false;
   inText = "";
 

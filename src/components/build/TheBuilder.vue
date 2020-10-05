@@ -31,7 +31,7 @@ import StatusView from "@/components/build/ViewerStatus.vue";
 import { Build } from "@/mechanism/build/Build";
 import Arsenal from "@/components/build/TheArsenal.vue";
 import PtsEditor from "@/components/build/EditorPts.vue";
-import Panel from "@/components/build/Panel.vue";
+import ThePanelBuild from "@/components/build/ThePanelBuild.vue";
 import AuraSelect from "@/components/build/EditorAura.vue";
 import CardSelect from "@/components/build/EditorCard.vue";
 
@@ -39,7 +39,7 @@ import CardSelect from "@/components/build/EditorCard.vue";
   components: {
     CardSelect,
     AuraSelect,
-    Panel,
+    Panel: ThePanelBuild,
     PtsEditor,
     GearSelect,
     StatusView,
