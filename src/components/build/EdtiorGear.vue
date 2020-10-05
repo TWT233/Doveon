@@ -25,7 +25,7 @@ zh_CN:
 
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
-import SingleGearSelect from "@/components/build/SingleGearSelect.vue";
+import SingleGearSelect from "@/components/build/EditorGearSingle.vue";
 import { ArsenalEntry } from "@/mechanism/build/Gear";
 
 @Component({ components: { SingleGearSelect } })
