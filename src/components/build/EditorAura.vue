@@ -42,7 +42,7 @@ export default class EditorAura extends Vue {
   }
 
   @Watch("aura", { deep: true })
-  onTmpChanged() {
+  onLocalVarChanged() {
     this.$emit("input", this.aura);
   }
 
