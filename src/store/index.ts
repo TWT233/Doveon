@@ -34,8 +34,8 @@ export default new Vuex.Store({
     setBuildCard(state, obj: Card) {
       state.build.card.load(obj);
     },
-    setBuildGear(state, arg: { n: number; g: Gear }) {
-      state.build.gears[arg.n].load(arg.g);
+    setBuildGear(state, arg: { pos: number; val: Gear }) {
+      state.build.gears[arg.pos].load(arg.val);
     }
   },
   actions: {},
