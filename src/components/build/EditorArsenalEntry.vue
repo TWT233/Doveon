@@ -46,25 +46,13 @@ zh_CN:
       <v-card>
         <v-card-title>
           <v-col v-if="editableLabel">
-            <v-text-field :label="$t('Label')" v-model="localASE.label">
+            <v-text-field :label="$t('Label')" v-model="gear.label">
             </v-text-field>
           </v-col>
           <v-col v-else> {{ $t("GearEdit") }}</v-col>
         </v-card-title>
         <v-card-text>
           <v-container>
-            <!--            <v-row>-->
-            <!--              <v-col v-if="editableColor">-->
-            <!--                <v-color-picker-->
-            <!--                  hide-canvas-->
-            <!--                  hide-inputs-->
-            <!--                  show-swatches-->
-            <!--                  width="auto"-->
-            <!--                  v-model="localASE.markColor"-->
-            <!--                >-->
-            <!--                </v-color-picker>-->
-            <!--              </v-col>-->
-            <!--            </v-row>-->
             <v-row>
               <v-col cols="7">
                 <v-select
@@ -115,16 +103,16 @@ import { ArsenalEntry } from "@/mechanism/build/Gear";
 import { GearCateList } from "@/data/GearCateList";
 
 @Component({})
-export default class EditorGearSingle extends Vue {
+export default class EditorArsenalEntry extends Vue {
   showDialog = false;
   @Prop({ default: () => [] }) types!: string[];
   @Prop() value!: ArsenalEntry;
   @Prop({ default: false }) editableLabel!: boolean;
   @Prop({ default: false }) editableColor!: boolean;
-  localASE: ArsenalEntry = new ArsenalEntry();
+  gear: ArsenalEntry = new ArsenalEntry();
 
   mounted() {
-    this.localASE.load(this.value);
+    this.gear.load(this.value);
   }
 
   get oGear() {
@@ -132,12 +120,12 @@ export default class EditorGearSingle extends Vue {
   }
 
   get iGear() {
-    return this.localASE.gear;
+    return this.gear.gear;
   }
 
   @Watch("value", { deep: true })
   onValueChanged(val: ArsenalEntry) {
-    this.localASE.load(val);
+    this.gear.load(val);
   }
 
   get availableGearList() {
@@ -163,13 +151,13 @@ export default class EditorGearSingle extends Vue {
   }
 
   onShowDialog() {
-    this.localASE.gear.load(this.value.gear);
+    this.gear.gear.load(this.value.gear);
     this.showDialog = true;
   }
 
   onDone() {
     this.showDialog = false;
-    this.$emit("input", this.localASE);
+    this.$emit("input", this.gear);
   }
 }
 </script>

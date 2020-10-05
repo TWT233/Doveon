@@ -10,12 +10,12 @@ zh_CN:
     <v-card-text>
       <v-row v-for="(item, i) in arsenal" :key="i">
         <v-col cols="">
-          <SingleGearSelect
+          <EditorArsenalEntry
             :value="arsenal[i]"
             @input="val => onEditFinish(val, item)"
             editable-color="true"
             editable-label="true"
-          ></SingleGearSelect>
+          ></EditorArsenalEntry>
         </v-col>
         <v-col cols="auto">
           <v-btn icon @click="onEquipGear(item.gear)"
@@ -36,12 +36,12 @@ zh_CN:
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { ArsenalEntry, Gear } from "@/mechanism/build/Gear";
-import EditorGearSingle from "@/components/build/EditorGearSingle.vue";
+import EditorArsenalEntry from "@/components/build/EditorArsenalEntry.vue";
 import { colors } from "vuetify/lib";
 import { GearCateList } from "@/data/GearCateList";
 
 @Component({
-  components: { SingleGearSelect: EditorGearSingle }
+  components: { EditorArsenalEntry }
 })
 export default class Arsenal extends Vue {
   mounted() {
