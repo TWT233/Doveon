@@ -64,7 +64,7 @@ export default class Builder extends Vue {
     if (window.localStorage.getItem("build") === null) {
       throw Error("no `build` in LocalStorage");
     } else {
-      this.build.load(JSON.parse(window.localStorage["build"]));
+      this.$store.commit("setBuild", JSON.parse(window.localStorage["build"]));
     }
   }
 }

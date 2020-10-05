@@ -2,6 +2,7 @@ import Vue from "vue";
 import Vuex from "vuex";
 import { Build } from "@/mechanism/build/Build";
 import { ArsenalEntry, Gear } from "@/mechanism/build/Gear";
+import { Aura } from "@/mechanism/build/Aura";
 
 Vue.use(Vuex);
 
@@ -12,7 +13,7 @@ export default new Vuex.Store({
   },
   getters: {},
   mutations: {
-    arsenalLoad(state, a: ArsenalEntry[]) {
+    setArsenal(state, a: ArsenalEntry[]) {
       state.arsenal.splice(0, state.arsenal.length);
       a.forEach(e => state.arsenal.push(e));
     },
@@ -23,7 +24,13 @@ export default new Vuex.Store({
     arsenalPush(state, obj: ArsenalEntry) {
       state.arsenal.push(obj);
     },
-    buildLoadGear(state, arg: { n: number; g: Gear }) {
+    setBuild(state, obj: Build) {
+      state.build.load(obj);
+    },
+    setBuildAura(state, obj: Aura) {
+      state.build.aura.load(obj);
+    },
+    setBuildGear(state, arg: { n: number; g: Gear }) {
       state.build.gears[arg.n].load(arg.g);
     }
   },

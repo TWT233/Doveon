@@ -55,7 +55,7 @@ export default class Arsenal extends Vue {
   }
 
   loadArsenal(data: ArsenalEntry[]) {
-    this.$store.commit("arsenalLoad", data);
+    this.$store.commit("setArsenal", data);
   }
 
   saveArsenal() {
