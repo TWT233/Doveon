@@ -10,12 +10,12 @@ zh_CN:
       <v-container>
         <v-row>
           <v-col v-for="(item, i) in ASE" :key="gearTypes[i]">
-            <SingleGearSelect
+            <EditorGearSingle
               :types="[gearTypes[i]]"
               :value="ASE[i]"
               @input="val => onEditFinish(val, item)"
             >
-            </SingleGearSelect>
+            </EditorGearSingle>
           </v-col>
         </v-row>
       </v-container>
@@ -28,7 +28,7 @@ import { Vue, Component } from "vue-property-decorator";
 import EditorGearSingle from "@/components/build/EditorGearSingle.vue";
 import { ArsenalEntry } from "@/mechanism/build/Gear";
 
-@Component({ components: { SingleGearSelect: EditorGearSingle } })
+@Component({ components: { EditorGearSingle } })
 export default class EditorGear extends Vue {
   gearTypes: string[] = ["weapon", "hand", "body", "head"];
 
