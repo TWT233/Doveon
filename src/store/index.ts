@@ -18,6 +18,9 @@ export default new Vuex.Store({
       state.arsenal.splice(0, state.arsenal.length);
       a.forEach(e => state.arsenal.push(new ArsenalEntry().load(e)));
     },
+    setArsenalEntry(state, arg: { pos: number; val: ArsenalEntry }) {
+      state.arsenal[arg.pos].load(arg.val);
+    },
     arsenalRemove(state, pos: number) {
       if (pos < 0 || state.arsenal.length <= pos) return;
       state.arsenal.splice(pos, 1);
