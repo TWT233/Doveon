@@ -18,9 +18,9 @@ zh_CN:
           ></EditorArsenalEntry>
         </v-col>
         <v-col cols="auto">
-          <v-btn icon @click="onEquipGear(item.gear)"
-            ><v-icon>mdi-sword</v-icon></v-btn
-          >
+          <v-btn icon @click="onEquipGear(item.gear)">
+            <v-icon>mdi-sword</v-icon>
+          </v-btn>
         </v-col>
         <v-col cols="auto">
           <v-btn icon @click="onRemoveGear(i)"><v-icon>delete</v-icon></v-btn>
