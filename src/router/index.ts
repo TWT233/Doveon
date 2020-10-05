@@ -1,6 +1,6 @@
 import Vue from "vue";
 import VueRouter, { RouteConfig } from "vue-router";
-import Builder from "@/components/build/Builder.vue";
+import Builder from "@/components/build/TheBuilder.vue";
 import Simulator from "@/components/simulate/Simulator.vue";
 
 Vue.use(VueRouter);

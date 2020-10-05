@@ -6,7 +6,7 @@ zh_CN:
 
 <template>
   <v-card>
-    <v-card-title>{{ $t("Arsenal") }}</v-card-title>
+    <v-card-title>{{ $t("TheArsenal.vue") }}</v-card-title>
     <v-card-text>
       <v-row v-for="(item, i) in arsenal" :key="i">
         <v-col cols="">
@@ -36,7 +36,7 @@ zh_CN:
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { ArsenalEntry, Gear } from "@/mechanism/build/Gear";
-import SingleGearSelect from "@/components/build/SingleGearSelect.vue";
+import SingleGearSelect from "@/components/build/EditorGearSingle.vue";
 import { colors } from "vuetify/lib";
 import { GearCateList } from "@/data/GearCateList";
 
