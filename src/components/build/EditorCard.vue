@@ -49,12 +49,27 @@ zh_CN:
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 import { Card, CardList } from "@/mechanism/build/Card";
 
 @Component({})
 export default class EditorCard extends Vue {
-  card: Card = this.$store.state.build.card;
+  @Prop() value!: Card;
+  card: Card = new Card();
+
+  @Watch("value", { deep: true })
+  onValueChanged() {
+    this.card.load(this.value);
+  }
+
+  @Watch("card", { deep: true })
+  onLocalVarChanged() {
+    this.$emit("input", this.card);
+  }
+
+  mounted() {
+    this.onValueChanged();
+  }
 
   get cardList() {
     const ret = new Array<{ text: string; value: string }>(0);

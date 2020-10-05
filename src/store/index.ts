@@ -3,6 +3,7 @@ import Vuex from "vuex";
 import { Build } from "@/mechanism/build/Build";
 import { ArsenalEntry, Gear } from "@/mechanism/build/Gear";
 import { Aura } from "@/mechanism/build/Aura";
+import { Card } from "@/mechanism/build/Card";
 
 Vue.use(Vuex);
 
@@ -29,6 +30,9 @@ export default new Vuex.Store({
     },
     setBuildAura(state, obj: Aura) {
       state.build.aura.load(obj);
+    },
+    setBuildCard(state, obj: Card) {
+      state.build.card.load(obj);
     },
     setBuildGear(state, arg: { n: number; g: Gear }) {
       state.build.gears[arg.n].load(arg.g);

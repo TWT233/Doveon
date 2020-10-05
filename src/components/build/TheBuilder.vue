@@ -10,7 +10,9 @@
           <v-col lg="4" cols="12">
             <v-row>
               <v-col cols="12"><EditorPts></EditorPts></v-col>
-              <v-col cols="12"><EditorCard></EditorCard></v-col>
+              <v-col cols="12">
+                <EditorCard v-model="card"></EditorCard>
+              </v-col>
             </v-row>
           </v-col>
           <v-col lg="4" cols="12">
@@ -62,6 +64,14 @@ export default class Builder extends Vue {
 
   set aura(obj: Aura) {
     this.$store.commit("setBuildAura", obj);
+  }
+
+  get card(): Card {
+    return this.$store.state.build.card;
+  }
+
+  set card(obj: Card) {
+    this.$store.commit("setBuildCard", obj);
   }
 
   onSave() {
