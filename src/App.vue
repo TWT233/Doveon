@@ -12,7 +12,7 @@ zh_CN:
 
       <v-spacer></v-spacer>
 
-      <v-btn text @click="onBuilder()">{{ $t("TheBuilder.vue") }}</v-btn>
+      <v-btn text @click="onBuilder()">{{ $t("Builder") }}</v-btn>
       <v-btn text @click="onSimulator()">{{ $t("Simulator") }}</v-btn>
       <v-btn icon>
         <v-icon>mdi-dots-vertical</v-icon>

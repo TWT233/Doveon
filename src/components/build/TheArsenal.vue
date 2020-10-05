@@ -6,7 +6,7 @@ zh_CN:
 
 <template>
   <v-card>
-    <v-card-title>{{ $t("TheArsenal.vue") }}</v-card-title>
+    <v-card-title>{{ $t("Arsenal") }}</v-card-title>
     <v-card-text>
       <v-row v-for="(item, i) in arsenal" :key="i">
         <v-col cols="">
