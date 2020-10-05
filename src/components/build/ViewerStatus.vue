@@ -160,7 +160,7 @@ import { Component, Vue } from "vue-property-decorator";
 import { Status } from "@/mechanism/build/Status";
 
 @Component({})
-export default class StatusView extends Vue {
+export default class ViewerStatus extends Vue {
   get status(): Status {
     return this.$store.state.build.status;
   }

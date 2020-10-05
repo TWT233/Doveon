@@ -53,7 +53,7 @@ import { Component, Vue } from "vue-property-decorator";
 import { Card, CardList } from "@/mechanism/build/Card";
 
 @Component({})
-export default class CardSelect extends Vue {
+export default class EditorCard extends Vue {
   card: Card = this.$store.state.build.card;
 
   get cardList() {

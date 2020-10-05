@@ -26,23 +26,23 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import GearSelect from "@/components/build/EdtiorGear.vue";
-import StatusView from "@/components/build/ViewerStatus.vue";
+import EditorGear from "@/components/build/EdtiorGear.vue";
+import ViewerStatus from "@/components/build/ViewerStatus.vue";
 import { Build } from "@/mechanism/build/Build";
 import Arsenal from "@/components/build/TheArsenal.vue";
-import PtsEditor from "@/components/build/EditorPts.vue";
+import EditorPts from "@/components/build/EditorPts.vue";
 import ThePanelBuild from "@/components/build/ThePanelBuild.vue";
-import AuraSelect from "@/components/build/EditorAura.vue";
-import CardSelect from "@/components/build/EditorCard.vue";
+import EditorAura from "@/components/build/EditorAura.vue";
+import EditorCard from "@/components/build/EditorCard.vue";
 
 @Component({
   components: {
-    CardSelect,
-    AuraSelect,
+    CardSelect: EditorCard,
+    AuraSelect: EditorAura,
     Panel: ThePanelBuild,
-    PtsEditor,
-    GearSelect,
-    StatusView,
+    PtsEditor: EditorPts,
+    GearSelect: EditorGear,
+    StatusView: ViewerStatus,
     Arsenal
   }
 })

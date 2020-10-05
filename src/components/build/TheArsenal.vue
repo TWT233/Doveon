@@ -36,12 +36,12 @@ zh_CN:
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { ArsenalEntry, Gear } from "@/mechanism/build/Gear";
-import SingleGearSelect from "@/components/build/EditorGearSingle.vue";
+import EditorGearSingle from "@/components/build/EditorGearSingle.vue";
 import { colors } from "vuetify/lib";
 import { GearCateList } from "@/data/GearCateList";
 
 @Component({
-  components: { SingleGearSelect }
+  components: { SingleGearSelect: EditorGearSingle }
 })
 export default class Arsenal extends Vue {
   mounted() {

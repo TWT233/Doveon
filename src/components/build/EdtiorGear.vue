@@ -25,11 +25,11 @@ zh_CN:
 
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
-import SingleGearSelect from "@/components/build/EditorGearSingle.vue";
+import EditorGearSingle from "@/components/build/EditorGearSingle.vue";
 import { ArsenalEntry } from "@/mechanism/build/Gear";
 
-@Component({ components: { SingleGearSelect } })
-export default class GearSelect extends Vue {
+@Component({ components: { SingleGearSelect: EditorGearSingle } })
+export default class EditorGear extends Vue {
   gearTypes: string[] = ["weapon", "hand", "body", "head"];
 
   gears = this.$store.state.build.gears;

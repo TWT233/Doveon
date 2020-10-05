@@ -31,7 +31,7 @@ zh_CN:
 import { Component, Vue } from "vue-property-decorator";
 
 @Component({})
-export default class AuraSelect extends Vue {
+export default class EditorAura extends Vue {
   get aura() {
     return this.$store.state.build.aura;
   }

@@ -115,7 +115,7 @@ import { ArsenalEntry } from "@/mechanism/build/Gear";
 import { GearCateList } from "@/data/GearCateList";
 
 @Component({})
-export default class SingleGearSelect extends Vue {
+export default class EditorGearSingle extends Vue {
   showDialog = false;
   @Prop({ default: () => [] }) types!: string[];
   @Prop() value!: ArsenalEntry;

@@ -33,7 +33,7 @@ import { Component, Vue } from "vue-property-decorator";
 import { Pts } from "@/mechanism/build/Pts";
 
 @Component({})
-export default class PtsEditor extends Vue {
+export default class EditorPts extends Vue {
   pts: Pts = this.$store.state.build.pts;
 
   get ptsKeys(): string[] {
