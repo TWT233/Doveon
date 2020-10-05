@@ -48,14 +48,13 @@ export default class Arsenal extends Vue {
     if (window.localStorage.getItem("arsenal") == null) {
       return;
     }
-    this.loadArsenal(JSON.parse(window.localStorage.getItem("arsenal") || ""));
+    this.$store.commit(
+      "setArsenal",
+      JSON.parse(window.localStorage.getItem("arsenal") || "")
+    );
   }
   get arsenal(): ArsenalEntry[] {
     return this.$store.state.arsenal;
-  }
-
-  loadArsenal(data: ArsenalEntry[]) {
-    this.$store.commit("setArsenal", data);
   }
 
   saveArsenal() {
