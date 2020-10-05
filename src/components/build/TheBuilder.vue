@@ -2,22 +2,25 @@
   <v-container>
     <v-row>
       <v-col lg="3" cols="12">
-        <StatusView></StatusView>
+        <ViewerStatus></ViewerStatus>
       </v-col>
       <v-col lg="9" cols="12">
         <v-row>
-          <v-col cols="12"> <GearSelect></GearSelect> </v-col>
+          <v-col cols="12"> <EditorGear></EditorGear> </v-col>
           <v-col lg="4" cols="12">
             <v-row>
-              <v-col cols="12"><PtsEditor></PtsEditor></v-col>
-              <v-col cols="12"><CardSelect></CardSelect></v-col>
+              <v-col cols="12"><EditorPts></EditorPts></v-col>
+              <v-col cols="12"><EditorCard></EditorCard></v-col>
             </v-row>
           </v-col>
           <v-col lg="4" cols="12">
-            <AuraSelect v-model="aura"></AuraSelect>
+            <EditorAura v-model="aura"></EditorAura>
           </v-col>
           <v-col lg="4" cols="12">
-            <Panel @panel-save="onSave()" @panel-load="onLoad()"></Panel>
+            <ThePanelBuild
+              @panel-save="onSave()"
+              @panel-load="onLoad()"
+            ></ThePanelBuild>
           </v-col>
           <v-col lg="4" cols="12"> <Arsenal></Arsenal> </v-col>
         </v-row>
@@ -28,24 +31,25 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import EditorGear from "@/components/build/EdtiorGear.vue";
 import ViewerStatus from "@/components/build/ViewerStatus.vue";
 import { Build } from "@/mechanism/build/Build";
 import Arsenal from "@/components/build/TheArsenal.vue";
-import EditorPts from "@/components/build/EditorPts.vue";
 import ThePanelBuild from "@/components/build/ThePanelBuild.vue";
 import EditorAura from "@/components/build/EditorAura.vue";
 import EditorCard from "@/components/build/EditorCard.vue";
+import EditorGear from "@/components/build/EdtiorGear.vue";
+import EditorPts from "@/components/build/EditorPts.vue";
 import { Aura } from "@/mechanism/build/Aura";
+import { Card } from "@/mechanism/build/Card";
 
 @Component({
   components: {
-    CardSelect: EditorCard,
-    AuraSelect: EditorAura,
-    Panel: ThePanelBuild,
-    PtsEditor: EditorPts,
-    GearSelect: EditorGear,
-    StatusView: ViewerStatus,
+    EditorPts,
+    EditorCard,
+    EditorAura,
+    ViewerStatus,
+    ThePanelBuild,
+    EditorGear,
     Arsenal
   }
 })
