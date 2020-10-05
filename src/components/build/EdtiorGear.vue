@@ -12,8 +12,8 @@ zh_CN:
           <v-col v-for="(item, i) in ASE" :key="gearTypes[i]">
             <EditorArsenalEntry
               :types="[gearTypes[i]]"
-              :value="ASE[i]"
-              @input="val => onEditFinish(val, item)"
+              :value="item"
+              @input="val => onEditFinish(val, i)"
             >
             </EditorArsenalEntry>
           </v-col>
@@ -41,8 +41,8 @@ export default class EditorGear extends Vue {
     new ArsenalEntry("", "", this.gears[3])
   ];
 
-  onEditFinish(val: ArsenalEntry, ori: ArsenalEntry) {
-    ori.load(val);
+  onEditFinish(val: ArsenalEntry, i: number) {
+    this.$store.commit("setBuildGear", { n: i, g: val.gear });
   }
 }
 </script>
