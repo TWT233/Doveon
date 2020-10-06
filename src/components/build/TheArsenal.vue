@@ -43,7 +43,7 @@ import { GearCateList } from "@/data/GearCateList";
 @Component({
   components: { EditorArsenalEntry }
 })
-export default class Arsenal extends Vue {
+export default class TheArsenal extends Vue {
   mounted() {
     if (window.localStorage.getItem("arsenal") == null) {
       return;
