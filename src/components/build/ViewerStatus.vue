@@ -30,62 +30,62 @@ zh_CN:
         <tbody>
           <tr>
             <td>{{ $t("HP") }}</td>
-            <td>{{ Math.floor(status.HP) }}</td>
+            <td>{{ Math.floor(value.HP) }}</td>
           </tr>
           <tr>
             <td>{{ $t("HP_REG") }}</td>
             <td>
-              {{ Math.floor(status.HP_REG_A) }}% +
-              {{ Math.floor(status.HP_REG_B) }}
+              {{ Math.floor(value.HP_REG_A) }}% +
+              {{ Math.floor(value.HP_REG_B) }}
             </td>
           </tr>
           <tr>
             <td>{{ $t("ATK_PHY") }}</td>
             <td>
-              {{ Math.floor(status.ATK_PHY_A) }} +
-              {{ Math.floor(status.ATK_PHY_B) }}
+              {{ Math.floor(value.ATK_PHY_A) }} +
+              {{ Math.floor(value.ATK_PHY_B) }}
             </td>
           </tr>
           <tr>
             <td>{{ $t("ATK_MAG") }}</td>
             <td>
-              {{ Math.floor(status.ATK_MAG_A) }} +
-              {{ Math.floor(status.ATK_MAG_B) }}
+              {{ Math.floor(value.ATK_MAG_A) }} +
+              {{ Math.floor(value.ATK_MAG_B) }}
             </td>
           </tr>
           <tr>
             <td>{{ $t("ATK_ABS") }}</td>
-            <td>{{ Math.floor(status.ATK_ABS) }}</td>
+            <td>{{ Math.floor(value.ATK_ABS) }}</td>
           </tr>
           <tr>
             <td>{{ $t("ATK_SPD") }}</td>
             <td>
-              {{ Math.floor(status.ATK_SPD_A) }} +
-              {{ Math.floor(status.ATK_SPD_B) }}
+              {{ Math.floor(value.ATK_SPD_A) }} +
+              {{ Math.floor(value.ATK_SPD_B) }}
             </td>
           </tr>
           <tr>
             <td>{{ $t("THR_PHY") }}</td>
             <td>
-              {{ Math.floor(status.THR_PHY_A) }}% +
-              {{ Math.floor(status.THR_PHY_B) }}
+              {{ Math.floor(value.THR_PHY_A) }}% +
+              {{ Math.floor(value.THR_PHY_B) }}
             </td>
           </tr>
           <tr>
             <td>{{ $t("THR_MAG") }}</td>
             <td>
-              {{ Math.floor(status.THR_MAG_A) }}% +
-              {{ Math.floor(status.THR_MAG_B) }}
+              {{ Math.floor(value.THR_MAG_A) }}% +
+              {{ Math.floor(value.THR_MAG_B) }}
             </td>
           </tr>
           <tr>
             <td>{{ $t("SKI_CHA") }}</td>
             <td>
-              {{ Math.floor(status.SKI_CHA) }}
+              {{ Math.floor(value.SKI_CHA) }}
               ({{
                 Math.floor(
-                  (Math.floor(status.SKI_CHA) * 100) /
-                    (Math.floor(status.SKI_CHA) + 99)
+                  (Math.floor(value.SKI_CHA) * 100) /
+                    (Math.floor(value.SKI_CHA) + 99)
                 )
               }}%)
             </td>
@@ -93,61 +93,61 @@ zh_CN:
           <tr>
             <td>{{ $t("CRI_CHA") }}</td>
             <td>
-              {{ Math.floor(status.CRI_CHA) }}
+              {{ Math.floor(value.CRI_CHA) }}
               ({{
                 Math.floor(
-                  (Math.floor(status.CRI_CHA) * 100) /
-                    (Math.floor(status.CRI_CHA) + 99)
+                  (Math.floor(value.CRI_CHA) * 100) /
+                    (Math.floor(value.CRI_CHA) + 99)
                 )
               }}%)
             </td>
           </tr>
           <tr>
             <td>{{ $t("THR_CRI") }}</td>
-            <td>{{ Math.floor(status.THR_CRI) }}%</td>
+            <td>{{ Math.floor(value.THR_CRI) }}%</td>
           </tr>
           <tr>
             <td>{{ $t("HP_STL") }}</td>
-            <td>{{ Math.floor(status.HP_STL) }}%</td>
+            <td>{{ Math.floor(value.HP_STL) }}%</td>
           </tr>
           <tr>
             <td>{{ $t("DEF_PHY") }}</td>
             <td>
-              {{ Math.floor(status.DEF_PHY_A) }} +
-              {{ Math.floor(status.DEF_PHY_B) }}
+              {{ Math.floor(value.DEF_PHY_A) }} +
+              {{ Math.floor(value.DEF_PHY_B) }}
               ({{ Math.floor((DEF_PHY * 100) / (Math.abs(DEF_PHY) + 99)) }}%)
             </td>
           </tr>
           <tr>
             <td>{{ $t("DEF_MAG") }}</td>
             <td>
-              {{ Math.floor(status.DEF_MAG_A) }} +
-              {{ Math.floor(status.DEF_MAG_B) }}
+              {{ Math.floor(value.DEF_MAG_A) }} +
+              {{ Math.floor(value.DEF_MAG_B) }}
               ({{ Math.floor((DEF_MAG * 100) / (Math.abs(DEF_MAG) + 99)) }}%)
             </td>
           </tr>
           <tr>
             <td>{{ $t("BAR_PHY") }}</td>
-            <td>{{ Math.floor(status.BAR_PHY) }}</td>
+            <td>{{ Math.floor(value.BAR_PHY) }}</td>
           </tr>
           <tr>
             <td>{{ $t("BAR_MAG") }}</td>
-            <td>{{ Math.floor(status.BAR_MAG) }}</td>
+            <td>{{ Math.floor(value.BAR_MAG) }}</td>
           </tr>
           <tr>
             <td>{{ $t("SHD") }}</td>
-            <td>{{ Math.floor(status.SHD) }}</td>
+            <td>{{ Math.floor(value.SHD) }}</td>
           </tr>
           <tr>
             <td>{{ $t("SHD_REG") }}</td>
             <td>
-              {{ Math.floor(status.SHD_REG_A) }}% +
-              {{ Math.floor(status.SHD_REG_B) }}
+              {{ Math.floor(value.SHD_REG_A) }}% +
+              {{ Math.floor(value.SHD_REG_B) }}
             </td>
           </tr>
           <tr>
             <td>{{ $t("REF") }}</td>
-            <td>{{ Math.floor(status.REF) }}%</td>
+            <td>{{ Math.floor(value.REF) }}%</td>
           </tr>
         </tbody>
       </v-simple-table>
@@ -156,25 +156,19 @@ zh_CN:
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Prop, Vue } from "vue-property-decorator";
 import { Status } from "@/mechanism/build/Status";
 
 @Component({})
 export default class ViewerStatus extends Vue {
-  get status(): Status {
-    return this.$store.state.build.status;
-  }
+  @Prop() value!: Status;
 
   get DEF_PHY(): number {
-    return (
-      Math.floor(this.status.DEF_PHY_A) + Math.floor(this.status.DEF_PHY_B)
-    );
+    return Math.floor(this.value.DEF_PHY_A) + Math.floor(this.value.DEF_PHY_B);
   }
 
   get DEF_MAG(): number {
-    return (
-      Math.floor(this.status.DEF_MAG_A) + Math.floor(this.status.DEF_MAG_B)
-    );
+    return Math.floor(this.value.DEF_MAG_A) + Math.floor(this.value.DEF_MAG_B);
   }
 }
 </script>
