@@ -1,30 +1,21 @@
 <template>
   <v-container>
     <v-row>
-      <v-col lg="3" cols="12">
-        <ViewerStatus></ViewerStatus>
-      </v-col>
+      <v-col lg="3" cols="12"><ViewerStatus v-model="status"/></v-col>
       <v-col lg="9" cols="12">
         <v-row>
           <v-col cols="12"> <EditorGear></EditorGear> </v-col>
           <v-col lg="4" cols="12">
             <v-row>
-              <v-col cols="12"><EditorPts v-model="pts"></EditorPts></v-col>
-              <v-col cols="12">
-                <EditorCard v-model="card"></EditorCard>
-              </v-col>
+              <v-col cols="12"><EditorPts v-model="pts"/></v-col>
+              <v-col cols="12"><EditorCard v-model="card"/></v-col>
             </v-row>
           </v-col>
+          <v-col lg="4" cols="12"><EditorAura v-model="aura"/></v-col>
           <v-col lg="4" cols="12">
-            <EditorAura v-model="aura"></EditorAura>
+            <ThePanelBuild @panel-save="onSave()" @panel-load="onLoad()" />
           </v-col>
-          <v-col lg="4" cols="12">
-            <ThePanelBuild
-              @panel-save="onSave()"
-              @panel-load="onLoad()"
-            ></ThePanelBuild>
-          </v-col>
-          <v-col lg="4" cols="12"> <Arsenal></Arsenal> </v-col>
+          <v-col lg="4" cols="12"> <TheArsenal /> </v-col>
         </v-row>
       </v-col>
     </v-row>
@@ -35,7 +26,7 @@
 import { Component, Vue } from "vue-property-decorator";
 import ViewerStatus from "@/components/build/ViewerStatus.vue";
 import { Build } from "@/mechanism/build/Build";
-import Arsenal from "@/components/build/TheArsenal.vue";
+import TheArsenal from "@/components/build/TheArsenal.vue";
 import ThePanelBuild from "@/components/build/ThePanelBuild.vue";
 import EditorAura from "@/components/build/EditorAura.vue";
 import EditorCard from "@/components/build/EditorCard.vue";
@@ -44,6 +35,7 @@ import EditorPts from "@/components/build/EditorPts.vue";
 import { Aura } from "@/mechanism/build/Aura";
 import { Card } from "@/mechanism/build/Card";
 import { Pts } from "@/mechanism/build/Pts";
+import { Status } from "@/mechanism/build/Status";
 
 @Component({
   components: {
@@ -53,7 +45,7 @@ import { Pts } from "@/mechanism/build/Pts";
     ViewerStatus,
     ThePanelBuild,
     EditorGear,
-    Arsenal
+    TheArsenal
   }
 })
 export default class Builder extends Vue {
@@ -81,6 +73,10 @@ export default class Builder extends Vue {
 
   set pts(obj: Pts) {
     this.$store.commit("setBuildPts", obj);
+  }
+
+  get status(): Status {
+    return this.$store.state.build.status;
   }
 
   onSave() {
