@@ -9,7 +9,7 @@
           <v-col cols="12"> <EditorGear></EditorGear> </v-col>
           <v-col lg="4" cols="12">
             <v-row>
-              <v-col cols="12"><EditorPts></EditorPts></v-col>
+              <v-col cols="12"><EditorPts v-model="pts"></EditorPts></v-col>
               <v-col cols="12">
                 <EditorCard v-model="card"></EditorCard>
               </v-col>
@@ -43,6 +43,7 @@ import EditorGear from "@/components/build/EdtiorGear.vue";
 import EditorPts from "@/components/build/EditorPts.vue";
 import { Aura } from "@/mechanism/build/Aura";
 import { Card } from "@/mechanism/build/Card";
+import { Pts } from "@/mechanism/build/Pts";
 
 @Component({
   components: {
@@ -72,6 +73,14 @@ export default class Builder extends Vue {
 
   set card(obj: Card) {
     this.$store.commit("setBuildCard", obj);
+  }
+
+  get pts(): Pts {
+    return this.$store.state.build.pts;
+  }
+
+  set pts(obj: Pts) {
+    this.$store.commit("setBuildPts", obj);
   }
 
   onSave() {

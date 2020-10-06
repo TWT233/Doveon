@@ -29,15 +29,30 @@ zh_CN:
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 import { Pts } from "@/mechanism/build/Pts";
 
 @Component({})
 export default class EditorPts extends Vue {
-  pts: Pts = this.$store.state.build.pts;
+  @Prop() value!: Pts;
+  pts = new Pts();
+
+  @Watch("value", { deep: true })
+  onValueChanged() {
+    this.pts.load(this.value);
+  }
+
+  @Watch("pts", { deep: true })
+  onLocalVarChanged() {
+    this.$emit("input", this.pts);
+  }
+
+  mounted() {
+    this.onValueChanged();
+  }
 
   get ptsKeys(): string[] {
-    return Object.keys(this.pts);
+    return ["STR", "AGI", "INT", "VIT", "MEN", "CON"];
   }
 }
 </script>
