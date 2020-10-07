@@ -18,7 +18,7 @@ zh_CN:
   <v-card>
     <v-card-title>{{ $t("Aura") }}</v-card-title>
     <v-card-text>
-      <v-row>
+      <v-row dense>
         <v-col v-for="(item, i) in aura" :key="i + item.toString()" cols="auto">
           <v-checkbox v-model="aura[i]" :label="$t(i)"> </v-checkbox>
         </v-col>

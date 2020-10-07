@@ -14,7 +14,7 @@ zh_CN:
     <v-card-title>{{ $t("Points") }}</v-card-title>
     <v-card-text>
       <v-container fluid>
-        <v-row>
+        <v-row dense>
           <v-col xl="2" lg="4" cols="2" v-for="item in ptsKeys" :key="item">
             <v-text-field
               :label="$t(item)"

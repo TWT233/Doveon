@@ -14,7 +14,7 @@ zh_CN:
   <v-card>
     <v-card-title>{{ $t("Card") }}</v-card-title>
     <v-card-text>
-      <v-row>
+      <v-row dense>
         <v-col cols="4">
           <v-select
             v-model="card.name"

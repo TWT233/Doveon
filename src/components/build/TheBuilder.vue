@@ -4,18 +4,18 @@
       <v-col lg="3" cols="12"><ViewerStatus v-model="status"/></v-col>
       <v-col lg="9" cols="12">
         <v-row>
-          <v-col cols="12"> <EditorGear></EditorGear> </v-col>
+          <v-col lg="4" cols="12"><EditorGear /></v-col>
+          <v-col lg="4" cols="12"><EditorAura v-model="aura"/></v-col>
           <v-col lg="4" cols="12">
-            <v-row>
+            <v-row dense>
               <v-col cols="12"><EditorPts v-model="pts"/></v-col>
               <v-col cols="12"><EditorCard v-model="card"/></v-col>
             </v-row>
           </v-col>
-          <v-col lg="4" cols="12"><EditorAura v-model="aura"/></v-col>
-          <v-col lg="4" cols="12">
-            <ThePanelBuild @panel-save="onSave()" @panel-load="onLoad()" />
-          </v-col>
           <v-col lg="4" cols="12"> <TheArsenal /> </v-col>
+          <v-col lg="4" cols="12">
+            <ThePanelBuild @save="onSave()" @load="onLoad()" />
+          </v-col>
         </v-row>
       </v-col>
     </v-row>
