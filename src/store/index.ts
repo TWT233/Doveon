@@ -1,10 +1,11 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import { Build } from "@/mechanism/build/Build";
-import { ArsenalEntry, Gear } from "@/mechanism/build/Gear";
+import { Gear } from "@/mechanism/build/Gear";
 import { Aura } from "@/mechanism/build/Aura";
 import { Card } from "@/mechanism/build/Card";
 import { Pts } from "@/mechanism/build/Pts";
+import { ArsenalEntry } from "@/mechanism/build/ArsenalEntry";
 
 Vue.use(Vuex);
 

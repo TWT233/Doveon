@@ -35,10 +35,11 @@ zh_CN:
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import { ArsenalEntry, Gear } from "@/mechanism/build/Gear";
+import { Gear } from "@/mechanism/build/Gear";
 import EditorArsenalEntry from "@/components/build/EditorArsenalEntry.vue";
 import { colors } from "vuetify/lib";
 import { GearCateList } from "@/data/GearCateList";
+import { ArsenalEntry } from "@/mechanism/build/ArsenalEntry";
 
 @Component({
   components: { EditorArsenalEntry }

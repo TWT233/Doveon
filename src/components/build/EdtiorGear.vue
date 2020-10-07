@@ -26,7 +26,7 @@ zh_CN:
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
 import EditorArsenalEntry from "@/components/build/EditorArsenalEntry.vue";
-import { ArsenalEntry } from "@/mechanism/build/Gear";
+import { ArsenalEntry } from "@/mechanism/build/ArsenalEntry";
 
 @Component({ components: { EditorArsenalEntry } })
 export default class EditorGear extends Vue {

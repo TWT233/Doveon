@@ -96,8 +96,8 @@ zh_CN:
 
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from "vue-property-decorator";
-import { ArsenalEntry } from "@/mechanism/build/Gear";
 import { GearCateList } from "@/data/GearCateList";
+import { ArsenalEntry } from "@/mechanism/build/ArsenalEntry";
 
 @Component({})
 export default class EditorArsenalEntry extends Vue {
