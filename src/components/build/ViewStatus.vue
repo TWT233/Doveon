@@ -160,7 +160,7 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 import { Status } from "@/mechanism/build/Status";
 
 @Component({})
-export default class ViewerStatus extends Vue {
+export default class ViewStatus extends Vue {
   @Prop() value!: Status;
 
   get DEF_PHY(): number {

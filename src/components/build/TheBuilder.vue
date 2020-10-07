@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-row>
-      <v-col lg="3" cols="12"><ViewerStatus v-model="status"/></v-col>
+      <v-col lg="3" cols="12"><ViewStatus v-model="status"/></v-col>
       <v-col lg="9" cols="12">
         <v-row>
           <v-col lg="4" cols="12"><EditorGear /></v-col>
@@ -24,7 +24,7 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import ViewerStatus from "@/components/build/ViewerStatus.vue";
+import ViewStatus from "@/components/build/ViewStatus.vue";
 import { Build } from "@/mechanism/build/Build";
 import TheArsenal from "@/components/build/TheArsenal.vue";
 import ThePanelBuild from "@/components/build/ThePanelBuild.vue";
@@ -42,7 +42,7 @@ import { Status } from "@/mechanism/build/Status";
     EditorPts,
     EditorCard,
     EditorAura,
-    ViewerStatus,
+    ViewStatus,
     ThePanelBuild,
     EditorGear,
     TheArsenal
