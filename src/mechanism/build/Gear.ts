@@ -29,6 +29,7 @@ export class Gear {
     if (g == null) return;
     this.name = g.name;
     this.lvl = g.lvl;
+    this.isEnchanted = g.isEnchanted;
     for (let i = 0; i < Math.min(this.p.length, g.p.length); ++i) {
       this.p[i] = g.p[i];
     }
