@@ -42,7 +42,7 @@ export default class EditorGear extends Vue {
   ];
 
   onEditFinish(val: ArsenalEntry, i: number) {
-    this.$store.commit("setBuildGear", { n: i, g: val.gear });
+    this.$store.commit("setBuildGear", { pos: i, val: val.gear });
   }
 }
 </script>
