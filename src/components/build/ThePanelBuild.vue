@@ -14,10 +14,10 @@ zh_CN:
     <v-card-text>
       <v-row>
         <v-col>
-          <v-btn color="primary" @click="onSave()">{{ $t("Save") }}</v-btn>
+          <v-btn color="primary" @click="$emit('save')">{{ $t("Save") }}</v-btn>
         </v-col>
         <v-col>
-          <v-btn @click="onLoad()">{{ $t("Load") }}</v-btn>
+          <v-btn @click="$emit('load')">{{ $t("Load") }}</v-btn>
         </v-col>
         <v-col>
           <v-btn @click="onExport()">{{ $t("Export") }}</v-btn>
@@ -49,13 +49,6 @@ export default class ThePanelBuild extends Vue {
   showExportDialog = false;
   inText = "";
 
-  onSave() {
-    this.$emit("panel-save");
-  }
-
-  onLoad() {
-    this.$emit("panel-load");
-  }
   //Test Data Backup:
   //{"_gears":[{"_name":"STAFF","_lvl":69,"_p":[125,108,115,89]},{"_name":"BRACELET","_lvl":92,"_p":[116,94,66,63]},{"_name":"CLOAK","_lvl":100,"_p":[96,67,62,80]},{"_name":"ASTRO","_lvl":97,"_p":[59,71,64,60]}],"_pts":{"STR":1,"AGI":278,"INT":100,"VIT":1,"MEN":144,"CON":1}}
 
