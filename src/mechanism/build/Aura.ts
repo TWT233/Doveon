@@ -44,7 +44,8 @@ export class Aura {
   load(a: Aura) {
     if (a == null) return;
     for (const key in a) {
-      this[key] = a[key];
+      if (a.hasOwnProperty(key) && typeof a[key] == "boolean")
+        this[key] = a[key];
     }
   }
 
@@ -52,7 +53,7 @@ export class Aura {
     const ret = Array<string>(0);
     let count = 0;
     for (const key in this) {
-      if (this[key] == true) {
+      if (this.hasOwnProperty(key) && this[key] == true) {
         ret.push(key);
         count++;
       }
