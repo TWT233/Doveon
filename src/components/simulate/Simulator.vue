@@ -7,9 +7,7 @@ zh_CN:
 <template>
   <v-container>
     <v-row>
-      <v-col cols="6">
-        <BuildView></BuildView>
-      </v-col>
+      <v-col cols="6"><ViewBuild v-model="$store.state.build"/></v-col>
       <v-col cols="6">
         <TargetEditor @input="b = arguments[0]"></TargetEditor>
       </v-col>
@@ -35,14 +33,14 @@ import { Component, Vue } from "vue-property-decorator";
 import TargetEditor from "@/components/simulate/TargetEditor.vue";
 import { PC } from "@/mechanism/mob/PC";
 import { NPC } from "@/mechanism/mob/NPC";
-import BuildView from "@/components/simulate/BuildView.vue";
+import ViewBuild from "@/components/simulate/ViewBuild.vue";
 import { Battle } from "@/mechanism/battle/Battle";
 import PanelSimulate from "@/components/simulate/PanelSimulate.vue";
 import LogView from "@/components/simulate/LogView.vue";
 import { MENG } from "@/mechanism/mob/MENG";
 
 @Component({
-  components: { LogView, PanelSimulate, BuildView, TargetEditor }
+  components: { LogView, PanelSimulate, ViewBuild, TargetEditor }
 })
 export default class Simulator extends Vue {
   a: PC | null = null;
