@@ -34,10 +34,6 @@ export class Attribute {
   private _BAR_MAG: number;
   private _REF: number;
 
-  // constructor(val: number) {
-  //
-  // }
-
   applyGears(g: Gear): Attribute {
     for (const i in GearCate) {
       if (g.name == GearCate[i].name) {
@@ -47,36 +43,14 @@ export class Attribute {
     throw new Error("GearNameNotFound, expects " + g.name);
   }
 
-  load(a: Attribute) {
-    if (a == null) return;
-    for (const key in a) {
-      this[key] = a[key];
+  load(value: Attribute): Attribute {
+    if (value == null) return this;
+    for (const key in value) {
+      if (value.hasOwnProperty(key) && this.hasOwnProperty(key))
+        this[key] = value[key];
     }
+    return this;
   }
-
-  // get status(): Status {
-  //   return {
-  //     HP: this.HP_A + this.HP_B,
-  //     HP_REG: this.HP_REG_A + this.HP_REG_B,
-  //     ATK_PHY: this.ATK_PHY_A + this.ATK_PHY_B,
-  //     ATK_MAG: this.ATK_MAG_A + this.ATK_PHY_B,
-  //     ATK_ABS: this.ATK_ABS,
-  //     ATK_SPD: this.ATK_SPD_A + this.ATK_SPD_B,
-  //     THR_PHY: this.THR_PHY_A + this.THR_PHY_B,
-  //     THR_MAG: this.THR_MAG_A + this.THR_MAG_B,
-  //     SKI_CHA: this.SKI_CHA_A,
-  //     CRI_CHA: this.CRI_CHA_A,
-  //     THR_CRI: this.THR_CRI_A,
-  //     HP_STL: this.HP_STL,
-  //     DEF_PHY: this.DEF_PHY_A + this.DEF_PHY_B,
-  //     DEF_MAG: this.DEF_MAG_A + this.DEF_MAG_B,
-  //     BAR_PHY: this.BAR_PHY,
-  //     BAR_MAG: this.BAR_MAG,
-  //     SHD: this.SHD_A + this.SHD_B,
-  //     SHD_REG: this.SHD_REG_A + this.SHD_REG_B,
-  //     REF: this.REF
-  //   };
-  // }
 
   constructor(val: number) {
     this._HP_A = val;
