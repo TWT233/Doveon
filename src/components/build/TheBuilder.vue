@@ -4,7 +4,7 @@
       <v-col lg="3" cols="12"><ViewStatus v-model="status"/></v-col>
       <v-col lg="9" cols="12">
         <v-row>
-          <v-col lg="4" cols="12"><EditorGear /></v-col>
+          <v-col lg="4" cols="12"><EditorSuit v-model="suit"/></v-col>
           <v-col lg="4" cols="12"><EditorAura v-model="aura"/></v-col>
           <v-col lg="4" cols="12">
             <v-row dense>
@@ -30,12 +30,13 @@ import TheArsenal from "@/components/build/TheArsenal.vue";
 import ThePanelBuild from "@/components/build/ThePanelBuild.vue";
 import EditorAura from "@/components/build/EditorAura.vue";
 import EditorCard from "@/components/build/EditorCard.vue";
-import EditorGear from "@/components/build/EdtiorGear.vue";
+import EditorSuit from "@/components/build/EditorSuit.vue";
 import EditorPts from "@/components/build/EditorPts.vue";
 import { Aura } from "@/mechanism/build/Aura";
 import { Card } from "@/mechanism/build/Card";
 import { Pts } from "@/mechanism/build/Pts";
 import { Status } from "@/mechanism/build/Status";
+import { Suit } from "@/mechanism/build/Suit";
 
 @Component({
   components: {
@@ -44,12 +45,20 @@ import { Status } from "@/mechanism/build/Status";
     EditorAura,
     ViewStatus,
     ThePanelBuild,
-    EditorGear,
+    EditorSuit,
     TheArsenal
   }
 })
 export default class Builder extends Vue {
   build: Build = this.$store.state.build;
+
+  get suit(): Suit {
+    return this.$store.state.build.suit;
+  }
+
+  set suit(obj: Suit) {
+    this.$store.commit("setBuildSuit", obj);
+  }
 
   get aura(): Aura {
     return this.$store.state.build.aura;
