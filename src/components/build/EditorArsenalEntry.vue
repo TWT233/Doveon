@@ -98,18 +98,23 @@ zh_CN:
 import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 import { GearCateList } from "@/data/GearCateList";
 import { ArsenalEntry } from "@/mechanism/build/ArsenalEntry";
+import { Gear } from "@/mechanism/build/Gear";
 
 @Component({})
 export default class EditorArsenalEntry extends Vue {
   showDialog = false;
-  @Prop() value!: ArsenalEntry;
-  @Prop({ default: () => [] }) types!: string[];
+  @Prop() value!: ArsenalEntry | Gear;
+  @Prop({ default: () => ["weapon", "hand", "body", "head"] }) types!: string[];
   @Prop({ default: false }) editableLabel!: boolean;
   @Prop({ default: false }) editableColor!: boolean;
   AE: ArsenalEntry = new ArsenalEntry();
 
   mounted() {
-    this.AE.load(this.value);
+    if (this.value instanceof Gear) {
+      this.AE.gear.load(this.value);
+      this.editableColor = false;
+      this.editableLabel = false;
+    } else this.AE.load(this.value);
   }
 
   // means internal gear
@@ -119,17 +124,19 @@ export default class EditorArsenalEntry extends Vue {
 
   // means external gear
   get eg() {
-    return this.value.gear;
+    return this.value instanceof Gear ? this.value : this.value.gear;
   }
 
   @Watch("value", { deep: true })
   onValueChanged() {
-    this.AE.load(this.value);
+    this.value instanceof Gear
+      ? this.ig.load(this.value)
+      : this.AE.load(this.value);
   }
 
   onDone() {
     this.showDialog = false;
-    this.$emit("input", this.AE);
+    this.$emit("input", this.value instanceof Gear ? this.ig : this.AE);
   }
 
   get availableGearList() {
