@@ -42,7 +42,6 @@ zh_CN:
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import { Gear } from "@/mechanism/build/Gear";
 
 @Component({})
 export default class ThePanelBuild extends Vue {
@@ -54,12 +53,14 @@ export default class ThePanelBuild extends Vue {
 
   onExport() {
     const strQ = new Array<string>(0);
-    strQ.push(this.$store.state.build.card.toString());
-    strQ.push(this.$store.state.build.pts.toString());
-    this.$store.state.build.gears.forEach((e: Gear) => {
-      strQ.push(e.toString());
-    });
-    strQ.push(this.$store.state.build.aura.toString());
+    const build = this.$store.state.build;
+    strQ.push(build.card.toString());
+    strQ.push(build.pts.toString());
+    strQ.push(build.suit.weapon.toString());
+    strQ.push(build.suit.hand.toString());
+    strQ.push(build.suit.body.toString());
+    strQ.push(build.suit.head.toString());
+    strQ.push(build.aura.toString());
     this.inText = strQ.join("\n");
     this.showExportDialog = true;
   }
