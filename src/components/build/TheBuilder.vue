@@ -24,14 +24,13 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import ViewStatus from "@/components/build/ViewStatus.vue";
-import { Build } from "@/mechanism/build/Build";
-import TheArsenal from "@/components/build/TheArsenal.vue";
-import ThePanelBuild from "@/components/build/ThePanelBuild.vue";
 import EditorAura from "@/components/build/EditorAura.vue";
 import EditorCard from "@/components/build/EditorCard.vue";
 import EditorSuit from "@/components/build/EditorSuit.vue";
 import EditorPts from "@/components/build/EditorPts.vue";
+import ViewStatus from "@/components/build/ViewStatus.vue";
+import TheArsenal from "@/components/build/TheArsenal.vue";
+import ThePanelBuild from "@/components/build/ThePanelBuild.vue";
 import { Aura } from "@/mechanism/build/Aura";
 import { Card } from "@/mechanism/build/Card";
 import { Pts } from "@/mechanism/build/Pts";
@@ -50,8 +49,6 @@ import { Suit } from "@/mechanism/build/Suit";
   }
 })
 export default class Builder extends Vue {
-  build: Build = this.$store.state.build;
-
   get suit(): Suit {
     return this.$store.state.build.suit;
   }
@@ -92,7 +89,7 @@ export default class Builder extends Vue {
     if (!window.localStorage) {
       throw Error("LocalStorage not supported");
     }
-    window.localStorage["build"] = JSON.stringify(this.build);
+    window.localStorage["build"] = JSON.stringify(this.$store.state.build);
   }
 
   onLoad() {
