@@ -58,7 +58,7 @@ zh_CN:
                 <v-select
                   v-model="ig.name"
                   :items="availableGearList"
-                  :label="TypeList"
+                  :label="translatedTypeList"
                 ></v-select>
               </v-col>
               <v-col cols="2">
@@ -148,7 +148,7 @@ export default class EditorArsenalEntry extends Vue {
     return ret;
   }
 
-  get TypeList() {
+  get translatedTypeList() {
     const ret = new Array<string>(0);
     this.types.forEach(e => ret.push(this.$t(e).toString()));
     return ret.join(" / ");
