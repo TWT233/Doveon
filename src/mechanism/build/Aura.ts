@@ -8,6 +8,7 @@ export class Aura {
   private SHANG: boolean; // 伤口恶化
   private SHEN: boolean; // 精神创伤
   private CI: boolean; // 铁甲尖刺
+  private REN: boolean; // 忍无可忍
   private FEI: boolean; // 沸血之志
   private BO: boolean; // 波澜不惊
   private JU: boolean; // 飓风之力
@@ -21,6 +22,7 @@ export class Aura {
     this.SHANG = val;
     this.SHEN = val;
     this.CI = val;
+    this.REN = val;
     this.FEI = val;
     this.BO = val;
     this.JU = val;
