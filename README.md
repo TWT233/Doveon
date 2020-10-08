@@ -1,5 +1,5 @@
 <div align="center">
-<img src="">
+<img src="https://github.com/TWT233/Doveon/raw/master/public/img/icons/android-chrome-512x512.png">
 </div>
 <h1 align="center">
 Doveon
@@ -12,7 +12,9 @@ Doveon
 
 作为一条不想手写配置文件的懒狗，来写个 UI 版计算器
 
-logo 随手画的，摇了我 8（有巨巨帮我画一个更好乌乌
+~~logo 随手画的，摇了我 8（有巨巨帮我画一个更好乌乌~~
+
+在 Iconfont 上找到一个可爱的鸽子当 logo，作者主页：https://www.iconfont.cn/user/detail?spm=a313x.7781069.1998910419.34
 
 # 从源代码运行/调试
 
