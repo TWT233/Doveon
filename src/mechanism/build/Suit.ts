@@ -20,10 +20,10 @@ export class Suit {
   }
 
   load(data: Suit) {
-    this.weapon = data.weapon;
-    this.hand = data.hand;
-    this.body = data.body;
-    this.head = data.head;
+    this._weapon.load(data._weapon);
+    this._hand.load(data._hand);
+    this._body.load(data._body);
+    this._head.load(data._head);
   }
 
   get weapon(): Gear {
