@@ -29,16 +29,16 @@ export class Aura {
   }
 
   set(key: string): boolean {
-    if (key in this && typeof this[key] !== "function") {
+    if (key in this && typeof this[key] == "boolean") {
       this[key] = true;
       return true;
     } else return false;
   }
 
   get(key: string): boolean {
-    if (key in this && typeof this[key] !== "function") {
+    if (key in this && typeof this[key] == "boolean") {
       return this[key] as boolean;
-    } else throw Error("key not Found: " + key);
+    } else throw Error("keyNotFound: " + key);
   }
 
   load(value: Aura): Aura {
