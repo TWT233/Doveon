@@ -7,11 +7,16 @@ export class Card {
   private _maxLvl: number;
   private _slotCount: number;
 
-  load(c: Card) {
-    if (c == null) return;
-    for (const key in c) {
-      this[key] = c[key];
+  load(value: Card): Card {
+    if (value == null) return this;
+    for (const key in value) {
+      if (
+        Object.prototype.hasOwnProperty.call(value, key) &&
+        Object.prototype.hasOwnProperty.call(this, key)
+      )
+        this[key] = value[key];
     }
+    return this;
   }
 
   toString(): string {

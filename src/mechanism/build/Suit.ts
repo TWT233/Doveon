@@ -19,11 +19,12 @@ export class Suit {
     if (head) this.head = head;
   }
 
-  load(data: Suit) {
-    this._weapon.load(data._weapon);
-    this._hand.load(data._hand);
-    this._body.load(data._body);
-    this._head.load(data._head);
+  load(value: Suit): Suit {
+    this._weapon.load(value._weapon);
+    this._hand.load(value._hand);
+    this._body.load(value._body);
+    this._head.load(value._head);
+    return this;
   }
 
   get weapon(): Gear {

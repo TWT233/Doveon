@@ -23,13 +23,13 @@ export class Gear {
     return this.p[pos] / 100;
   }
 
-  load(g: Gear) {
-    if (g == null) return;
-    this.name = g.name;
-    this.lvl = g.lvl;
-    this.isEnchanted = g.isEnchanted;
-    for (let i = 0; i < Math.min(this.p.length, g.p.length); ++i) {
-      this.p[i] = g.p[i];
+  load(value: Gear) {
+    if (value == null) return;
+    this.name = value.name;
+    this.lvl = value.lvl;
+    this.isEnchanted = value.isEnchanted;
+    for (let i = 0; i < Math.min(this.p.length, value.p.length); ++i) {
+      this.p[i] = value.p[i];
     }
   }
 

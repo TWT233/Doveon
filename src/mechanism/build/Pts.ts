@@ -7,11 +7,16 @@ export class Pts {
   MEN = 1; //精神
   CON = 1; //意志
 
-  load(p: Pts) {
-    if (p == null) return;
-    for (const key in p) {
-      this[key] = p[key];
+  load(value: Pts): Pts {
+    if (value == null) return this;
+    for (const key in value) {
+      if (
+        Object.prototype.hasOwnProperty.call(value, key) &&
+        Object.prototype.hasOwnProperty.call(this, key)
+      )
+        this[key] = value[key];
     }
+    return this;
   }
 
   toString(): string {
