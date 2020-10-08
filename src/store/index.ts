@@ -1,7 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import { Build } from "@/mechanism/build/Build";
-import { Gear } from "@/mechanism/build/Gear";
 import { Aura } from "@/mechanism/build/Aura";
 import { Card } from "@/mechanism/build/Card";
 import { Pts } from "@/mechanism/build/Pts";
@@ -34,17 +33,17 @@ export default new Vuex.Store({
     setBuild(state, obj: Build) {
       state.build.load(obj);
     },
-    setBuildAura(state, obj: Aura) {
-      state.build.aura.load(obj);
+    setBuildAura(state, value: Aura) {
+      state.build.aura = value;
     },
-    setBuildCard(state, obj: Card) {
-      state.build.card.load(obj);
+    setBuildCard(state, value: Card) {
+      state.build.card = value;
     },
     setBuildSuit(state, value: Suit) {
       state.build.suit = value;
     },
-    setBuildPts(state, obj: Pts) {
-      state.build.pts.load(obj);
+    setBuildPts(state, value: Pts) {
+      state.build.pts = value;
     }
   },
   actions: {},
