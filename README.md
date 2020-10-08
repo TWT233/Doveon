@@ -1,5 +1,5 @@
 <div align="center">
-<img src="https://github.com/TWT233/Doveon/raw/master/public/img/icons/android-chrome-512x512.png">
+<img src="https://github.com/TWT233/Doveon/raw/master/public/img/icons/android-chrome-192x192.png">
 </div>
 <h1 align="center">
 Doveon
