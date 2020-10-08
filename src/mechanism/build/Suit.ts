@@ -13,10 +13,10 @@ export class Suit {
     body: Gear | null = null,
     head: Gear | null = null
   ) {
-    if (weapon) this._weapon.load(weapon);
-    if (hand) this._hand.load(hand);
-    if (body) this._body.load(body);
-    if (head) this._head.load(head);
+    if (weapon) this.weapon = weapon;
+    if (hand) this.hand = hand;
+    if (body) this.body = body;
+    if (head) this.head = head;
   }
 
   load(data: Suit) {
