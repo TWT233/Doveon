@@ -1,22 +1,4 @@
-<i18n>
-zh_CN:
-  NONE: 空
-  SWORD: 探险者之剑
-  SHORT_BOW: 探险者短弓
-  STAFF: 探险者短杖
-  BLADE: 狂信者的荣誉之刃
-  ASSBOW: 反叛者的刺杀弓
-  DAGGER: 幽梦匕首
-  GLOVE: 探险者手套
-  BRACELET: 命师的传承手环
-  PLATE: 探险者铁甲
-  LEATHER: 探险者皮甲
-  CLOTH: 探险者布甲
-  CLOAK: 旅法师的灵光袍
-  THORN: 战线支撑者的荆棘重甲
-  SCARF: 探险者头巾
-  TIARA: 占星师的发饰
-</i18n>
+<i18n src="@/data/i18n/GearCateTrans.yaml" />
 <i18n>
 zh_CN:
   weapon: 武器
