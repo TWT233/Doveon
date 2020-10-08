@@ -76,6 +76,17 @@ export const GearCateList: GearCateEntry[] = [
     }
   },
   {
+    name: "WAND",
+    type: "weapon",
+    handler: (a: Attribute, g: Gear): Attribute => {
+      a.ATK_MAG_A += Math.floor((g.lvl / 5) * g.v(0));
+      a.ATK_MAG_A += Math.floor((g.lvl / 5) * g.v(1));
+      a.ATK_MAG_A += Math.floor((g.lvl / 5) * g.v(2));
+      a.THR_MAG_A += Math.floor((g.lvl / 20) * g.v(3));
+      return a;
+    }
+  },
+  {
     name: "GLOVE",
     type: "hand",
     handler: (a: Attribute, g: Gear): Attribute => {
