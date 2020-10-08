@@ -3,13 +3,13 @@ zh_CN:
   Type: 种类
   Lvl: 等级
   p: 强化倍率
-  TargetEditor: 目标编辑
+  EditorTarget: 目标编辑
 </i18n>
 
 <template>
   <v-card>
     <v-card-title>
-      {{ $t("TargetEditor") }}
+      {{ $t("EditorTarget") }}
     </v-card-title>
     <v-card-text>
       <v-row>
@@ -44,7 +44,7 @@ import { Component, Vue, Watch } from "vue-property-decorator";
 import { Wooden } from "@/mechanism/mob/Wooden";
 
 @Component({})
-export default class TargetEditor extends Vue {
+export default class EditorTarget extends Vue {
   type = "";
   lvl = 0;
   p = 1.0;

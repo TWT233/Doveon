@@ -16,13 +16,13 @@ zh_CN:
     <v-card-text>
       <v-row>
         <v-col>
-          <v-btn @click="$emit('panel-load')">{{ $t("Load") }}</v-btn>
+          <v-btn @click="$emit('load')">{{ $t("Load") }}</v-btn>
         </v-col>
         <v-col>
-          <v-btn @click="$emit('panel-run')">{{ $t("Run") }}</v-btn>
+          <v-btn @click="$emit('run')">{{ $t("Run") }}</v-btn>
         </v-col>
         <v-col>
-          <v-btn @click="$emit('panel-next')">{{ $t("StepNext") }}</v-btn>
+          <v-btn @click="$emit('next')">{{ $t("StepNext") }}</v-btn>
         </v-col>
       </v-row>
     </v-card-text>
@@ -33,7 +33,7 @@ zh_CN:
 import { Component, Vue } from "vue-property-decorator";
 
 @Component({})
-export default class PanelSimulate extends Vue {}
+export default class ThePanelSimulate extends Vue {}
 </script>
 
 <style scoped></style>

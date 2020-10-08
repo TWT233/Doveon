@@ -4,8 +4,8 @@
       LogView
     </v-card-title>
     <v-card-text>
-      <template v-if="battleLog != null">
-        <template v-for="(item, i) in battleLog">
+      <template v-if="value != null">
+        <template v-for="(item, i) in value">
           {{ item.toString() }}<br :key="i" />
         </template>
       </template>
@@ -18,8 +18,8 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 import { Action } from "@/mechanism/battle/Action";
 
 @Component({})
-export default class LogView extends Vue {
-  @Prop() battleLog!: Array<Action>;
+export default class ViewLog extends Vue {
+  @Prop() value!: Array<Action>;
 }
 </script>
 

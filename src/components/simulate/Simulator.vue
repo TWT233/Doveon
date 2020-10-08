@@ -8,21 +8,12 @@ zh_CN:
   <v-container>
     <v-row>
       <v-col cols="6"><ViewBuild v-model="$store.state.build"/></v-col>
+      <v-col cols="6"><EditorTarget @input="b = arguments[0]"/></v-col>
       <v-col cols="6">
-        <TargetEditor @input="b = arguments[0]"></TargetEditor>
+        <ViewLog v-if="lastBattle" v-model="lastBattle.battleLog" />
       </v-col>
       <v-col cols="6">
-        <LogView
-          v-if="lastBattle != null"
-          :battle-log="lastBattle.battleLog"
-        ></LogView>
-      </v-col>
-      <v-col cols="6">
-        <PanelSimulate
-          @panel-load="onLoad()"
-          @panel-run="onRun()"
-          @panel-next="onNext()"
-        ></PanelSimulate>
+        <ThePanelSimulate @load="onLoad()" @run="onRun()" @next="onNext()" />
       </v-col>
     </v-row>
   </v-container>
@@ -30,17 +21,22 @@ zh_CN:
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import TargetEditor from "@/components/simulate/TargetEditor.vue";
+import EditorTarget from "@/components/simulate/EditorTarget.vue";
 import { PC } from "@/mechanism/mob/PC";
 import { NPC } from "@/mechanism/mob/NPC";
 import ViewBuild from "@/components/simulate/ViewBuild.vue";
 import { Battle } from "@/mechanism/battle/Battle";
-import PanelSimulate from "@/components/simulate/PanelSimulate.vue";
-import LogView from "@/components/simulate/LogView.vue";
+import ThePanelSimulate from "@/components/simulate/ThePanelSimulate.vue";
+import ViewLog from "@/components/simulate/ViewLog.vue";
 import { MENG } from "@/mechanism/mob/MENG";
 
 @Component({
-  components: { LogView, PanelSimulate, ViewBuild, TargetEditor }
+  components: {
+    ViewLog,
+    ThePanelSimulate,
+    ViewBuild,
+    EditorTarget
+  }
 })
 export default class Simulator extends Vue {
   a: PC | null = null;
