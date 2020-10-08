@@ -46,7 +46,10 @@ export class Attribute {
   load(value: Attribute): Attribute {
     if (value == null) return this;
     for (const key in value) {
-      if (value.hasOwnProperty(key) && this.hasOwnProperty(key))
+      if (
+        Object.prototype.hasOwnProperty.call(value, key) &&
+        Object.prototype.hasOwnProperty.call(this, key)
+      )
         this[key] = value[key];
     }
     return this;

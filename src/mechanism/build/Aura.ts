@@ -44,7 +44,10 @@ export class Aura {
   load(value: Aura): Aura {
     if (value == null) return this;
     for (const key in value) {
-      if (value.hasOwnProperty(key) && this.hasOwnProperty(key))
+      if (
+        Object.prototype.hasOwnProperty.call(value, key) &&
+        Object.prototype.hasOwnProperty.call(this, key)
+      )
         this[key] = value[key];
     }
     return this;
@@ -54,7 +57,7 @@ export class Aura {
     const ret = Array<string>(0);
     let count = 0;
     for (const key in this) {
-      if (this.hasOwnProperty(key) && this[key] == true) {
+      if (Object.prototype.hasOwnProperty.call(this, key) && this[key]) {
         ret.push(key);
         count++;
       }
