@@ -41,12 +41,13 @@ export class Aura {
     } else throw Error("key not Found: " + key);
   }
 
-  load(a: Aura) {
-    if (a == null) return;
-    for (const key in a) {
-      if (a.hasOwnProperty(key) && typeof a[key] == "boolean")
-        this[key] = a[key];
+  load(value: Aura): Aura {
+    if (value == null) return this;
+    for (const key in value) {
+      if (value.hasOwnProperty(key) && this.hasOwnProperty(key))
+        this[key] = value[key];
     }
+    return this;
   }
 
   toString(): string {
