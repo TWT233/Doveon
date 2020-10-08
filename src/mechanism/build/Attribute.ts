@@ -1,5 +1,5 @@
 import { Gear } from "@/mechanism/build/Gear";
-import { GearCateList } from "@/data/GearCateList";
+import { GearCate } from "@/data/GearCate";
 
 export class Attribute {
   [key: string]: number | Function;
@@ -39,9 +39,9 @@ export class Attribute {
   // }
 
   applyGears(g: Gear): Attribute {
-    for (const i in GearCateList) {
-      if (g.name == GearCateList[i].name) {
-        return GearCateList[i].handler(this, g);
+    for (const i in GearCate) {
+      if (g.name == GearCate[i].name) {
+        return GearCate[i].handler(this, g);
       }
     }
     throw new Error("GearNameNotFound, expects " + g.name);

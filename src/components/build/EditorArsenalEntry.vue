@@ -78,7 +78,7 @@ zh_CN:
 
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from "vue-property-decorator";
-import { GearCateList } from "@/data/GearCateList";
+import { GearCate } from "@/data/GearCate";
 import { ArsenalEntry } from "@/mechanism/build/ArsenalEntry";
 import { Gear } from "@/mechanism/build/Gear";
 
@@ -123,14 +123,14 @@ export default class EditorArsenalEntry extends Vue {
 
   get availableGearList() {
     const ret = new Array<{ text: string; value: string }>(0);
-    for (const key in GearCateList) {
+    for (const key in GearCate) {
       if (
         this.types.length == 0 ||
-        this.types.find(e => e == GearCateList[key].type)
+        this.types.find(e => e == GearCate[key].type)
       ) {
         ret.push({
-          text: this.$t(GearCateList[key].name).toString(),
-          value: GearCateList[key].name
+          text: this.$t(GearCate[key].name).toString(),
+          value: GearCate[key].name
         });
       }
     }

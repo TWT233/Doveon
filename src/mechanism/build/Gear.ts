@@ -1,5 +1,3 @@
-import { Attribute } from "@/mechanism/build/Attribute";
-
 export class Gear {
   [key: string]: number | string | boolean | number[] | Function;
   name: string;
@@ -53,9 +51,3 @@ export class Gear {
     );
   }
 }
-
-export type GearCateEntry = {
-  name: string;
-  type: string;
-  handler: (a: Attribute, g: Gear) => Attribute;
-};

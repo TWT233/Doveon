@@ -1,7 +1,13 @@
 import { Attribute } from "@/mechanism/build/Attribute";
-import { Gear, GearCateEntry } from "@/mechanism/build/Gear";
+import { Gear } from "@/mechanism/build/Gear";
 
-export const GearCateList: GearCateEntry[] = [
+export type GearCateEntry = {
+  name: string;
+  type: string;
+  handler: (a: Attribute, g: Gear) => Attribute;
+};
+
+export const GearCate: GearCateEntry[] = [
   {
     name: "NONE",
     type: "none",

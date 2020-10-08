@@ -38,7 +38,7 @@ import { Component, Vue } from "vue-property-decorator";
 import { Gear } from "@/mechanism/build/Gear";
 import EditorArsenalEntry from "@/components/build/EditorArsenalEntry.vue";
 import { colors } from "vuetify/lib";
-import { GearCateList } from "@/data/GearCateList";
+import { GearCate } from "@/data/GearCate";
 import { ArsenalEntry } from "@/mechanism/build/ArsenalEntry";
 
 @Component({
@@ -72,7 +72,7 @@ export default class TheArsenal extends Vue {
 
   onEquipGear(g: Gear) {
     const buildGears = this.$store.state.build.gears;
-    const type = GearCateList.find(e => e.name == g.name)?.type;
+    const type = GearCate.find(e => e.name == g.name)?.type;
     if (type)
       buildGears[["weapon", "hand", "body", "head"].indexOf(type)].load(g);
   }
