@@ -1,7 +1,13 @@
 import { Status } from "@/mechanism/build/Status";
+import _ from "lodash";
+
+export type buff = {
+  name: string;
+  val: number;
+};
 
 export class DynStatus {
-  [key: string]: number | Function;
+  [key: string]: number | Function | buff[];
   HP: number = 0;
   HP_REG_P: number = 0;
   HP_REG_C: number = 0;
@@ -25,6 +31,7 @@ export class DynStatus {
   SHD_REG_P: number = 0;
   SHD_REG_C: number = 0;
   REF: number = 0;
+  buffs: buff[] = [];
 
   constructor(status: Status | DynStatus | null = null) {
     if (status) this.load(status);
@@ -59,9 +66,14 @@ export class DynStatus {
       for (const key in value) {
         if (
           Object.prototype.hasOwnProperty.call(value, key) &&
-          Object.prototype.hasOwnProperty.call(this, key)
+          Object.prototype.hasOwnProperty.call(this, key) &&
+          typeof value[key] == "number"
         )
           this[key] = value[key];
+      }
+      if (value.buffs) {
+        this.buffs.splice(0, this.buffs.length);
+        _.cloneDeep(value.buffs).forEach(e => this.buffs.push(e));
       }
     }
     return this;
