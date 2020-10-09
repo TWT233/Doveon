@@ -10,16 +10,16 @@ zh_CN:
       <v-container>
         <v-row>
           <v-col>
-            <EditorArsenalEntry :types="['weapon']" v-model="suit.weapon" />
+            <EditorArsenalEntry :types="['weapon']" v-model="local.weapon" />
           </v-col>
           <v-col>
-            <EditorArsenalEntry :types="['hand']" v-model="suit.hand" />
+            <EditorArsenalEntry :types="['hand']" v-model="local.hand" />
           </v-col>
           <v-col>
-            <EditorArsenalEntry :types="['body']" v-model="suit.body" />
+            <EditorArsenalEntry :types="['body']" v-model="local.body" />
           </v-col>
           <v-col>
-            <EditorArsenalEntry :types="['head']" v-model="suit.head" />
+            <EditorArsenalEntry :types="['head']" v-model="local.head" />
           </v-col>
         </v-row>
       </v-container>
@@ -35,17 +35,16 @@ import { Suit } from "@/mechanism/build/Suit";
 @Component({ components: { EditorArsenalEntry } })
 export default class EditorSuit extends Vue {
   @Prop() value!: Suit;
-
-  suit: Suit = new Suit();
+  local: Suit = new Suit();
 
   @Watch("value", { deep: true })
   onValueChanged() {
-    this.suit.load(this.value);
+    this.local.load(this.value);
   }
 
-  @Watch("suit", { deep: true })
-  onLocalVarChanged() {
-    this.$emit("input", this.suit);
+  @Watch("local", { deep: true })
+  onLocalChanged() {
+    this.$emit("input", this.local);
   }
 
   mounted() {

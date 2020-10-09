@@ -9,8 +9,12 @@ zh_CN:
     <v-card-title>{{ $t("Aura") }}</v-card-title>
     <v-card-text>
       <v-row dense>
-        <v-col v-for="(item, i) in aura" :key="i + item.toString()" cols="auto">
-          <v-checkbox v-model="aura[i]" :label="$t(i)"> </v-checkbox>
+        <v-col
+          v-for="(item, i) in local"
+          :key="i + item.toString()"
+          cols="auto"
+        >
+          <v-checkbox v-model="local[i]" :label="$t(i)"> </v-checkbox>
         </v-col>
       </v-row>
     </v-card-text>
@@ -24,16 +28,16 @@ import { Aura } from "@/mechanism/build/Aura";
 @Component({})
 export default class EditorAura extends Vue {
   @Prop() value!: Aura;
-  aura: Aura = new Aura();
+  local: Aura = new Aura();
 
   @Watch("value", { deep: true })
   onValueChanged() {
-    this.aura.load(this.value);
+    this.local.load(this.value);
   }
 
-  @Watch("aura", { deep: true })
-  onLocalVarChanged() {
-    this.$emit("input", this.aura);
+  @Watch("local", { deep: true })
+  onLocalChanged() {
+    this.$emit("input", this.local);
   }
 
   mounted() {

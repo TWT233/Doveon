@@ -17,7 +17,7 @@ zh_CN:
       <v-row dense>
         <v-col cols="4">
           <v-select
-            v-model="card.name"
+            v-model="local.name"
             :items="cardList"
             :label="$t('Card')"
           ></v-select>
@@ -25,21 +25,21 @@ zh_CN:
         <v-col>
           <v-text-field
             :label="$t('currentLvl')"
-            v-model.number="card.lvl"
+            v-model.number="local.lvl"
             type="number"
           ></v-text-field>
         </v-col>
         <v-col>
           <v-text-field
             :label="$t('maxLvl')"
-            v-model.number="card.maxLvl"
+            v-model.number="local.maxLvl"
             type="number"
           ></v-text-field>
         </v-col>
         <v-col>
           <v-text-field
             :label="$t('slotCount')"
-            v-model.number="card.slotCount"
+            v-model.number="local.slotCount"
             type="number"
           ></v-text-field>
         </v-col>
@@ -55,16 +55,16 @@ import { Card, CardList } from "@/mechanism/build/Card";
 @Component({})
 export default class EditorCard extends Vue {
   @Prop() value!: Card;
-  card: Card = new Card();
+  local: Card = new Card();
 
   @Watch("value", { deep: true })
   onValueChanged() {
-    this.card.load(this.value);
+    this.local.load(this.value);
   }
 
-  @Watch("card", { deep: true })
-  onLocalVarChanged() {
-    this.$emit("input", this.card);
+  @Watch("local", { deep: true })
+  onLocalChanged() {
+    this.$emit("input", this.local);
   }
 
   mounted() {

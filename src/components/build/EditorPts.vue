@@ -18,7 +18,7 @@ zh_CN:
           <v-col xl="2" lg="4" cols="2" v-for="item in ptsKeys" :key="item">
             <v-text-field
               :label="$t(item)"
-              v-model.number="pts[item]"
+              v-model.number="local[item]"
               type="number"
             ></v-text-field>
           </v-col>
@@ -35,16 +35,16 @@ import { Pts } from "@/mechanism/build/Pts";
 @Component({})
 export default class EditorPts extends Vue {
   @Prop() value!: Pts;
-  pts = new Pts();
+  local = new Pts();
 
   @Watch("value", { deep: true })
   onValueChanged() {
-    this.pts.load(this.value);
+    this.local.load(this.value);
   }
 
-  @Watch("pts", { deep: true })
-  onLocalVarChanged() {
-    this.$emit("input", this.pts);
+  @Watch("local", { deep: true })
+  onLocalChanged() {
+    this.$emit("input", this.local);
   }
 
   mounted() {

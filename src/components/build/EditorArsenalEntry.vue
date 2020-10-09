@@ -28,7 +28,7 @@ zh_CN:
       <v-card>
         <v-card-title>
           <div v-if="labeled">
-            <v-text-field :label="$t('Label')" v-model="AE.label">
+            <v-text-field :label="$t('Label')" v-model="local.label">
             </v-text-field>
           </div>
           <div v-else>{{ $t("GearEdit") }}</div>
@@ -86,19 +86,19 @@ export default class EditorArsenalEntry extends Vue {
   @Prop({ default: () => ["weapon", "hand", "body", "head"] }) types!: string[];
   @Prop({ type: Boolean, default: false }) labeled!: boolean;
   @Prop({ type: Boolean, default: false }) colored!: boolean;
-  AE: ArsenalEntry = new ArsenalEntry();
+  local: ArsenalEntry = new ArsenalEntry();
 
   mounted() {
     if (this.value instanceof Gear) {
-      this.AE.gear.load(this.value);
+      this.local.gear.load(this.value);
       this.colored = false;
       this.labeled = false;
-    } else this.AE.load(this.value);
+    } else this.local.load(this.value);
   }
 
   // means internal gear
   get ig() {
-    return this.AE.gear;
+    return this.local.gear;
   }
 
   // means external gear
@@ -110,12 +110,12 @@ export default class EditorArsenalEntry extends Vue {
   onValueChanged() {
     this.value instanceof Gear
       ? this.ig.load(this.value)
-      : this.AE.load(this.value);
+      : this.local.load(this.value);
   }
 
   onDone() {
     this.showDialog = false;
-    this.$emit("input", this.value instanceof Gear ? this.ig : this.AE);
+    this.$emit("input", this.value instanceof Gear ? this.ig : this.local);
   }
 
   get tGearList() {
