@@ -1,3 +1,7 @@
 export class BattleStatus {
-  spd: number = 0;
+  spd: number;
+
+  constructor(b: BattleStatus | null = null) {
+    this.spd = b?.spd || 0;
+  }
 }
