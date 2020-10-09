@@ -30,41 +30,38 @@ zh_CN:
           <div v-if="labeled">
             <v-text-field :label="$t('Label')" v-model="AE.label">
             </v-text-field>
-          </v-col>
-          <v-col v-else> {{ $t("GearEdit") }}</v-col>
+          </div>
+          <div v-else>{{ $t("GearEdit") }}</div>
         </v-card-title>
         <v-card-text>
-          <v-container>
-            <v-row>
-              <v-col cols="7">
-                <v-select
-                  v-model="ig.name"
-                  :items="availableGearList"
-                  :label="translatedTypeList"
-                ></v-select>
-              </v-col>
-              <v-col cols="2">
-                <v-text-field
-                  :label="$t('Level')"
-                  v-model.number="ig.lvl"
-                  type="number"
-                ></v-text-field>
-              </v-col>
-              <v-col cols="3">
-                <v-checkbox v-model="ig.isEnchanted" :label="$t('Enchanted')">
-                </v-checkbox>
-              </v-col>
-            </v-row>
-            <v-row>
-              <v-col v-for="i in 4" :key="'p' + i">
-                <v-text-field
-                  :label="'P' + i"
-                  v-model.number="ig.p[i - 1]"
-                  type="number"
-                ></v-text-field>
-              </v-col>
-            </v-row>
-          </v-container>
+          <v-row dense>
+            <v-col cols="6">
+              <v-select
+                v-model="ig.name"
+                :items="tGearList"
+                :label="tTypeList"
+              />
+            </v-col>
+            <v-col cols="3">
+              <v-text-field
+                :label="$t('Level')"
+                v-model.number="ig.lvl"
+                type="number"
+              />
+            </v-col>
+            <v-col cols="3">
+              <v-checkbox v-model="ig.isEnchanted" :label="$t('Enchanted')" />
+            </v-col>
+          </v-row>
+          <v-row dense>
+            <v-col v-for="i in 4" :key="i">
+              <v-text-field
+                :label="'P' + i"
+                v-model.number="ig.p[i - 1]"
+                type="number"
+              />
+            </v-col>
+          </v-row>
         </v-card-text>
         <v-card-actions>
           <v-btn text color="primary" @click="onDone()">
@@ -121,7 +118,7 @@ export default class EditorArsenalEntry extends Vue {
     this.$emit("input", this.value instanceof Gear ? this.ig : this.AE);
   }
 
-  get availableGearList() {
+  get tGearList() {
     const ret = new Array<{ text: string; value: string }>(0);
     for (const key in GearCate) {
       if (
@@ -137,7 +134,7 @@ export default class EditorArsenalEntry extends Vue {
     return ret;
   }
 
-  get translatedTypeList() {
+  get tTypeList() {
     const ret = new Array<string>(0);
     this.types.forEach(e => ret.push(this.$t(e).toString()));
     return ret.join(" / ");
