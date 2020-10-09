@@ -12,23 +12,25 @@ zh_CN:
         <v-col cols="">
           <EditorArsenalEntry
             :value="arsenal[i]"
-            @input="val => onEditFinish(val, i)"
-            editable-color="true"
-            editable-label="true"
-          ></EditorArsenalEntry>
+            @input="val => onEditAE(val, i)"
+            colored
+            labeled
+          />
         </v-col>
         <v-col cols="auto">
-          <v-btn icon @click="onEquipGear(item.gear)">
+          <v-btn icon @click="onEquip(item.gear)">
             <v-icon>mdi-sword</v-icon>
           </v-btn>
         </v-col>
         <v-col cols="auto">
-          <v-btn icon @click="onRemoveGear(i)"><v-icon>delete</v-icon></v-btn>
+          <v-btn icon @click="onDelete(i)"><v-icon>delete</v-icon></v-btn>
         </v-col>
       </v-row>
     </v-card-text>
     <v-card-actions>
-      <v-btn color="primary" @click="onAddGear()">{{ $t("AddGear") }}</v-btn>
+      <v-btn color="primary" text @click="onAdd()">
+        {{ $t("AddGear") }}
+      </v-btn>
     </v-card-actions>
   </v-card>
 </template>
@@ -65,26 +67,26 @@ export default class TheArsenal extends Vue {
     );
   }
 
-  onRemoveGear(pos: number) {
+  onDelete(pos: number) {
     this.$store.commit("arsenalRemove", pos);
     this.saveArsenal();
   }
 
-  onEquipGear(g: Gear) {
+  onEquip(g: Gear) {
     const buildGears = this.$store.state.build.gears;
     const type = GearCate.find(e => e.name == g.name)?.type;
     if (type)
       buildGears[["weapon", "hand", "body", "head"].indexOf(type)].load(g);
   }
 
-  onAddGear() {
+  onAdd() {
     this.$store.commit(
       "arsenalPush",
       new ArsenalEntry("", colors.grey.darken2, new Gear())
     );
   }
 
-  onEditFinish(val: ArsenalEntry, i: number) {
+  onEditAE(val: ArsenalEntry, i: number) {
     this.$store.commit("setArsenalEntry", { pos: i, val: val });
     this.saveArsenal();
   }
