@@ -18,7 +18,7 @@ zh_CN:
           />
         </v-col>
         <v-col cols="auto">
-          <v-btn icon @click="onEquip(item.gear)">
+          <v-btn icon @click="onEquip(item)">
             <v-icon>mdi-sword</v-icon>
           </v-btn>
         </v-col>
@@ -72,11 +72,10 @@ export default class TheArsenal extends Vue {
     this.saveArsenal();
   }
 
-  onEquip(g: Gear) {
-    const buildGears = this.$store.state.build.gears;
-    const type = GearCate.find(e => e.name == g.name)?.type;
-    if (type)
-      buildGears[["weapon", "hand", "body", "head"].indexOf(type)].load(g);
+  onEquip(val: ArsenalEntry) {
+    const tmp = _.cloneDeep(this.$store.state.build.suit);
+    const type = GearCate.find(e => e.name == val.gear.name)?.type;
+    this.$store.commit("setBuildSuit", type && (tmp[type] = val.gear) && tmp);
   }
 
   onAdd() {
