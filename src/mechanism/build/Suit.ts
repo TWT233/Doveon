@@ -20,6 +20,7 @@ export class Suit {
   }
 
   load(value: Suit): Suit {
+    if (!value) return this;
     this._weapon.load(value._weapon);
     this._hand.load(value._hand);
     this._body.load(value._body);
