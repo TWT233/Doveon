@@ -28,13 +28,98 @@ yarn serve
 
 # Current Working on
 
-模拟 PVE
+模拟战斗
 
-# Current Stage TODO:
+## Short Term RoadMap
 
-- [ ] 编辑进攻方、防守方
-- [ ] 读取当前配装导出成可处理的角色
-- [ ] 处理工作循环
+1. 定义参与战斗的角色 有哪些信息是必要的
+2. 定义战斗的状态 怎样记录战斗
+
+首先是战斗的流程：怎么决定出手顺序、出手权怎么交换
+
+双方行动，有可能影响对方的面板、给对方加 DEBUFF；同时也可能会受到对方反弹、触发对方的被动技能结算等。行动该怎么进行
+
+光环里也有主动技、被动技，可以在开始战斗前把东西揉进来
+
+## 设计：
+
+参与战斗的角色，无论是 PC 还是 NPC，在进入战斗时都统筹为 Mob：
+
+Mob 进入战斗需要两类信息：面板状态 status + 技能列表 skill（主动、被动是不是可以分开列）
+PC/NPC->Mob，两类信息来源：(打[]的说明是静态数据)
+
+|     |      status       |      skill       |
+| :-: | :---------------: | :--------------: |
+| PC  |   suit+pts+aura   | suit+[card]+aura |
+| NPC | [type]+lvl+p+aura |   [type]+aura    |
+
+不过不管怎么样，能拿到 status+skill 就行
+
+PC->Mob 可以给 build 加接口，build 里啥都有，不过还需要考虑一下 PVP 中，对方 PC 怎么变成 Mob
+
+参考一下 C++计算器：从游戏里拿面板，所以需要加一个.in->Mob 的接口。
+不过这有几个问题：1.需不需要一个中间层 2.光环怎么拿（光环里的技能为主，只影响面板的光环不需要，因为可以直接拿到面板）
+
+中间层先搁置不谈，光环基本没有数据来源，所以我认为也是需要手动设置
+
+NPC->Mob 就需要新添东西了，不过之前也没有实现过相关的东西，正好加点
+
+### P2
+
+接下来还有怎么表示 status 和 skill 的问题，但是先放一下，先想一下怎么描述战斗
+
+首先定义 Action，用以表示一次出手，battleLog 就是一个 Array<\Action>
+
+一次出手需要保存什么信息：出手前的双方状态，出手后的双方状态，双方在这一动里做了什么动作（主被动）
+
+出手前状态：before:stauts，出手后状态：after:status，做了什么动作：Array<\skill>，需要确保可复盘
+
+因为做了动作，总会上点 flag 或者 buff，这个初步设计存在 status 里
+
+### P3
+
+所以战斗设计叫 Battle：
+
+```typescript
+Battle:{
+  a:Mob;
+  b:Mob;
+  log:Array<Action>
+}
+
+Mob:{
+  status:DynStatus;
+  skills:Array<Skill>
+}
+
+Action:{
+  a:Mob;
+  b:Mob;
+  before:battleFrame;
+  after:batlleFrame
+}
+
+battleFrame:{
+  a:DynStatus;
+  b:DynStatus;
+  e:battleStatus;
+}
+
+battleStatus:{
+  spd:number
+}
+
+DynStatus:{
+  // Status...
+  buffs:Array<{name:string,val:number}>
+}
+
+Skill:{
+  name:string
+  type:string
+  handler:(before:battleFrame,doer:'a'|'b'|'0',ge:'a'|'b'|'0')=>battleFrame
+}
+```
 
 # TODO：
 
