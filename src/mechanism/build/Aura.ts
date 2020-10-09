@@ -1,31 +1,28 @@
 export class Aura {
   [key: string]: boolean | Function;
-  private SHI: boolean; // 启程之誓
-  private XIN: boolean; // 启程之心
-  private FENG: boolean; // 启程之风
-  private BI: boolean; // 破壁之心
-  private MO: boolean; // 破魔之心
-  private SHANG: boolean; // 伤口恶化
-  private SHEN: boolean; // 精神创伤
-  private CI: boolean; // 铁甲尖刺
-  private REN: boolean; // 忍无可忍
-  private FEI: boolean; // 沸血之志
-  private BO: boolean; // 波澜不惊
-  private JU: boolean; // 飓风之力
+  private SHI = false; // 启程之誓
+  private XIN = false; // 启程之心
+  private FENG = false; // 启程之风
+  private BI = false; // 破壁之心
+  private MO = false; // 破魔之心
+  private DUN = false; // 复合护盾
+  private SHANG = false; // 伤口恶化
+  private SHEN = false; // 精神创伤
+  private CI = false; // 铁甲尖刺
+  private REN = false; // 忍无可忍
+  private FEI = false; // 沸血之志
+  private BO = false; // 波澜不惊
+  private JU = false; // 飓风之力
 
   constructor(val = false) {
-    this.SHI = val;
-    this.XIN = val;
-    this.FENG = val;
-    this.BI = val;
-    this.MO = val;
-    this.SHANG = val;
-    this.SHEN = val;
-    this.CI = val;
-    this.REN = val;
-    this.FEI = val;
-    this.BO = val;
-    this.JU = val;
+    for (const key in this) {
+      if (
+        Object.prototype.hasOwnProperty.call(this, key) &&
+        typeof this[key] == "boolean"
+      ) {
+        this[key.toString()] = val;
+      }
+    }
   }
 
   set(key: string): boolean {
