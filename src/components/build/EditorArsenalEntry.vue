@@ -27,7 +27,7 @@ zh_CN:
     <v-dialog v-model="showDialog" max-width="500">
       <v-card>
         <v-card-title>
-          <v-col v-if="editableLabel">
+          <div v-if="labeled">
             <v-text-field :label="$t('Label')" v-model="AE.label">
             </v-text-field>
           </v-col>
@@ -87,15 +87,15 @@ export default class EditorArsenalEntry extends Vue {
   showDialog = false;
   @Prop() value!: ArsenalEntry | Gear;
   @Prop({ default: () => ["weapon", "hand", "body", "head"] }) types!: string[];
-  @Prop({ default: false }) editableLabel!: boolean;
-  @Prop({ default: false }) editableColor!: boolean;
+  @Prop({ type: Boolean, default: false }) labeled!: boolean;
+  @Prop({ type: Boolean, default: false }) colored!: boolean;
   AE: ArsenalEntry = new ArsenalEntry();
 
   mounted() {
     if (this.value instanceof Gear) {
       this.AE.gear.load(this.value);
-      this.editableColor = false;
-      this.editableLabel = false;
+      this.colored = false;
+      this.labeled = false;
     } else this.AE.load(this.value);
   }
 
