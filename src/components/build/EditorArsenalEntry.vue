@@ -16,7 +16,7 @@ zh_CN:
   <div>
     <v-btn
       @click.stop="showDialog = true"
-      dark
+      :dark="isDarkColor(value.markColor)"
       large
       :color="value.markColor || 'secondary'"
     >
@@ -59,6 +59,18 @@ zh_CN:
                 :label="'P' + i"
                 v-model.number="ig.p[i - 1]"
                 type="number"
+              />
+            </v-col>
+          </v-row>
+          <v-row dense v-if="colored">
+            <v-col>
+              <v-color-picker
+                v-model="local.markColor"
+                hide-canvas
+                hide-inputs
+                show-swatches
+                swatches-max-height="50"
+                width="auto"
               />
             </v-col>
           </v-row>
@@ -138,6 +150,15 @@ export default class EditorArsenalEntry extends Vue {
     const ret = new Array<string>(0);
     this.types.forEach(e => ret.push(this.$t(e).toString()));
     return ret.join(" / ");
+  }
+
+  isDarkColor(hex: string | number | boolean | number[] | Function): boolean {
+    if (typeof hex != "string") return false;
+    const r = parseInt(hex.substr(1, 2), 16);
+    const g = parseInt(hex.substr(3, 2), 16);
+    const b = parseInt(hex.substr(5, 2), 16);
+
+    return (Math.max(r, g, b) + Math.min(r, g, b)) / 2 < 127;
   }
 }
 </script>
