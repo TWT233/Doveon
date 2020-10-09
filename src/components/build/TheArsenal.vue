@@ -36,26 +36,26 @@ zh_CN:
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
-import { Gear } from "@/mechanism/build/Gear";
 import EditorArsenalEntry from "@/components/build/EditorArsenalEntry.vue";
-import { colors } from "vuetify/lib";
-import { GearCate } from "@/data/GearCate";
+import { Gear } from "@/mechanism/build/Gear";
 import { ArsenalEntry } from "@/mechanism/build/ArsenalEntry";
+import { GearCate } from "@/data/GearCate";
+import _ from "lodash";
+import { colors } from "vuetify/lib";
+import { Component, Vue } from "vue-property-decorator";
 
 @Component({
   components: { EditorArsenalEntry }
 })
 export default class TheArsenal extends Vue {
   mounted() {
-    if (window.localStorage.getItem("arsenal") == null) {
-      return;
-    }
+    if (!window.localStorage.getItem("arsenal")) return;
     this.$store.commit(
       "setArsenal",
       JSON.parse(window.localStorage.getItem("arsenal") || "")
     );
   }
+
   get arsenal(): ArsenalEntry[] {
     return this.$store.state.arsenal;
   }
