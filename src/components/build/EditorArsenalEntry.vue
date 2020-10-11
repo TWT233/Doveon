@@ -18,6 +18,7 @@ zh_CN:
       @click.stop="showDialog = true"
       :dark="isDark"
       large
+      block
       :color="value.markColor || 'secondary'"
     >
       {{ value.label || $t(eg.name) }} {{ "Lv." + eg.lvl }}<br />
