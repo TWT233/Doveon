@@ -38,7 +38,21 @@ export class DynStatus {
   }
 
   load(value: Status | DynStatus): DynStatus {
-    if (value instanceof Status) {
+    if (!value) return this;
+    if (value instanceof DynStatus) {
+      for (const key in value) {
+        if (
+          Object.prototype.hasOwnProperty.call(value, key) &&
+          Object.prototype.hasOwnProperty.call(this, key) &&
+          typeof value[key] == "number"
+        )
+          this[key] = value[key];
+      }
+      if (value.buffs) {
+        this.buffs.splice(0, this.buffs.length);
+        _.cloneDeep(value.buffs).forEach(e => this.buffs.push(e));
+      }
+    } else {
       this.HP = value.HP;
       this.HP_REG_P = value.HP_REG_A;
       this.HP_REG_C = value.HP_REG_B;
@@ -62,19 +76,6 @@ export class DynStatus {
       this.SHD_REG_P = value.SHD_REG_A;
       this.SHD_REG_C = value.SHD_REG_B;
       this.REF = value.REF;
-    } else {
-      for (const key in value) {
-        if (
-          Object.prototype.hasOwnProperty.call(value, key) &&
-          Object.prototype.hasOwnProperty.call(this, key) &&
-          typeof value[key] == "number"
-        )
-          this[key] = value[key];
-      }
-      if (value.buffs) {
-        this.buffs.splice(0, this.buffs.length);
-        _.cloneDeep(value.buffs).forEach(e => this.buffs.push(e));
-      }
     }
     return this;
   }
