@@ -22,7 +22,7 @@
               <EditorMobBuild :value="$store.state.build" />
             </v-tab-item>
             <v-tab-item></v-tab-item>
-            <v-tab-item></v-tab-item>
+            <v-tab-item><EditorMobNPC /></v-tab-item>
           </v-tabs-items>
         </v-card-text>
         <v-card-actions>
@@ -39,9 +39,10 @@ import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 import { Mob } from "@/mechanism/battle/Mob";
 import { Status } from "@/mechanism/build/Status";
 import EditorMobBuild from "@/components/simulate/EditorMobBuild.vue";
+import EditorMobNPC from "@/components/simulate/EditorMobNPC.vue";
 
 @Component({
-  components: { EditorMobBuild }
+  components: { EditorMobNPC, EditorMobBuild }
 })
 export default class EditorMob extends Vue {
   @Prop() value!: Mob;
