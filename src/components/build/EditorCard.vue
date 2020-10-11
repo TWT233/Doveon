@@ -1,9 +1,6 @@
+<i18n src="@/data/i18n/CardTrans.yaml"></i18n>
 <i18n>
 zh_CN:
-  MENG: 梦
-  MO: 默
-  AI: 艾
-  LIN: 琳
   Card: 角色卡片
   currentLvl: 当前等级
   maxLvl: 最高等级
