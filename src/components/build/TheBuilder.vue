@@ -4,8 +4,8 @@
       <v-col lg="3" cols="12"><ViewStatus v-model="status"/></v-col>
       <v-col lg="9" cols="12">
         <v-row>
-          <v-col lg="4" cols="12"><EditorSuit v-model="suit"/></v-col>
-          <v-col lg="4" cols="12"><EditorAura v-model="aura"/></v-col>
+          <v-col lg="3" cols="12"><EditorSuit v-model="suit"/></v-col>
+          <v-col lg="5" cols="12"><EditorAura v-model="aura"/></v-col>
           <v-col lg="4" cols="12">
             <v-row dense>
               <v-col cols="12"><EditorPts v-model="pts"/></v-col>
