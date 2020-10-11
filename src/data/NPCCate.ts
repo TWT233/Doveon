@@ -1,5 +1,5 @@
 import { Status } from "@/mechanism/build/Status";
-import { Skill } from "@/mechanism/battle/Mob";
+import {Skill} from "@/mechanism/battle/Skill";
 
 export type NPCCateEntry = {
   name: string;

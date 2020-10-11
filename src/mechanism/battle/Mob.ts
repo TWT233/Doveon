@@ -1,11 +1,8 @@
 import { DynStatus } from "@/mechanism/battle/DynStatus";
-import { BattleFrame } from "@/mechanism/battle/BattleFrame";
-
-export type Skill = {
-  name: string;
-  type: string;
-  run: (b: BattleFrame, s: "a" | "b") => BattleFrame;
-};
+import { Status } from "@/mechanism/build/Status";
+import { Build } from "@/mechanism/build/Build";
+import { Aura } from "@/mechanism/build/Aura";
+import { Skill } from "@/mechanism/battle/Skill";
 
 export class Mob {
   private _name: string;
@@ -22,7 +19,24 @@ export class Mob {
     return this;
   }
 
-  constructor(name: string, type: "PC" | "NPC" | "", status: DynStatus) {
+  static genMob(
+    name: string,
+    type: "PC" | "NPC" | "",
+    data: Build | { status: Status; aura: Aura }
+  ): Mob | null {
+    let ret = null;
+    if (data instanceof Build) {
+      ret = new Mob(name, type, data.status);
+    }
+    // TODO:ADD NPC/S+A
+    return ret;
+  }
+
+  constructor(
+    name: string,
+    type: "PC" | "NPC" | "",
+    status: DynStatus | Status
+  ) {
     this._name = name;
     this._type = type;
     this._status = new DynStatus(status);
