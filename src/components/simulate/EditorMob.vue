@@ -10,10 +10,7 @@
         <v-card-title>EditorMob</v-card-title>
         <v-card-text>
           <v-tabs v-model="tabPage">
-            <v-tab
-              v-for="item in ['FromBuild', 'FromStatus', 'NPC']"
-              :key="item"
-            >
+            <v-tab v-for="item in ['Build', 'Status', 'NPC']" :key="item">
               {{ item }}
             </v-tab>
           </v-tabs>
