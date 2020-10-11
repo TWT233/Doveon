@@ -26,7 +26,7 @@ zh_CN:
   <v-card>
     <v-card-title>{{ $t("Status") }}</v-card-title>
     <v-card-text>
-      <v-simple-table>
+      <v-simple-table dense>
         <tbody>
           <tr>
             <td>{{ $t("HP") }}</td>
