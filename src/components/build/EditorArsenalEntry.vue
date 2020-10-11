@@ -16,7 +16,7 @@ zh_CN:
   <div>
     <v-btn
       @click.stop="showDialog = true"
-      :dark="isDarkColor(value.markColor)"
+      :dark="isDark"
       large
       :color="value.markColor || 'secondary'"
     >
@@ -90,6 +90,7 @@ import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 import { GearCate } from "@/data/GearCate";
 import { ArsenalEntry } from "@/mechanism/build/ArsenalEntry";
 import { Gear } from "@/mechanism/build/Gear";
+import { isDarkColor } from "@/utils/helper";
 
 @Component({})
 export default class EditorArsenalEntry extends Vue {
@@ -116,6 +117,14 @@ export default class EditorArsenalEntry extends Vue {
   // means external gear
   get eg() {
     return this.value instanceof Gear ? this.value : this.value.gear;
+  }
+
+  get isDark(): boolean {
+    return isDarkColor(
+      this.value instanceof Gear
+        ? this.$vuetify.theme.themes.dark.secondary?.toString() || "#ffffff"
+        : this.value.markColor
+    );
   }
 
   @Watch("value", { deep: true })
@@ -150,15 +159,6 @@ export default class EditorArsenalEntry extends Vue {
     const ret = new Array<string>(0);
     this.types.forEach(e => ret.push(this.$t(e).toString()));
     return ret.join(" / ");
-  }
-
-  isDarkColor(hex: string | number | boolean | number[] | Function): boolean {
-    if (typeof hex != "string") return false;
-    const r = parseInt(hex.substr(1, 2), 16);
-    const g = parseInt(hex.substr(3, 2), 16);
-    const b = parseInt(hex.substr(5, 2), 16);
-
-    return (Math.max(r, g, b) + Math.min(r, g, b)) / 2 < 127;
   }
 }
 </script>
