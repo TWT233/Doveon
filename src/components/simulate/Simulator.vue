@@ -1,7 +1,3 @@
-<i18n>
-zh_CN:
-</i18n>
-
 <template>
   <v-container>
     <v-row>
@@ -24,30 +20,29 @@ zh_CN:
 import { Component, Vue } from "vue-property-decorator";
 import EditorMob from "@/components/simulate/EditorMob.vue";
 import { Mob } from "@/mechanism/battle/Mob";
-import { DynStatus } from "@/mechanism/battle/DynStatus";
 import { Status } from "@/mechanism/build/Status";
 
 @Component({
   components: { EditorMob }
 })
 export default class Simulator extends Vue {
-  _a: Mob = new Mob("", "", new DynStatus(new Status()));
-  _b: Mob = new Mob("", "", new DynStatus(new Status()));
+  private i_a = new Mob("", "", new Status());
+  private i_b = new Mob("", "", new Status());
 
   get a() {
-    return this._a;
+    return this.i_a;
   }
 
   set a(value: Mob) {
-    this._a.load(value);
+    this.i_a.load(value);
   }
 
   get b() {
-    return this._b;
+    return this.i_b;
   }
 
   set b(value: Mob) {
-    this._b.load(value);
+    this.i_b.load(value);
   }
 }
 </script>
