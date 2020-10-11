@@ -5,9 +5,9 @@ import { Aura } from "@/mechanism/build/Aura";
 import { Skill } from "@/mechanism/battle/Skill";
 
 export class Mob {
-  private _name: string;
-  private _type: "PC" | "NPC" | "";
-  private _skills: Skill[] = [];
+  private _name = "";
+  private _type: "PC" | "NPC" | "" = "";
+  private _skills: Skill[] = new Array<Skill>(0);
   private readonly _status: DynStatus;
 
   load(value: Mob): Mob {
