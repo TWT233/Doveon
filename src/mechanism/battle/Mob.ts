@@ -13,6 +13,15 @@ export class Mob {
   private _skills: Skill[] = [];
   private readonly _status: DynStatus;
 
+  load(value: Mob): Mob {
+    this._name = value._name;
+    this._type = value._type;
+    this.status = value._status;
+    this._skills.splice(0, this._skills.length);
+    value._skills.forEach(e => this._skills.push(e));
+    return this;
+  }
+
   constructor(name: string, type: "PC" | "NPC" | "", status: DynStatus) {
     this._name = name;
     this._type = type;
