@@ -16,15 +16,13 @@
     </v-row>
     <v-divider />
     <v-row>
-      <div v-for="(item, i) in value.suit" :key="i">
-        <v-col v-if="isGear(item)">
-          <v-btn outlined large block>
-            {{ item.label || $t(item.name) }} {{ "Lv." + item.lvl }}<br />
-            [{{ item.p[0] }} {{ item.p[1] }} {{ item.p[2] }} {{ item.p[3] }}]
-            <v-icon v-if="item.isEnchanted">military_tech</v-icon>
-          </v-btn>
-        </v-col>
-      </div>
+      <v-col v-for="(val, key) in value.suit" :key="key">
+        <v-btn v-if="isGear(val)" outlined large block>
+          {{ val.label || $t(val.name) }} {{ "Lv." + val.lvl }}<br />
+          [{{ val.p[0] }} {{ val.p[1] }} {{ val.p[2] }} {{ val.p[3] }}]
+          <v-icon v-if="val.isEnchanted">military_tech</v-icon>
+        </v-btn>
+      </v-col>
     </v-row>
     <v-divider />
     <v-row>
