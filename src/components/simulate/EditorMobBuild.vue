@@ -26,11 +26,7 @@
     </v-row>
     <v-divider />
     <v-row>
-      <div v-for="(item, i) in value.aura" :key="i">
-        <v-col v-if="typeof item == 'boolean' && item">
-          <v-btn text outlined>{{ $t(i) }}</v-btn>
-        </v-col>
-      </div>
+      <EditorAuraLite v-model="value.aura" disable />
     </v-row>
   </v-container>
 </template>
@@ -40,8 +36,10 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 import { Build } from "@/mechanism/build/Build";
 import { Gear } from "@/mechanism/build/Gear";
 import EditorArsenalEntry from "@/components/build/EditorArsenalEntry.vue";
+import { Mob } from "@/mechanism/battle/Mob";
+import EditorAuraLite from "@/components/simulate/EditorAuraLite.vue";
 @Component({
-  components: { EditorArsenalEntry }
+  components: { EditorAuraLite, EditorArsenalEntry }
 })
 export default class EditorMobBuild extends Vue {
   @Prop() value!: Build;
