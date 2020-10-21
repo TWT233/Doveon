@@ -1,7 +1,7 @@
 <i18n src="@/data/i18n/AuraTrans.yaml" />
 
 <template>
-  <v-col class="d-inline-flex">
+  <div class="d-flex">
     <template v-for="(val, name, i) in local">
       <v-card
         tile
@@ -16,7 +16,7 @@
       </v-card>
       <v-divider v-if="[2, 5, 9].includes(i)" :key="i" class="mx-1" vertical />
     </template>
-  </v-col>
+  </div>
 </template>
 
 <script lang="ts">
