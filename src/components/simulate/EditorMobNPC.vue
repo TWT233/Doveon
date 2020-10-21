@@ -3,6 +3,7 @@
 zh_CN:
   Model: 种类
   Lvl: 等级
+  p: 强化倍率
 </i18n>
 
 <template>
@@ -14,13 +15,14 @@ zh_CN:
       <v-col>
         <v-text-field v-model.number="lvl" :label="$t('Lvl')" type="number" />
       </v-col>
-      <!--      <v-col>-->
-      <!--        <v-text-field-->
-      <!--          v-model.number="local.maxLvl"-->
-      <!--          :label="$t('maxLvl')"-->
-      <!--          type="number"-->
-      <!--        />-->
-      <!--      </v-col>-->
+      <v-col>
+        <v-text-field v-model.number="p" :label="$t('p')" type="number" />
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col>
+        <EditorAuraLite v-model="aura" />
+      </v-col>
     </v-row>
   </v-container>
 </template>
@@ -28,12 +30,19 @@ zh_CN:
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { NPCCate } from "@/data/NPCCate";
+import { Mob } from "@/mechanism/battle/Mob";
+import { NPC } from "@/mechanism/battle/NPC";
+import { Aura } from "@/mechanism/build/Aura";
+import EditorAuraLite from "@/components/simulate/EditorAuraLite.vue";
 
-@Component({})
+@Component({
+  components: { EditorAuraLite }
+})
 export default class EditorMobNPC extends Vue {
   name = "";
   lvl = 1;
   p = 1.0;
+  aura = new Aura();
 
   get NPCList() {
     const ret = new Array<{ value: string; text: string }>(0);
@@ -41,6 +50,14 @@ export default class EditorMobNPC extends Vue {
       ret.push({ value: e.name, text: this.$t(e.name).toString() })
     );
     return ret;
+  }
+
+  getMob(): Mob {
+    return new Mob(
+      this.name,
+      "NPC",
+      new NPC(this.name, this.lvl, this.p, this.aura).status
+    );
   }
 }
 </script>
