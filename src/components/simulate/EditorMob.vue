@@ -1,4 +1,5 @@
 <i18n src="@/data/i18n/CardTrans.yaml" />
+<i18n src="@/data/i18n/NPCTrans.yaml" />
 
 <template>
   <div>
@@ -16,10 +17,10 @@
           </v-tabs>
           <v-tabs-items v-model="tabPage">
             <v-tab-item>
-              <EditorMobBuild :value="$store.state.build" />
+              <EditorMobBuild :value="$store.state.build" ref="fromBuild" />
             </v-tab-item>
-            <v-tab-item></v-tab-item>
-            <v-tab-item><EditorMobNPC /></v-tab-item>
+            <v-tab-item><EditorMobStatus ref="fromStatus"/></v-tab-item>
+            <v-tab-item><EditorMobNPC ref="fromNPC"/></v-tab-item>
           </v-tabs-items>
         </v-card-text>
         <v-card-actions>
@@ -37,9 +38,10 @@ import { Mob } from "@/mechanism/battle/Mob";
 import { Status } from "@/mechanism/build/Status";
 import EditorMobBuild from "@/components/simulate/EditorMobBuild.vue";
 import EditorMobNPC from "@/components/simulate/EditorMobNPC.vue";
+import EditorMobStatus from "@/components/simulate/EditorMobStatus.vue";
 
 @Component({
-  components: { EditorMobNPC, EditorMobBuild }
+  components: { EditorMobStatus, EditorMobNPC, EditorMobBuild }
 })
 export default class EditorMob extends Vue {
   @Prop() value!: Mob;
@@ -56,13 +58,15 @@ export default class EditorMob extends Vue {
     this.showDialog = false;
     switch (this.tabPage) {
       case 0: {
-        this.local.load(
-          new Mob(
-            this.$store.state.build.card.name,
-            "PC",
-            this.$store.state.build.status
-          )
-        );
+        this.local.load((this.$refs.fromBuild as EditorMobBuild).getMob());
+        break;
+      }
+      case 1: {
+        this.local.load((this.$refs.fromStatus as EditorMobStatus).getMob());
+        break;
+      }
+      case 2: {
+        this.local.load((this.$refs.fromNPC as EditorMobNPC).getMob());
         break;
       }
     }
