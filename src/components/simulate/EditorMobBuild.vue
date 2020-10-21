@@ -26,7 +26,9 @@
     </v-row>
     <v-divider />
     <v-row>
-      <EditorAuraLite v-model="value.aura" disable />
+      <v-col>
+        <EditorAuraLite v-model="value.aura" disable />
+      </v-col>
     </v-row>
   </v-container>
 </template>
@@ -46,6 +48,14 @@ export default class EditorMobBuild extends Vue {
 
   isGear(item: unknown) {
     return item instanceof Gear;
+  }
+
+  getMob(): Mob {
+    return new Mob(
+      this.$store.state.build.card.name,
+      "PC",
+      this.$store.state.build.status
+    );
   }
 }
 </script>
