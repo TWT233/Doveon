@@ -1,5 +1,6 @@
 import { Status } from "@/mechanism/build/Status";
 import { Skill } from "@/mechanism/battle/Skill";
+import { normalATK } from "@/utils/helper";
 
 export type NPCCateEntry = {
   name: string;
@@ -42,6 +43,6 @@ export const NPCCate: NPCCateEntry[] = [
         REF: 0
       };
     },
-    skills: []
+    skills: [normalATK]
   }
 ];
