@@ -7,7 +7,7 @@ export type buff = {
 };
 
 export class DynStatus {
-  [key: string]: number | Function | buff[];
+  [key: string]: number | Function | buff[] | Status | null;
   HP = 0;
   HP_REG_P = 0;
   HP_REG_C = 0;
@@ -32,6 +32,7 @@ export class DynStatus {
   SHD_REG_C = 0;
   REF = 0;
   buffs: buff[] = [];
+  origin: Status | null = null;
 
   constructor(status: Status | DynStatus | null = null) {
     if (status) this.load(status);
@@ -51,6 +52,9 @@ export class DynStatus {
       if (value.buffs) {
         this.buffs.splice(0, this.buffs.length);
         _.cloneDeep(value.buffs).forEach(e => this.buffs.push(e));
+      }
+      if (value.origin) {
+        this.origin = value.origin;
       }
     } else {
       this.HP = value.HP;
