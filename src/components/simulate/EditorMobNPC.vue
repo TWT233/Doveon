@@ -53,10 +53,10 @@ export default class EditorMobNPC extends Vue {
   }
 
   getMob(): Mob {
-    return new Mob(
+    return Mob.genMob(
       this.name,
       "NPC",
-      new NPC(this.name, this.lvl, this.p, this.aura).status
+      new NPC(this.name, this.lvl, this.p, this.aura)
     );
   }
 }

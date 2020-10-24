@@ -51,10 +51,10 @@ export default class EditorMobBuild extends Vue {
   }
 
   getMob(): Mob {
-    return new Mob(
+    return Mob.genMob(
       this.$store.state.build.card.name,
       "PC",
-      this.$store.state.build.status
+      this.$store.state.build
     );
   }
 }
