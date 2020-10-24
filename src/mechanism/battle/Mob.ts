@@ -1,8 +1,10 @@
 import { DynStatus } from "@/mechanism/battle/DynStatus";
 import { Status } from "@/mechanism/build/Status";
 import { Build } from "@/mechanism/build/Build";
-import { Aura } from "@/mechanism/build/Aura";
 import { Skill } from "@/mechanism/battle/Skill";
+import { CardCate } from "@/data/CardCate";
+import { NPCCate } from "@/data/NPCCate";
+import { NPC } from "@/mechanism/battle/NPC";
 
 export class Mob {
   private _name = "";
@@ -19,14 +21,21 @@ export class Mob {
     return this;
   }
 
-  static genMob(
-    name: string,
-    type: "PC" | "NPC" | "",
-    data: Build | { status: Status; aura: Aura }
-  ): Mob | null {
-    let ret = null;
+  static genMob(name: string, type: "PC" | "NPC" | "", data: Build | NPC): Mob {
+    let ret: Mob;
     if (data instanceof Build) {
+      // gen from build
       ret = new Mob(name, type, data.status);
+      CardCate.forEach(e => {
+        if (e.name == data.card.name)
+          e.skills.forEach(se => ret.skills.push(se));
+      });
+    } else {
+      // gen from NPC
+      ret = new Mob(name, type, data.status);
+      NPCCate.forEach(e => {
+        if (e.name == data.name) e.skills.forEach(se => ret.skills.push(se));
+      });
     }
     // TODO:ADD NPC/S+A
     return ret;
