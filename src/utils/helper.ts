@@ -15,18 +15,21 @@ function dealDMG(b: BattleFrame, A: DynStatus, B: DynStatus, isMAG: boolean) {
   let def;
   let rawDMG: number;
   if (isMAG) {
-    def = B.DEF_MAG * (1 - A.THR_MAG_P) - A.THR_MAG_C;
+    def = B.DEF_MAG * (1 - A.THR_MAG_P / 100) - A.THR_MAG_C;
     rawDMG = b.e.atkK.MAG * A.ATK_MAG + b.e.atkC.MAG;
     rawDMG = rawDMG * b.e.atkK.MAG + b.e.atkC.MAG;
   } else {
-    def = B.DEF_PHY * (1 - A.THR_PHY_P) - A.THR_PHY_C;
+    def = B.DEF_PHY * (1 - A.THR_PHY_P / 100) - A.THR_PHY_C;
     rawDMG = b.e.atkK.PHY * A.ATK_PHY + b.e.atkC.PHY;
     rawDMG = rawDMG * b.e.atkK.PHY + b.e.atkC.PHY;
   }
   let defRate = def / (Math.abs(def) + 99);
   if (defRate > 0.95) defRate = 0.95;
 
-  const defDMG = () => rawDMG * defRate - (isMAG ? B.BAR_MAG : B.BAR_PHY);
+  const defDMG = () => {
+    const cal = rawDMG * (1 - defRate) - (isMAG ? B.BAR_MAG : B.BAR_PHY);
+    return cal < 0 ? 0 : cal;
+  };
 
   let defDMGSHD = defDMG() / 3 + rawDMG * (2 / 3);
   if (!isMAG) defDMGSHD *= 1.5;
