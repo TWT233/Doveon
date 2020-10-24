@@ -19,7 +19,9 @@
             <v-tab-item>
               <EditorMobBuild :value="$store.state.build" ref="fromBuild" />
             </v-tab-item>
-            <v-tab-item><EditorMobStatus ref="fromStatus"/></v-tab-item>
+            <v-tab-item>
+              <!--              <EditorMobStatus ref="fromStatus"/>-->
+            </v-tab-item>
             <v-tab-item><EditorMobNPC ref="fromNPC"/></v-tab-item>
           </v-tabs-items>
         </v-card-text>
