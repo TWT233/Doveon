@@ -35,8 +35,8 @@ zh_CN:
           <tr>
             <td>{{ $t("HP_REG") }}</td>
             <td>
-              {{ Math.floor(value.HP_REG_A) }}% +
-              {{ Math.floor(value.HP_REG_B) }}
+              {{ Math.floor(value.HP_REG_K) }}% +
+              {{ Math.floor(value.HP_REG_C) }}
             </td>
           </tr>
           <tr>
@@ -67,39 +67,29 @@ zh_CN:
           <tr>
             <td>{{ $t("THR_PHY") }}</td>
             <td>
-              {{ Math.floor(value.THR_PHY_A) }}% +
-              {{ Math.floor(value.THR_PHY_B) }}
+              {{ Math.floor(value.THR_PHY_K) }}% +
+              {{ Math.floor(value.THR_PHY_C) }}
             </td>
           </tr>
           <tr>
             <td>{{ $t("THR_MAG") }}</td>
             <td>
-              {{ Math.floor(value.THR_MAG_A) }}% +
-              {{ Math.floor(value.THR_MAG_B) }}
+              {{ Math.floor(value.THR_MAG_K) }}% +
+              {{ Math.floor(value.THR_MAG_C) }}
             </td>
           </tr>
           <tr>
             <td>{{ $t("SKI_CHA") }}</td>
             <td>
               {{ Math.floor(value.SKI_CHA) }}
-              ({{
-                Math.floor(
-                  (Math.floor(value.SKI_CHA) * 100) /
-                    (Math.floor(value.SKI_CHA) + 99)
-                )
-              }}%)
+              ({{ SKI_CHA_RATE }}%)
             </td>
           </tr>
           <tr>
             <td>{{ $t("CRI_CHA") }}</td>
             <td>
               {{ Math.floor(value.CRI_CHA) }}
-              ({{
-                Math.floor(
-                  (Math.floor(value.CRI_CHA) * 100) /
-                    (Math.floor(value.CRI_CHA) + 99)
-                )
-              }}%)
+              ({{ CRI_CHA_RATE }}%)
             </td>
           </tr>
           <tr>
@@ -115,7 +105,7 @@ zh_CN:
             <td>
               {{ Math.floor(value.DEF_PHY_A) }} +
               {{ Math.floor(value.DEF_PHY_B) }}
-              ({{ Math.floor((DEF_PHY * 100) / (Math.abs(DEF_PHY) + 99)) }}%)
+              ({{ DEF_PHY_RATE }}%)
             </td>
           </tr>
           <tr>
@@ -123,7 +113,7 @@ zh_CN:
             <td>
               {{ Math.floor(value.DEF_MAG_A) }} +
               {{ Math.floor(value.DEF_MAG_B) }}
-              ({{ Math.floor((DEF_MAG * 100) / (Math.abs(DEF_MAG) + 99)) }}%)
+              ({{ DEF_MAG_RATE }}%)
             </td>
           </tr>
           <tr>
@@ -141,8 +131,8 @@ zh_CN:
           <tr>
             <td>{{ $t("SHD_REG") }}</td>
             <td>
-              {{ Math.floor(value.SHD_REG_A) }}% +
-              {{ Math.floor(value.SHD_REG_B) }}
+              {{ Math.floor(value.SHD_REG_K) }}% +
+              {{ Math.floor(value.SHD_REG_C) }}
             </td>
           </tr>
           <tr>
@@ -163,12 +153,30 @@ import { Status } from "@/mechanism/build/Status";
 export default class ViewStatus extends Vue {
   @Prop() value!: Status;
 
-  get DEF_PHY(): number {
-    return Math.floor(this.value.DEF_PHY_A) + Math.floor(this.value.DEF_PHY_B);
+  get SKI_CHA_RATE() {
+    return Math.floor(
+      (Math.floor(this.value.SKI_CHA) * 100) /
+        (Math.floor(this.value.SKI_CHA) + 99)
+    );
   }
 
-  get DEF_MAG(): number {
-    return Math.floor(this.value.DEF_MAG_A) + Math.floor(this.value.DEF_MAG_B);
+  get CRI_CHA_RATE() {
+    return Math.floor(
+      (Math.floor(this.value.CRI_CHA) * 100) /
+        (Math.floor(this.value.CRI_CHA) + 99)
+    );
+  }
+
+  get DEF_PHY_RATE() {
+    return Math.floor(
+      (this.value.DEF_PHY * 100) / (Math.abs(this.value.DEF_PHY) + 99)
+    );
+  }
+
+  get DEF_MAG_RATE() {
+    return Math.floor(
+      (this.value.DEF_MAG * 100) / (Math.abs(this.value.DEF_MAG) + 99)
+    );
   }
 }
 </script>
