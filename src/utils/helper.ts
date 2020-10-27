@@ -16,12 +16,10 @@ function dealDMG(b: BattleFrame, A: Status, B: Status, isMAG: boolean) {
   let rawDMG: number;
   if (isMAG) {
     def = B.DEF_MAG * (1 - A.THR_MAG_K / 100) - A.THR_MAG_C;
-    rawDMG = b.e.atkK.MAG * A.ATK_MAG + b.e.atkC.MAG;
-    rawDMG = rawDMG * b.e.atkK.MAG + b.e.atkC.MAG;
+    rawDMG = b.e.atkK.MAG * (A.ATK_MAG + b.e.atkB.MAG) + b.e.atkC.MAG;
   } else {
     def = B.DEF_PHY * (1 - A.THR_PHY_K / 100) - A.THR_PHY_C;
-    rawDMG = b.e.atkK.PHY * A.ATK_PHY + b.e.atkC.PHY;
-    rawDMG = rawDMG * b.e.atkK.PHY + b.e.atkC.PHY;
+    rawDMG = b.e.atkK.PHY * (A.ATK_PHY + b.e.atkB.PHY) + b.e.atkC.PHY;
   }
   let defRate = def / (Math.abs(def) + 99);
   if (defRate > 0.95) defRate = 0.95;
@@ -51,7 +49,10 @@ export const normalATK: Skill = {
     dealDMG(b, A, B, true);
     dealDMG(b, A, B, false);
 
-    B.HP -= Math.min(A.ATK_ABS * b.e.atkK.ABS + b.e.atkC.ABS, B.HP);
+    B.HP -= Math.min(
+      (A.ATK_ABS + b.e.atkB.ABS) * b.e.atkK.ABS + b.e.atkC.ABS,
+      B.HP
+    );
 
     return b;
   }
