@@ -1,4 +1,3 @@
-import { DynStatus } from "@/mechanism/battle/DynStatus";
 import { Status } from "@/mechanism/build/Status";
 import { Build } from "@/mechanism/build/Build";
 import { Skill } from "@/mechanism/battle/Skill";
@@ -10,7 +9,7 @@ export class Mob {
   private _name = "";
   private _type: "PC" | "NPC" | "" = "";
   private _skills: Skill[] = new Array<Skill>(0);
-  private readonly _status: DynStatus;
+  private readonly _status: Status;
 
   load(value: Mob): Mob {
     this._name = value._name;
@@ -41,14 +40,10 @@ export class Mob {
     return ret;
   }
 
-  constructor(
-    name: string,
-    type: "PC" | "NPC" | "",
-    status: DynStatus | Status
-  ) {
+  constructor(name: string, type: "PC" | "NPC" | "", status: Status) {
     this._name = name;
     this._type = type;
-    this._status = new DynStatus(status);
+    this._status = new Status(status);
   }
 
   get name(): string {
@@ -75,11 +70,11 @@ export class Mob {
     this._skills = value;
   }
 
-  get status(): DynStatus {
+  get status(): Status {
     return this._status;
   }
 
-  set status(value: DynStatus) {
+  set status(value: Status) {
     this._status.load(value);
   }
 }

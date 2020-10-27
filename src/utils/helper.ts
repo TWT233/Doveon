@@ -1,6 +1,6 @@
 import { Skill } from "@/mechanism/battle/Skill";
 import { BattleFrame } from "@/mechanism/battle/BattleFrame";
-import { DynStatus } from "@/mechanism/battle/DynStatus";
+import { Status } from "@/mechanism/build/Status";
 
 export function isDarkColor(hex: string): boolean {
   if (hex.substr(0, 1) != "#") return false;
@@ -11,15 +11,15 @@ export function isDarkColor(hex: string): boolean {
   return (Math.max(r, g, b) + Math.min(r, g, b)) / 2 < 127;
 }
 
-function dealDMG(b: BattleFrame, A: DynStatus, B: DynStatus, isMAG: boolean) {
+function dealDMG(b: BattleFrame, A: Status, B: Status, isMAG: boolean) {
   let def;
   let rawDMG: number;
   if (isMAG) {
-    def = B.DEF_MAG * (1 - A.THR_MAG_P / 100) - A.THR_MAG_C;
+    def = B.DEF_MAG * (1 - A.THR_MAG_K / 100) - A.THR_MAG_C;
     rawDMG = b.e.atkK.MAG * A.ATK_MAG + b.e.atkC.MAG;
     rawDMG = rawDMG * b.e.atkK.MAG + b.e.atkC.MAG;
   } else {
-    def = B.DEF_PHY * (1 - A.THR_PHY_P / 100) - A.THR_PHY_C;
+    def = B.DEF_PHY * (1 - A.THR_PHY_K / 100) - A.THR_PHY_C;
     rawDMG = b.e.atkK.PHY * A.ATK_PHY + b.e.atkC.PHY;
     rawDMG = rawDMG * b.e.atkK.PHY + b.e.atkC.PHY;
   }

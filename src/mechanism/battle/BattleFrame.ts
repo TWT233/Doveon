@@ -1,21 +1,21 @@
-import { DynStatus } from "./DynStatus";
 import { BattleStatus } from "@/mechanism/battle/BattleStatus";
+import { Status } from "@/mechanism/build/Status";
 
 export class BattleFrame {
-  a: DynStatus;
-  b: DynStatus;
+  a: Status;
+  b: Status;
   e: BattleStatus;
 
   constructor(b: BattleFrame | null = null) {
-    this.a = new DynStatus(b?.a);
-    this.b = new DynStatus(b?.b);
+    this.a = new Status(b?.a);
+    this.b = new Status(b?.b);
     this.e = new BattleStatus(b?.e);
   }
 
-  static init(a: DynStatus, b: DynStatus, e: BattleStatus): BattleFrame {
+  static init(a: Status, b: Status, e: BattleStatus): BattleFrame {
     const ret: BattleFrame = {
-      a: new DynStatus(a),
-      b: new DynStatus(b),
+      a: new Status(a),
+      b: new Status(b),
       e: e
     };
     ret.e.spd = ret.a.ATK_SPD - ret.b.ATK_SPD;
