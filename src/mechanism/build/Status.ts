@@ -1,91 +1,128 @@
-export class Status {
-  [key: string]: number;
-  HP: number;
-  HP_REG_A: number;
-  HP_REG_B: number;
-  ATK_PHY_A: number;
-  ATK_PHY_B: number;
-  ATK_MAG_A: number;
-  ATK_MAG_B: number;
-  ATK_ABS: number;
-  ATK_SPD_A: number;
-  ATK_SPD_B: number;
-  THR_PHY_A: number;
-  THR_PHY_B: number;
-  THR_MAG_A: number;
-  THR_MAG_B: number;
-  SKI_CHA: number;
-  CRI_CHA: number;
-  THR_CRI: number;
-  HP_STL: number;
-  DEF_PHY_A: number;
-  DEF_PHY_B: number;
-  DEF_MAG_A: number;
-  DEF_MAG_B: number;
-  BAR_PHY: number;
-  BAR_MAG: number;
-  SHD: number;
-  SHD_REG_A: number;
-  SHD_REG_B: number;
-  REF: number;
+import { Attribute } from "@/mechanism/build/Attribute";
+import { Pts } from "@/mechanism/build/Pts";
 
-  constructor(
-    HP = 0,
-    HP_REG_A = 0,
-    HP_REG_B = 0,
-    ATK_PHY_A = 0,
-    ATK_PHY_B = 0,
-    ATK_MAG_A = 0,
-    ATK_MAG_B = 0,
-    ATK_ABS = 0,
-    ATK_SPD_A = 0,
-    ATK_SPD_B = 0,
-    THR_PHY_A = 0,
-    THR_PHY_B = 0,
-    THR_MAG_A = 0,
-    THR_MAG_B = 0,
-    SKI_CHA = 0,
-    CRI_CHA = 0,
-    THR_CRI = 0,
-    HP_STL = 0,
-    DEF_PHY_A = 0,
-    DEF_PHY_B = 0,
-    DEF_MAG_A = 0,
-    DEF_MAG_B = 0,
-    BAR_PHY = 0,
-    BAR_MAG = 0,
-    SHD = 0,
-    SHD_REG_A = 0,
-    SHD_REG_B = 0,
-    REF = 0
-  ) {
-    this.HP = HP;
-    this.HP_REG_A = HP_REG_A;
-    this.HP_REG_B = HP_REG_B;
-    this.ATK_PHY_A = ATK_PHY_A;
-    this.ATK_PHY_B = ATK_PHY_B;
-    this.ATK_MAG_A = ATK_MAG_A;
-    this.ATK_MAG_B = ATK_MAG_B;
-    this.ATK_ABS = ATK_ABS;
-    this.ATK_SPD_A = ATK_SPD_A;
-    this.ATK_SPD_B = ATK_SPD_B;
-    this.THR_PHY_A = THR_PHY_A;
-    this.THR_PHY_B = THR_PHY_B;
-    this.THR_MAG_A = THR_MAG_A;
-    this.THR_MAG_B = THR_MAG_B;
-    this.SKI_CHA = SKI_CHA;
-    this.CRI_CHA = CRI_CHA;
-    this.THR_CRI = THR_CRI;
-    this.HP_STL = HP_STL;
-    this.DEF_PHY_A = DEF_PHY_A;
-    this.DEF_PHY_B = DEF_PHY_B;
-    this.DEF_MAG_A = DEF_MAG_A;
-    this.DEF_MAG_B = DEF_MAG_B;
-    this.BAR_PHY = BAR_PHY;
-    this.BAR_MAG = BAR_MAG;
-    this.SHD = SHD;
-    this.SHD_REG_A = SHD_REG_A;
-    this.SHD_REG_B = SHD_REG_B;
-    this.REF = REF;
+export class Status {
+  [key: string]: number | Function | Status;
+  HP = 0;
+  HP_REG_K = 0;
+  HP_REG_C = 0;
+  ATK_PHY_A = 0;
+  ATK_PHY_B = 0;
+  ATK_MAG_A = 0;
+  ATK_MAG_B = 0;
+  ATK_ABS = 0;
+  ATK_SPD_A = 0;
+  ATK_SPD_B = 0;
+  THR_PHY_K = 0;
+  THR_PHY_C = 0;
+  THR_MAG_K = 0;
+  THR_MAG_C = 0;
+  SKI_CHA = 0;
+  CRI_CHA = 0;
+  THR_CRI = 0;
+  HP_STL = 0;
+  DEF_PHY_A = 0;
+  DEF_PHY_B = 0;
+  DEF_MAG_A = 0;
+  DEF_MAG_B = 0;
+  BAR_PHY = 0;
+  BAR_MAG = 0;
+  SHD = 0;
+  SHD_REG_K = 0;
+  SHD_REG_C = 0;
+  REF = 0;
+  origin: Status;
+
+  constructor(value: Status | null = null) {
+    if (value) {
+      this.load(value);
+      this.origin = value.origin;
+    } else this.origin = this;
+  }
+
+  load(value: Status): Status {
+    for (const key in value) {
+      if (
+        Object.prototype.hasOwnProperty.call(value, key) &&
+        Object.prototype.hasOwnProperty.call(this, key) &&
+        typeof value[key] == "number"
+      )
+        this[key] = value[key];
+    }
+    this.origin = value.origin;
+    return this;
+  }
+
+  calSet(a: Attribute, p: Pts): Status {
+    this.HP =
+      (p.VIT + p.CON) * 20 * (1 + p.STR * 0.005) * (1 + a.HP_A / 100) + a.HP_B;
+    this.HP_REG_K = p.STR / 100;
+    this.HP_REG_C = a.HP_REG_B;
+    this.ATK_PHY_A = p.STR * 10 * (1 + a.ATK_PHY_A / 100);
+    this.ATK_PHY_B = a.ATK_PHY_B;
+    this.ATK_MAG_A = p.INT * 12 * (1 + a.ATK_MAG_A / 100);
+    this.ATK_MAG_B = a.ATK_MAG_B;
+    this.ATK_ABS = a.ATK_ABS;
+    this.ATK_SPD_A = p.AGI * 3 * (1 + a.ATK_SPD_A / 100);
+    this.ATK_SPD_B = a.ATK_SPD_B;
+    this.THR_PHY_K = a.THR_PHY_A;
+    this.THR_PHY_C = a.THR_PHY_B;
+    this.THR_MAG_K = a.THR_MAG_A;
+    this.THR_MAG_C = a.THR_MAG_B;
+    this.SKI_CHA = p.INT;
+    this.CRI_CHA = p.AGI;
+    this.THR_CRI = a.THR_CRI_A;
+    this.HP_STL = a.HP_STL;
+    this.DEF_PHY_A = p.VIT * 1.4 + p.MEN * 0.1;
+    this.DEF_PHY_B = a.DEF_PHY_B;
+    this.DEF_MAG_A = p.CON * 1.4 + p.MEN * 0.1;
+    this.DEF_MAG_B = a.DEF_MAG_B;
+    this.BAR_PHY = a.BAR_PHY;
+    this.BAR_MAG = a.BAR_MAG;
+    this.SHD = p.MEN * 40 * (1 + a.SHD_A / 100) + a.SHD_B;
+    this.SHD_REG_K = p.INT / 80;
+    this.SHD_REG_C = a.SHD_REG_B;
+    this.REF = a.REF;
+    return this;
+  }
+
+  get ATK_PHY(): number {
+    return this.ATK_PHY_A + this.ATK_PHY_B;
+  }
+  set ATK_PHY(value) {
+    this.ATK_PHY_B = Math.max(0, value - this.ATK_PHY_A);
+    this.ATK_PHY_A = Math.min(value, this.ATK_PHY_A);
+  }
+
+  get ATK_MAG(): number {
+    return this.ATK_MAG_A + this.ATK_MAG_B;
+  }
+  set ATK_MAG(value) {
+    this.ATK_MAG_B = Math.max(0, value - this.ATK_MAG_A);
+    this.ATK_MAG_A = Math.min(value, this.ATK_MAG_A);
+  }
+
+  get ATK_SPD(): number {
+    return this.ATK_SPD_A + this.ATK_SPD_B;
+  }
+  set ATK_SPD(value) {
+    this.ATK_SPD_B = Math.max(0, value - this.ATK_SPD_A);
+    this.ATK_SPD_A = Math.min(value, this.ATK_SPD_A);
+  }
+
+  get DEF_PHY(): number {
+    return this.DEF_PHY_A + this.DEF_PHY_B;
+  }
+  set DEF_PHY(value) {
+    this.DEF_PHY_B = Math.max(0, value - this.DEF_PHY_A);
+    this.DEF_PHY_A = Math.min(value, this.DEF_PHY_A);
+  }
+
+  get DEF_MAG(): number {
+    return this.DEF_MAG_A + this.DEF_MAG_B;
+  }
+  set DEF_MAG(value) {
+    this.DEF_MAG_B = Math.max(0, value - this.DEF_MAG_A);
+    this.DEF_MAG_A = Math.min(value, this.DEF_MAG_A);
   }
 }
