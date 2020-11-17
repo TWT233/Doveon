@@ -18,7 +18,6 @@ export class Battle {
   run(n = 100) {
     this.log.splice(0, this.log.length);
     for (; !this.isEnd() && n > 0; n--) {
-      console.log("step:" + n);
       this.stepOver();
     }
   }
