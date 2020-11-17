@@ -20,7 +20,7 @@ export class Status {
   SKI_CHA = 0;
   CRI_CHA = 0;
   THR_CRI = 0;
-  HP_STL = 0;
+  STL = 0;
   DEF_PHY_A = 0;
   DEF_PHY_B = 0;
   DEF_MAG_A = 0;
@@ -72,7 +72,7 @@ export class Status {
     this.SKI_CHA = p.INT;
     this.CRI_CHA = p.AGI;
     this.THR_CRI = a.THR_CRI_A;
-    this.HP_STL = a.HP_STL;
+    this.STL = a.HP_STL;
     this.DEF_PHY_A = p.VIT * 1.4 + p.MEN * 0.1;
     this.DEF_PHY_B = a.DEF_PHY_B;
     this.DEF_MAG_A = p.CON * 1.4 + p.MEN * 0.1;

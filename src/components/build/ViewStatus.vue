@@ -98,7 +98,7 @@ zh_CN:
           </tr>
           <tr>
             <td>{{ $t("HP_STL") }}</td>
-            <td>{{ Math.floor(value.HP_STL) }}%</td>
+            <td>{{ Math.floor(value.STL) }}%</td>
           </tr>
           <tr>
             <td>{{ $t("DEF_PHY") }}</td>
