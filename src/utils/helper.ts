@@ -1,5 +1,4 @@
 import { BattleFrame } from "@/mechanism/battle/BattleFrame";
-import { Status } from "@/mechanism/build/Status";
 
 export function isDarkColor(hex: string): boolean {
   if (hex.substr(0, 1) != "#") return false;
@@ -10,41 +9,57 @@ export function isDarkColor(hex: string): boolean {
   return (Math.max(r, g, b) + Math.min(r, g, b)) / 2 < 127;
 }
 
-function dealDMG(b: BattleFrame, A: Status, B: Status, isMAG: boolean) {
+export function dealDMG(
+  b: BattleFrame,
+  s: "a" | "b",
+  type: "PHY" | "MAG" | "ABS",
+  rawDMG: number
+) {
+  const m = s == "a" ? "b" : "a";
+
   let def;
-  let rawDMG: number;
-  if (isMAG) {
-    def = B.DEF_MAG * (1 - A.THR_MAG_K / 100) - A.THR_MAG_C;
-    rawDMG = b.e.ATK.M;
-  } else {
-    def = B.DEF_PHY * (1 - A.THR_PHY_K / 100) - A.THR_PHY_C;
-    rawDMG = b.e.ATK.P;
+  switch (type) {
+    case "PHY": {
+      def = b[m].DEF_PHY * (1 - b[s].THR_PHY_K / 100) - b[s].THR_PHY_C;
+      break;
+    }
+    case "MAG": {
+      def = b[m].DEF_MAG * (1 - b[s].THR_MAG_K / 100) - b[s].THR_MAG_C;
+      break;
+    }
+    case "ABS": {
+      def = 0;
+      break;
+    }
   }
   let defRate = def / (Math.abs(def) + 99);
   if (defRate > 0.95) defRate = 0.95;
 
   const defDMG = () => {
-    const cal = rawDMG * (1 - defRate) - (isMAG ? B.BAR_MAG : B.BAR_PHY);
-    return cal < 0 ? 0 : cal;
+    switch (type) {
+      case "PHY": {
+        return Math.max(rawDMG * (1 - defRate) - b[m].BAR_PHY, 0);
+      }
+      case "MAG": {
+        return Math.max(rawDMG * (1 - defRate) - b[m].BAR_MAG, 0);
+      }
+      case "ABS": {
+        return Math.max(rawDMG * (1 - defRate), 0);
+      }
+    }
   };
 
   let defDMGSHD = defDMG() / 3 + rawDMG * (2 / 3);
-  if (!isMAG) defDMGSHD *= 1.5;
+  if (type != "MAG") defDMGSHD *= 1.5;
 
-  rawDMG *= 1 - Math.min(defDMGSHD, B.SHD) / defDMGSHD;
-  B.SHD -= Math.min(defDMGSHD, B.SHD);
+  if (defDMGSHD > 0) {
+    const SD = Math.min(defDMGSHD, b[m].SHD);
+    b.e[m].SD += SD;
+    b.e[s].SR += SD * (b[s].STL / 150);
+    rawDMG *= 1 - SD / defDMGSHD;
+  }
 
-  B.HP -= Math.min(defDMG(), B.HP);
+  const HD = Math.min(defDMG(), b[m].HP);
+  b.e[m].HD += HD;
+  b.e[s].HR += HD * (b[s].STL / 100);
 }
-
-export const ATK = (b: BattleFrame, s: "a" | "b") => {
-  const A = s == "a" ? b.a : b.b;
-  const B = s == "b" ? b.a : b.b;
-
-  dealDMG(b, A, B, true);
-  dealDMG(b, A, B, false);
-
-  B.HP -= Math.min(b.e.ATK.A, B.HP);
-
-  return b;
-};
