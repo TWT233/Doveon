@@ -1,23 +1,21 @@
 export class BattleStatus {
   spd: number;
-  // calculate formula:
-  //    dmg = atkK.* x (ATK_* + atkB.*) + atkC.*
-  atkK = {
-    PHY: 1.0,
-    MAG: 1.0,
-    ABS: 1.0
+  ATK = {
+    P: 0,
+    M: 0,
+    A: 0
   };
-  atkB = {
-    PHY: 0,
-    MAG: 0,
-    ABS: 0
+  REG = {
+    HP: 0,
+    SHD: 0
   };
-  atkC = {
-    PHY: 0,
-    MAG: 0,
-    ABS: 0
+  DMG = {
+    HP: 0,
+    SHD: 0
   };
   isCri = false;
+  isSki = false;
+  isMC = false; // MYST_BRACELET
 
   constructor(b: BattleStatus | null = null) {
     this.spd = b?.spd || 0;
