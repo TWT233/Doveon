@@ -1,5 +1,6 @@
 import { Mob } from "@/mechanism/battle/Mob";
 import { BattleFrame } from "@/mechanism/battle/BattleFrame";
+import { ATK } from "@/utils/helper";
 
 export class Action {
   a: Mob;
@@ -15,40 +16,78 @@ export class Action {
   }
 
   exec(): Action {
-    const s = this.onSPDGetExec();
+    const s = this.getExec();
 
-    this.onPassiveBefore();
+    this.execBeforeCrit(s);
+    this.diceCriAndSki(s);
+    this.execActive(s);
+    this.diceMagCri(s);
 
-    if (s == "a") {
-      this.a.skills[0].run(this.after, s);
-    } else if (s == "b") {
-      this.b.skills[0].run(this.after, s);
-    }
+    this.beforeATK(s);
+    ATK(this.after, s);
+    this.afterATK(s);
 
-    this.onSPDRefresh();
-
+    this.RFL(s);
+    this.refreshSPD();
     return this;
   }
 
-  onSPDGetExec() {
+  getExec() {
     return this.after.e.spd >= 0 ? "a" : "b";
   }
 
-  onPassiveBefore() {
-    this.a.skills.forEach(e => {
-      if (e.type == "passive" && e.isBefore) {
+  execBeforeCrit(s: "a" | "b") {
+    this[s].skills.forEach(e => {
+      if (e.type == "beforeCrit") {
         e.run(this.after, "a");
-      }
-    });
-    this.b.skills.forEach(e => {
-      if (e.type == "passive" && e.isBefore) {
-        e.run(this.after, "b");
       }
     });
   }
 
-  onSPDRefresh() {
-    this.onSPDGetExec() == "a"
+  diceCriAndSki(s: "a" | "b") {
+    this.after.e.isCri = Math.random() < this[s].status.CRI_CHA;
+    this.after.e.isSki = Math.random() < this[s].status.SKI_CHA;
+  }
+
+  execActive(s: "a" | "b") {
+    this[s].skills.forEach(e => {
+      if (e.type == "active") {
+        e.run(this.after, "a");
+      }
+    });
+  }
+
+  diceMagCri(s: "a" | "b") {
+    this.after.e.isMC = Math.random() < 0.2;
+    this[s].skills.forEach(e => {
+      if (e.type == "onMC") {
+        e.run(this.after, "a");
+      }
+    });
+  }
+
+  beforeATK(s: "a" | "b") {
+    this[s].skills.forEach(e => {
+      if (e.type == "onMC") {
+        e.run(this.after, "a");
+      }
+    });
+  }
+
+  afterATK(s: "a" | "b") {
+    this[s].skills.forEach(e => {
+      if (e.type == "afterATK") {
+        e.run(this.after, "a");
+      }
+    });
+  }
+
+  RFL(s: "a" | "b") {
+    console.log("RFL not implemented");
+  }
+
+  refreshSPD() {
+    this.getExec() == "a"
       ? (this.after.e.spd -= this.after.b.ATK_SPD)
       : (this.after.e.spd += this.after.a.ATK_SPD);
   }
