@@ -1,18 +1,24 @@
 export class BattleStatus {
   spd: number;
-  ATK = {
-    P: 0,
-    M: 0,
-    A: 0
+  a = {
+    PA: 0,
+    MA: 0,
+    AA: 0,
+    HD: 0,
+    HR: 0,
+    SD: 0,
+    SR: 0
   };
-  REG = {
-    HP: 0,
-    SHD: 0
+  b = {
+    PA: 0,
+    MA: 0,
+    AA: 0,
+    HD: 0,
+    HR: 0,
+    SD: 0,
+    SR: 0
   };
-  DMG = {
-    HP: 0,
-    SHD: 0
-  };
+  RFL = 0;
   isCri = false;
   isSki = false;
   isMC = false; // MYST_BRACELET
