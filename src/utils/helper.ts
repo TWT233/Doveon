@@ -50,7 +50,7 @@ export function dealDMG(
   };
 
   let defDMGSHD = defDMG() / 3 + rawDMG * (2 / 3);
-  if (type != "MAG") defDMGSHD *= 1.5;
+  if (type == "PHY") defDMGSHD *= 1.5;
 
   if (defDMGSHD > 0) {
     const SD = Math.min(defDMGSHD, b[m].SHD - b.e[m].SD);
