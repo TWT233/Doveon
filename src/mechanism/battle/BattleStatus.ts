@@ -18,7 +18,6 @@ export class BattleStatus {
   spd = 0;
   a = new RoundCharaStatus();
   b = new RoundCharaStatus();
-  s: "a" | "b" = "a";
   RFL = 0;
   userSet = false;
   isCri = false;
