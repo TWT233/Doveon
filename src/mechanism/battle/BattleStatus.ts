@@ -10,7 +10,8 @@ class RoundCharaStatus {
   SR = 0;
   buffs = {
     ZHU: 0,
-    AURA_DUN: false
+    AURA_DUN: false,
+    AURA_SHANG: false
   };
 }
 
