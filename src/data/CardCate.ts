@@ -5,4 +5,10 @@ export type CardCateEntry = {
   skills: Skill[];
 };
 
-export const CardCate: CardCateEntry[] = [{ name: "MENG", skills: [] }];
+export const CardCate: CardCateEntry[] = [
+  { name: "MENG", skills: [] },
+  { name: "MO", skills: [] },
+  { name: "AI", skills: [] },
+  { name: "LIN", skills: [] },
+  { name: "WEI", skills: [] }
+];

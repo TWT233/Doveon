@@ -1,5 +1,3 @@
-export const CardList: string[] = ["MENG", "AI", "MO", "LIN"];
-
 export class Card {
   [key: string]: string | number | Function;
   private _name: string;

@@ -47,7 +47,8 @@ zh_CN:
 
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from "vue-property-decorator";
-import { Card, CardList } from "@/mechanism/build/Card";
+import { Card } from "@/mechanism/build/Card";
+import { CardCate } from "@/data/CardCate";
 
 @Component({})
 export default class EditorCard extends Vue {
@@ -70,7 +71,9 @@ export default class EditorCard extends Vue {
 
   get cardList() {
     const ret = new Array<{ text: string; value: string }>(0);
-    CardList.forEach(e => ret.push({ text: this.$t(e).toString(), value: e }));
+    CardCate.forEach(e =>
+      ret.push({ text: this.$t(e.name).toString(), value: e.name })
+    );
     return ret;
   }
 }
