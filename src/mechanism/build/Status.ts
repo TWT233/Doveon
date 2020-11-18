@@ -17,8 +17,8 @@ export class Status {
   THR_PHY_C = 0;
   THR_MAG_K = 0;
   THR_MAG_C = 0;
-  SKI_CHA = 0;
-  CRI_CHA = 0;
+  SKI_CHA_A = 0;
+  CRI_CHA_A = 0;
   THR_CRI = 0;
   STL = 0;
   DEF_PHY_A = 0;
@@ -69,8 +69,8 @@ export class Status {
     this.THR_PHY_C = a.THR_PHY_B;
     this.THR_MAG_K = a.THR_MAG_A;
     this.THR_MAG_C = a.THR_MAG_B;
-    this.SKI_CHA = p.INT;
-    this.CRI_CHA = p.AGI;
+    this.SKI_CHA_A = p.INT;
+    this.CRI_CHA_A = p.AGI;
     this.THR_CRI = a.THR_CRI_A;
     this.STL = a.HP_STL;
     this.DEF_PHY_A = p.VIT * 1.4 + p.MEN * 0.1;
@@ -116,6 +116,14 @@ export class Status {
   set DEF_PHY(value) {
     this.DEF_PHY_B = Math.max(0, value - this.DEF_PHY_A);
     this.DEF_PHY_A = Math.min(value, this.DEF_PHY_A);
+  }
+
+  get SKI_CHA(): number {
+    return this.SKI_CHA_A / (this.SKI_CHA_A + 99);
+  }
+
+  get CRI_CHA(): number {
+    return this.CRI_CHA_A / (this.CRI_CHA_A + 99);
   }
 
   get DEF_MAG(): number {

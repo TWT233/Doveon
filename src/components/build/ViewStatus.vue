@@ -81,14 +81,14 @@ zh_CN:
           <tr>
             <td>{{ $t("SKI_CHA") }}</td>
             <td>
-              {{ Math.floor(value.SKI_CHA) }}
+              {{ Math.floor(value.SKI_CHA_A) }}
               ({{ SKI_CHA_RATE }}%)
             </td>
           </tr>
           <tr>
             <td>{{ $t("CRI_CHA") }}</td>
             <td>
-              {{ Math.floor(value.CRI_CHA) }}
+              {{ Math.floor(value.CRI_CHA_A) }}
               ({{ CRI_CHA_RATE }}%)
             </td>
           </tr>
@@ -155,15 +155,15 @@ export default class ViewStatus extends Vue {
 
   get SKI_CHA_RATE() {
     return Math.floor(
-      (Math.floor(this.value.SKI_CHA) * 100) /
-        (Math.floor(this.value.SKI_CHA) + 99)
+      (Math.floor(this.value.SKI_CHA_A) * 100) /
+        (Math.floor(this.value.SKI_CHA_A) + 99)
     );
   }
 
   get CRI_CHA_RATE() {
     return Math.floor(
-      (Math.floor(this.value.CRI_CHA) * 100) /
-        (Math.floor(this.value.CRI_CHA) + 99)
+      (Math.floor(this.value.CRI_CHA_A) * 100) /
+        (Math.floor(this.value.CRI_CHA_A) + 99)
     );
   }
 
