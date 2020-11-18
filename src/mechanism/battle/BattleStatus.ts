@@ -18,7 +18,9 @@ export class BattleStatus {
     SD: 0,
     SR: 0
   };
+  s: "a" | "b" = "a";
   RFL = 0;
+  userSet = false;
   isCri = false;
   isSki = false;
   isMC = false; // MYST_BRACELET
