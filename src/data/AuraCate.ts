@@ -139,7 +139,10 @@ export const AuraCate: AuraCateEntry[] = [
         name: "CI",
         type: "stat",
         run: (b: BattleFrame, s: "a" | "b") => {
+          b[s].DEF_PHY_A *= 1.1;
+          b[s].DEF_MAG_A *= 1.1;
           b[s].HP_REG_P += 0.1;
+          b[s].REF += 5;
           return b;
         }
       }
