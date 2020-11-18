@@ -17,6 +17,7 @@ export class Action {
 
   exec(): Action {
     const s = this.getExec();
+    this.after.e.s = s;
 
     this.after.e[s].PA = this[s].status.ATK_PHY;
     this.after.e[s].MA = this[s].status.ATK_MAG;
@@ -49,8 +50,10 @@ export class Action {
   }
 
   diceCriAndSki(s: "a" | "b") {
-    this.after.e.isCri = Math.random() < this[s].status.CRI_CHA;
-    this.after.e.isSki = Math.random() < this[s].status.SKI_CHA;
+    if (!this.after.e.userSet) {
+      this.after.e.isCri = Math.random() < this[s].status.CRI_CHA;
+      this.after.e.isSki = Math.random() < this[s].status.SKI_CHA;
+    }
   }
 
   execActive(s: "a" | "b") {
@@ -60,7 +63,9 @@ export class Action {
   }
 
   diceMagCri(s: "a" | "b") {
-    this.after.e.isMC = Math.random() < 0.2;
+    if (!this.after.e.userSet) {
+      this.after.e.isMC = Math.random() < 0.2;
+    }
     this[s].skills.forEach(e => {
       if (e.type == "onMC") e.run(this.after, "a");
     });
