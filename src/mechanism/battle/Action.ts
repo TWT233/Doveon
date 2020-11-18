@@ -97,7 +97,9 @@ export class Action {
   }
 
   RFL(s: "a" | "b") {
-    dealDMG(this.after, s == "a" ? "b" : "a", "MAG", this.after.e.RFL);
+    const m = s == "a" ? "b" : "a";
+    this.after.e[m].MA += this.after.e.RFL;
+    dealDMG(this.after, m, "MAG", this.after.e.RFL);
   }
 
   calREGAndDMG() {
