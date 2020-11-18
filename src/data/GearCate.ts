@@ -163,8 +163,8 @@ export const GearCate: GearCateEntry[] = [
     type: "body",
     handler: (a: Attribute, g: Gear): Attribute => {
       a.HP_A += Math.floor((g.lvl / 5 + 20) * g.v(0));
-      a.DEF_PHY_A += Math.floor(g.lvl * g.v(1));
-      a.DEF_MAG_A += Math.floor(g.lvl * g.v(2));
+      a.DEF_PHY_B += Math.floor(g.lvl * g.v(1));
+      a.DEF_MAG_B += Math.floor(g.lvl * g.v(2));
       a.REF += Math.floor((g.lvl / 15 + 10) * g.v(3));
       return a;
     }
