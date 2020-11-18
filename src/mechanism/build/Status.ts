@@ -4,6 +4,7 @@ import { Pts } from "@/mechanism/build/Pts";
 export class Status {
   [key: string]: number | Function | Status;
   HP = 0;
+  HP_REG_P = 1;
   HP_REG_K = 0;
   HP_REG_C = 0;
   ATK_PHY_A = 0;
@@ -28,6 +29,7 @@ export class Status {
   BAR_PHY = 0;
   BAR_MAG = 0;
   SHD = 0;
+  SHD_REG_P = 1;
   SHD_REG_K = 0;
   SHD_REG_C = 0;
   REF = 0;
