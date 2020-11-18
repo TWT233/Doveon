@@ -53,13 +53,13 @@ export function dealDMG(
   if (type != "MAG") defDMGSHD *= 1.5;
 
   if (defDMGSHD > 0) {
-    const SD = Math.min(defDMGSHD, b[m].SHD);
+    const SD = Math.min(defDMGSHD, b[m].SHD - b.e[m].SD);
     b.e[m].SD += SD;
     b.e[s].SR += SD * (b[s].STL / 150);
     rawDMG *= 1 - SD / defDMGSHD;
   }
 
-  const HD = Math.min(defDMG(), b[m].HP);
+  const HD = Math.min(defDMG(), b[m].HP - b.e[m].HD);
   b.e[m].HD += HD;
   b.e[s].HR += HD * (b[s].STL / 100);
 }
