@@ -35,6 +35,7 @@ export class Action {
     this.afterATK(s);
 
     this.RFL(s);
+    this.calREGAndDMG();
     this.refreshSPD(s);
     return this;
   }
@@ -45,7 +46,7 @@ export class Action {
 
   execBeforeCrit(s: "a" | "b") {
     this[s].skills.forEach(e => {
-      if (e.type == "beforeCrit") e.run(this.after, "a");
+      if (e.type == "beforeCrit") e.run(this.after, s);
     });
   }
 
@@ -60,13 +61,13 @@ export class Action {
       this.after.e[s].AA *= 2;
     }
     this[s].skills.forEach(e => {
-      if (e.type == "onCrit") e.run(this.after, "a");
+      if (e.type == "onCrit") e.run(this.after, s);
     });
   }
 
   execActive(s: "a" | "b") {
     this[s].skills.forEach(e => {
-      if (e.type == "active") e.run(this.after, "a");
+      if (e.type == "active") e.run(this.after, s);
     });
   }
 
@@ -75,13 +76,13 @@ export class Action {
       this.after.e.isMC = Math.random() < 0.2;
     }
     this[s].skills.forEach(e => {
-      if (e.type == "onMC") e.run(this.after, "a");
+      if (e.type == "onMC") e.run(this.after, s);
     });
   }
 
   beforeATK(s: "a" | "b") {
     this[s].skills.forEach(e => {
-      if (e.type == "beforeATK") e.run(this.after, "a");
+      if (e.type == "beforeATK") e.run(this.after, s);
     });
   }
 
@@ -91,13 +92,15 @@ export class Action {
       (this.after.e[s].PA + this.after.e[s].MA * 0.7 + this.after.e[s].AA);
 
     this[s].skills.forEach(e => {
-      if (e.type == "afterATK") e.run(this.after, "a");
+      if (e.type == "afterATK") e.run(this.after, s);
     });
   }
 
   RFL(s: "a" | "b") {
     dealDMG(this.after, s == "a" ? "b" : "a", "MAG", this.after.e.RFL);
+  }
 
+  calREGAndDMG() {
     this.after.a.HP = Math.min(
       this.after.a.HP - this.after.e.a.HD + this.after.e.a.HR,
       this.after.a.origin.HP
