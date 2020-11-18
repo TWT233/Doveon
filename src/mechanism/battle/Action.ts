@@ -17,7 +17,6 @@ export class Action {
 
   exec(): Action {
     const s = this.getExec();
-    this.after.e.s = s;
 
     this.after.e[s].PA = this[s].status.ATK_PHY;
     this.after.e[s].MA = this[s].status.ATK_MAG;
