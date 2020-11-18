@@ -11,8 +11,8 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
-import { Action } from "@/mechanism/battle/Action";
 import ViewBattleFrame from "@/components/simulate/ViewBattleFrame.vue";
+import { Action } from "@/mechanism/battle/Action";
 
 @Component({
   components: { ViewBattleFrame }
