@@ -55,7 +55,7 @@
           </v-col>
           <v-col cols="1" align-self="center">
             <v-icon color="green">
-              {{ value.e.s === "a" ? "mdi-arrow-right" : "mdi-arrow-left" }}
+              {{ value.e.spd >= 0 ? "mdi-arrow-right" : "mdi-arrow-left" }}
             </v-icon>
           </v-col>
           <v-col cols="auto">
