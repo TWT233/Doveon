@@ -5,6 +5,7 @@ zh_CN:
   BI: 破壁之心
   MO: 破魔之心
   DUN: 复合护盾
+  XUE: 鲜血渴望
   SHANG: 伤口恶化
   SHEN: 精神创伤
   CI: 铁甲尖刺
@@ -12,6 +13,8 @@ zh_CN:
   FEI: 沸血之志
   BO: 波澜不惊
   JU: 飓风之力
+  HONG: 红蓝双刺
+  JUE: 绝对护盾
   short:
     SHI: 誓
     XIN: 心
@@ -19,6 +22,7 @@ zh_CN:
     BI: 壁
     MO: 魔
     DUN: 盾
+    XUE: 血
     SHANG: 伤
     SHEN: 神
     CI: 刺
@@ -26,3 +30,5 @@ zh_CN:
     FEI: 沸
     BO: 波
     JU: 飓
+    HONG: 红
+    JUE: 绝

@@ -6,6 +6,7 @@ export class Aura {
   private BI = false; // 破壁之心
   private MO = false; // 破魔之心
   private DUN = false; // 复合护盾
+  private XUE = false; // 鲜血渴望
   private SHANG = false; // 伤口恶化
   private SHEN = false; // 精神创伤
   private CI = false; // 铁甲尖刺
@@ -13,6 +14,8 @@ export class Aura {
   private FEI = false; // 沸血之志
   private BO = false; // 波澜不惊
   private JU = false; // 飓风之力
+  private HONG = false; // 红蓝双刺
+  private JUE = false; // 绝对护盾
 
   constructor(val = false) {
     for (const key in this) {
