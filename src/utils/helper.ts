@@ -59,7 +59,7 @@ export function dealDMG(
     rawDMG *= 1 - SD / defDMGSHD;
   }
 
-  const HD = Math.min(defDMG(), b[m].HP - b.e[m].HD);
+  const HD = defDMG();
   b.e[m].HD += HD;
   b.e[s].HR += HD * (b[s].STL / 100);
 }
