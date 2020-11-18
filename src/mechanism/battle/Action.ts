@@ -54,6 +54,14 @@ export class Action {
       this.after.e.isCri = Math.random() < this[s].status.CRI_CHA;
       this.after.e.isSki = Math.random() < this[s].status.SKI_CHA;
     }
+    if (this.after.e.isCri) {
+      this.after.e[s].PA *= 2;
+      this.after.e[s].MA *= 1.5;
+      this.after.e[s].AA *= 2;
+    }
+    this[s].skills.forEach(e => {
+      if (e.type == "onCrit") e.run(this.after, "a");
+    });
   }
 
   execActive(s: "a" | "b") {
