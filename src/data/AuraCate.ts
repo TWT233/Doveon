@@ -148,7 +148,19 @@ export const AuraCate: AuraCateEntry[] = [
       }
     ]
   },
-  { name: "REN", skills: [] },
+  {
+    name: "REN",
+    skills: [
+      {
+        name: "REN",
+        type: "stat",
+        run: (b: BattleFrame, s: "a" | "b") => {
+          b.e[s].buffs.AURA_REN = true;
+          return b;
+        }
+      }
+    ]
+  },
   { name: "FEI", skills: [] },
   { name: "BO", skills: [] },
   { name: "JU", skills: [] },
