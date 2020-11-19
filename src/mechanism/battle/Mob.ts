@@ -4,6 +4,7 @@ import { Skill } from "@/mechanism/battle/Skill";
 import { CardCate } from "@/data/CardCate";
 import { NPCCate } from "@/data/NPCCate";
 import { NPC } from "@/mechanism/battle/NPC";
+import { AuraCate } from "@/data/AuraCate";
 
 export class Mob {
   private _name = "";
@@ -29,11 +30,17 @@ export class Mob {
         if (e.name == data.card.name)
           e.skills.forEach(se => ret.skills.push(se));
       });
+      AuraCate.forEach(e => {
+        if (data.aura[e.name]) e.skills.forEach(se => ret.skills.push(se));
+      });
     } else {
       // gen from NPC
       ret = new Mob(name, type, data.status);
       NPCCate.forEach(e => {
         if (e.name == data.name) e.skills.forEach(se => ret.skills.push(se));
+      });
+      AuraCate.forEach(e => {
+        if (data.aura[e.name]) e.skills.forEach(se => ret.skills.push(se));
       });
     }
     // TODO:ADD NPC/S+A
