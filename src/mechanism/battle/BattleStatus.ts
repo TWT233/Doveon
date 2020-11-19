@@ -19,8 +19,11 @@ export class BattleStatus {
     a: 0,
     b: 0
   };
-  roundFlag = false;
-  AURA_REN = 0; // A 出手则 +1 B出手则 -1，该值 == 3/-3时触发效果
+  roundFlag = {
+    a: false,
+    b: false
+  };
+  exeCount = 0; // A 出手则 +1 B出手则 -1，该值 == 3/-3时触发效果
   s: "a" | "b" = "a";
   a = new RoundCharaStatus();
   b = new RoundCharaStatus();
@@ -33,6 +36,8 @@ export class BattleStatus {
   constructor(b: BattleStatus | null = null) {
     if (b == null) return;
     Object.assign(this.spd, b.spd);
+    Object.assign(this.roundFlag, b.roundFlag);
+    Object.assign(this.exeCount, b.exeCount);
     Object.assign(this.a.buffs, b.a.buffs);
     Object.assign(this.b.buffs, b.b.buffs);
   }
