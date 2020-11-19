@@ -146,7 +146,30 @@ export class Action {
   }
 
   roundREG() {
-    if (!this.after.e.roundFlag) return;
+    const A = this.after.a;
+    const B = this.after.b;
+    const E = this.after.e;
+    if (!E.roundFlag.a || !E.roundFlag.b) return;
+
+    const roundHRA =
+      A.HP_REG_P * ((A.HP_REG_K / 100) * A.origin.HP + A.HP_REG_C);
+    const roundSRA =
+      A.SHD_REG_P * ((A.SHD_REG_K / 100) * A.origin.SHD + A.SHD_REG_C);
+    const roundHRB =
+      B.HP_REG_P * ((B.HP_REG_K / 100) * B.origin.HP + B.HP_REG_C);
+    const roundSRB =
+      B.SHD_REG_P * ((B.SHD_REG_K / 100) * B.origin.SHD + B.SHD_REG_C);
+
+    A.HP = Math.min(A.HP + roundHRA, A.origin.HP);
+    A.SHD = Math.min(A.SHD + roundSRA, A.origin.SHD);
+    B.HP = Math.min(B.HP + roundHRB, B.origin.HP);
+    B.SHD = Math.min(B.SHD + roundSRB, B.origin.SHD);
+    E.a.HR += roundHRA;
+    E.a.SR += roundSRA;
+    E.b.HR += roundHRB;
+    E.b.HR += roundSRB;
+    E.roundFlag.a = false;
+    E.roundFlag.b = false;
   }
 
   refreshSPD() {
