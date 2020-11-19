@@ -32,8 +32,7 @@ yarn serve
 
 ## Short Term RoadMap
 
-1. SPD 计数器需不需要重新设计
-2. 填光环、填卡片技能
+1. 填光环、填卡片技能
 
 ## 设计：
 
