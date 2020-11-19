@@ -42,34 +42,25 @@ export class Action {
   }
 
   getExec() {
-    let s: "a" | "b" = this.after.e.spd.a >= this.after.e.spd.b ? "a" : "b";
-    this.after.e.spd[s] -= this.after.e.spd[s == "a" ? "b" : "a"];
-    this.after.e.spd[s == "a" ? "b" : "a"] = 0;
-    if (this.after.e.AURA_REN == 3 && this.after.e.b.buffs.AURA_REN) {
+    const E = this.after.e;
+    let s: "a" | "b" = E.spd.a >= E.spd.b ? "a" : "b";
+    E.spd[s] -= E.spd[s == "a" ? "b" : "a"];
+    E.spd[s == "a" ? "b" : "a"] = 0;
+    if (E.exeCount == 3 && E.b.buffs.AURA_REN) {
       s = "b";
-      this.after.e.spd[s] = 0;
+      E.spd[s] = 0;
     }
-    if (this.after.e.AURA_REN == -3 && this.after.e.a.buffs.AURA_REN) {
+    if (E.exeCount == -3 && E.a.buffs.AURA_REN) {
       s = "a";
-      this.after.e.spd[s] = 0;
+      E.spd[s] = 0;
     }
 
-    if (s == "a") {
-      if (this.after.e.AURA_REN >= 0) {
-        this.after.e.AURA_REN++;
-      } else {
-        this.after.e.AURA_REN = 1;
-        this.after.e.roundFlag = true;
-      }
-    } else {
-      if (this.after.e.AURA_REN >= 0) {
-        this.after.e.AURA_REN--;
-      } else {
-        this.after.e.AURA_REN = -1;
-        this.after.e.roundFlag = true;
-      }
-    }
-    this.after.e.s = s;
+    if (s == "a") E.exeCount = E.exeCount >= 0 ? E.exeCount + 1 : 1;
+    else E.exeCount = E.exeCount <= 0 ? E.exeCount - 1 : -1;
+
+    E.roundFlag[s] = true;
+
+    E.s = s;
     return s;
   }
 
