@@ -18,7 +18,8 @@ export class BattleFrame {
       b: new Status(b),
       e: e
     };
-    ret.e.spd = ret.a.ATK_SPD - ret.b.ATK_SPD;
+    ret.e.spd.a = ret.a.ATK_SPD;
+    ret.e.spd.b = ret.b.ATK_SPD;
     return ret;
   }
 }
