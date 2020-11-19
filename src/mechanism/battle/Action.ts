@@ -132,22 +132,17 @@ export class Action {
   }
 
   calREGAndDMG() {
-    this.after.a.HP = Math.min(
-      this.after.a.HP - this.after.e.a.HD + this.after.e.a.HR,
-      this.after.a.origin.HP
-    );
-    this.after.a.SHD = Math.min(
-      this.after.a.SHD - this.after.e.a.SD + this.after.e.a.SR,
-      this.after.a.origin.SHD
-    );
-    this.after.b.HP = Math.min(
-      this.after.b.HP - this.after.e.b.HD + this.after.e.b.HR,
-      this.after.b.origin.HP
-    );
-    this.after.b.SHD = Math.min(
-      this.after.b.SHD - this.after.e.b.SD + this.after.e.b.SR,
-      this.after.b.origin.SHD
-    );
+    const A = this.after.a;
+    const B = this.after.b;
+    const E = this.after.e;
+    E.a.HR *= A.HP_REG_P;
+    E.a.SR *= A.SHD_REG_P;
+    E.b.HR *= B.HP_REG_P;
+    E.b.HR *= B.SHD_REG_P;
+    A.HP = Math.min(A.HP - E.a.HD + E.a.HR, A.origin.HP);
+    A.SHD = Math.min(A.SHD - E.a.SD + E.a.SR, A.origin.SHD);
+    B.HP = Math.min(B.HP - E.b.HD + E.b.HR, B.origin.HP);
+    B.SHD = Math.min(B.SHD - E.b.SD + E.b.SR, B.origin.SHD);
   }
 
   roundREG() {
