@@ -30,8 +30,12 @@
 
     <v-card outlined tile>
       <v-container>
+        <v-row>
+          <v-col><ViewStatus :value="value.a"/></v-col>
+          <v-col><ViewStatus :value="value.b"/></v-col>
+        </v-row>
         <v-row align-content="center">
-          <v-col cols="auto">
+          <v-col>
             <v-list dense>
               <v-list-item>
                 <v-icon small color="red">mdi-flash</v-icon>
@@ -58,7 +62,7 @@
               {{ value.e.s === "a" ? "mdi-arrow-right" : "mdi-arrow-left" }}
             </v-icon>
           </v-col>
-          <v-col cols="auto">
+          <v-col>
             <v-list dense>
               <v-list-item>
                 <v-icon small color="red">mdi-flash</v-icon>
@@ -100,8 +104,11 @@
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
 import { BattleFrame } from "@/mechanism/battle/BattleFrame";
+import ViewStatus from "@/components/build/ViewStatus.vue";
 
-@Component({})
+@Component({
+  components: { ViewStatus }
+})
 export default class ViewBattleFrame extends Vue {
   @Prop() value!: BattleFrame;
 
