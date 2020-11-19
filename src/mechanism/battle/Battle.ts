@@ -23,15 +23,19 @@ export class Battle {
   }
 
   stepOver(): Battle {
-    this.log.push(
-      new Action(
-        this.a,
-        this.b,
-        this.log.length == 0
-          ? BattleFrame.init(this.a.status, this.b.status, this.e)
-          : this.log[this.log.length - 1].after
-      ).exec()
-    );
+    let bf: BattleFrame;
+    if (this.log.length == 0) {
+      bf = BattleFrame.init(this.a.status, this.b.status, this.e);
+      this.a.skills.forEach(e => {
+        if (e.type == "stat") e.run(bf, "a");
+      });
+      this.b.skills.forEach(e => {
+        if (e.type == "stat") e.run(bf, "b");
+      });
+    } else {
+      bf = this.log[this.log.length - 1].after;
+    }
+    this.log.push(new Action(this.a, this.b, bf).exec());
 
     return this;
   }
