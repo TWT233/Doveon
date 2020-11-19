@@ -34,48 +34,48 @@
           <v-col cols="auto">
             <v-list dense>
               <v-list-item>
-                <v-icon color="red">mdi-flash</v-icon>
+                <v-icon small color="red">mdi-flash</v-icon>
                 {{ Math.floor(value.e.a.PA) }}
-                <v-icon color="blue">mdi-flash</v-icon>
+                <v-icon small color="blue">mdi-flash</v-icon>
                 {{ Math.floor(value.e.a.MA) }}
-                <v-icon color="yellow">mdi-flash</v-icon>
+                <v-icon small color="yellow">mdi-flash</v-icon>
                 {{ Math.floor(value.e.a.AA) }}
               </v-list-item>
               <v-list-item>
-                <v-icon color="red">mdi-plus</v-icon>
+                <v-icon small color="red">mdi-plus</v-icon>
                 {{ Math.floor(value.e.a.HR) }}
-                <v-icon color="red">mdi-minus</v-icon>
+                <v-icon small color="red">mdi-minus</v-icon>
                 {{ Math.floor(value.e.a.HD) }}
-                <v-icon color="blue">mdi-plus</v-icon>
+                <v-icon small color="blue">mdi-plus</v-icon>
                 {{ Math.floor(value.e.a.SR) }}
-                <v-icon color="blue">mdi-minus</v-icon>
+                <v-icon small color="blue">mdi-minus</v-icon>
                 {{ Math.floor(value.e.a.SD) }}
               </v-list-item>
             </v-list>
           </v-col>
           <v-col cols="1" align-self="center">
             <v-icon color="green">
-              {{ value.e.spd >= 0 ? "mdi-arrow-right" : "mdi-arrow-left" }}
+              {{ value.e.s === "a" ? "mdi-arrow-right" : "mdi-arrow-left" }}
             </v-icon>
           </v-col>
           <v-col cols="auto">
             <v-list dense>
               <v-list-item>
-                <v-icon color="red">mdi-flash</v-icon>
+                <v-icon small color="red">mdi-flash</v-icon>
                 {{ Math.floor(value.e.b.PA) }}
-                <v-icon color="blue">mdi-flash</v-icon>
+                <v-icon small color="blue">mdi-flash</v-icon>
                 {{ Math.floor(value.e.b.MA) }}
-                <v-icon color="yellow">mdi-flash</v-icon>
+                <v-icon small color="yellow">mdi-flash</v-icon>
                 {{ Math.floor(value.e.b.AA) }}
               </v-list-item>
               <v-list-item>
-                <v-icon color="red">mdi-plus</v-icon>
+                <v-icon small color="red">mdi-plus</v-icon>
                 {{ Math.floor(value.e.b.HR) }}
-                <v-icon color="red">mdi-minus</v-icon>
+                <v-icon small color="red">mdi-minus</v-icon>
                 {{ Math.floor(value.e.b.HD) }}
-                <v-icon color="blue">mdi-plus</v-icon>
+                <v-icon small color="blue">mdi-plus</v-icon>
                 {{ Math.floor(value.e.b.SR) }}
-                <v-icon color="blue">mdi-minus</v-icon>
+                <v-icon small color="blue">mdi-minus</v-icon>
                 {{ Math.floor(value.e.b.SD) }}
               </v-list-item>
             </v-list>
