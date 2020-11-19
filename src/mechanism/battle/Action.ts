@@ -35,12 +35,42 @@ export class Action {
 
     this.RFL(s);
     this.calREGAndDMG();
-    this.refreshSPD(s);
+    if (this.after.a.HP <= 0 || this.after.b.HP <= 0) return this;
+    this.roundREG();
+    this.refreshSPD();
     return this;
   }
 
   getExec() {
-    return this.after.e.spd >= 0 ? "a" : "b";
+    let s: "a" | "b" = this.after.e.spd.a >= this.after.e.spd.b ? "a" : "b";
+    this.after.e.spd[s] -= this.after.e.spd[s == "a" ? "b" : "a"];
+    this.after.e.spd[s == "a" ? "b" : "a"] = 0;
+    if (this.after.e.AURA_REN == 3 && this.after.e.b.buffs.AURA_REN) {
+      s = "b";
+      this.after.e.spd[s] = 0;
+    }
+    if (this.after.e.AURA_REN == -3 && this.after.e.a.buffs.AURA_REN) {
+      s = "a";
+      this.after.e.spd[s] = 0;
+    }
+
+    if (s == "a") {
+      if (this.after.e.AURA_REN >= 0) {
+        this.after.e.AURA_REN++;
+      } else {
+        this.after.e.AURA_REN = 1;
+        this.after.e.roundFlag = true;
+      }
+    } else {
+      if (this.after.e.AURA_REN >= 0) {
+        this.after.e.AURA_REN--;
+      } else {
+        this.after.e.AURA_REN = -1;
+        this.after.e.roundFlag = true;
+      }
+    }
+    this.after.e.s = s;
+    return s;
   }
 
   execBeforeCrit(s: "a" | "b") {
@@ -120,9 +150,12 @@ export class Action {
     );
   }
 
-  refreshSPD(s: "a" | "b") {
-    s == "a"
-      ? (this.after.e.spd -= this.after.b.ATK_SPD)
-      : (this.after.e.spd += this.after.a.ATK_SPD);
+  roundREG() {
+    if (!this.after.e.roundFlag) return;
+  }
+
+  refreshSPD() {
+    const m = this.after.e.s == "a" ? "b" : "a";
+    this.after.e.spd[m] = this[m].status.ATK_SPD;
   }
 }
